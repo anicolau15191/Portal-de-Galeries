@@ -15,4 +15,5 @@ public class Exposicio {
 
     private String nom;
     private String idPropietari;
+    private String idExpoF;
 }
