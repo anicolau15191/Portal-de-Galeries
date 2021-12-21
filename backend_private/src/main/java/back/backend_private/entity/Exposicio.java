@@ -12,4 +12,7 @@ import javax.persistence.Table;
 public class Exposicio {
     @Id
     private int id;
+
+    private String nom;
+    private String idPropietari;
 }
