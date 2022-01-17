@@ -1,45 +1,66 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
     <link th:href="@{/css/custom.css}" rel="stylesheet">
 </head>
 <body>
-Helloooo world!
-<button type="button" class="btn btn-primary">Primary</button>
-<div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                Accordion Item #1
-            </button>
-        </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+    <header th:include="/header :: header" ”></header>
+    <main>
+        <div class="container mt-3">
+            <div class="d-flex justify-content-start">
+                <button type="button" class="btn btn-outline-iesmanacor" id="addGaleria">Nova Galeria</button>
+            </div>
         </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Accordion Item #2
-            </button>
-        </h2>
-        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+        <div class="container d-flex justify-content-center mt-3">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="card col-4 mb-3" th:each="galeria:${llista}">
+                        <img th:src="@{${'/img/'+galeria.idGaleria+'.jpg'}}" onerror="this.onerror=null;this.src='/img/default.png';">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${galeria.nom}"></h5>
+                            <a th:href="@{'/perfil/'+${galeria.idGaleria}}" class="btn btn-outline-iesmanacor">Perfil</a>
+                            <a th:href="@{'/eliminar/'+ ${galeria.idGaleria}}" class="btn btn-outline-iesmanacor">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                Accordion Item #3
-            </button>
-        </h2>
-        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+        <div class="modal" tabindex="-1" id="addNewGaleria">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nova Galeria</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/add" class="needs-validation" novalidate >
+                            <div class="input-group mb-3">
+                                <span for="nom" id="nom" class="input-group-text col-2">Nom</span>
+                                <input type="text" class="form-control" name="nom" aria-describedby="nom" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span for="nom" id="poblacio" class="input-group-text col-2">Poblacio</span>
+                                <select aria-describedby="poblacio" class="form-select" name="pob" required>
+                                    <option value="">Selecciona</option>
+                                    <option th:each="poblacio:${poblacions}" th:value="${poblacio.idPoblacio}" th:text="${poblacio.nom}"></option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span for="email" id="correu" class="input-group-text col-2">Correu</span>
+                                <input type="email" aria-describedby="correu" class="form-control" id="email" name="email" required>
+                            </div>
+                            <button type="submit" class="btn btn-outline-iesmanacor">Crear</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    </main>
+
+
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
 </body>
 </html>

@@ -7,10 +7,13 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table(name="poblacio")
-public class Poblacio implements Serializable {
+@Table(name="media")
+public class Media implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPoblacio;
+    private int idMedia;
+    @ManyToOne
+    @JoinColumn(name="idGaleria")
+    private Galeria galeria;
     private String nom;
 }
