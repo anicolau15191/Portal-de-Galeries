@@ -12,11 +12,11 @@ Array.prototype.slice.call(forms)
         }, false);
     });
 
-var myModal = document.querySelector('#addNewGaleria')
+/*var myModal = document.querySelector('#modal')
 var modal = new bootstrap.Modal(myModal, {
     backdrop: 'static'
 })
 
 document.querySelector('#addGaleria').addEventListener('click', function () {
     modal.show();
-})
+})*/

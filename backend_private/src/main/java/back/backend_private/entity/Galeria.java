@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.sql.rowset.serial.SerialArray;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,6 +18,8 @@ public class Galeria implements Serializable {
     public int idGaleria;
     private String nom;
     private String email;
+    private String direccio;
+    private String telefon;
     @ManyToOne
     @JoinColumn(name="idPoblacio")
     private Poblacio poblacio;
@@ -25,7 +28,10 @@ public class Galeria implements Serializable {
     private String latitud;
     private String longitut;
     private int enabled;
-    @OneToMany
-    private Set<Media> fotos;
+    private  String descripcio;
+    @OneToMany (mappedBy = "galeria")
+    private List<Media> fotos;
+    @OneToMany (mappedBy = "galeria")
+    private List<Sales> sales;
 
 }

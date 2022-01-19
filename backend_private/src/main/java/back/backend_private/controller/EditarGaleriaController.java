@@ -5,20 +5,19 @@ import back.backend_private.entity.Genere;
 import back.backend_private.entity.Poblacio;
 import back.backend_private.repositories.GaleriaCrud;
 import back.backend_private.repositories.GenereCrud;
-import back.backend_private.services.EspecialitzatServei;
-import back.backend_private.services.GaleriaServei;
-import back.backend_private.services.GenereServei;
-import back.backend_private.services.PoblacioServei;
+import back.backend_private.repositories.MediaCrud;
+import back.backend_private.services.*;
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +36,8 @@ public class EditarGaleriaController {
     private GenereServei genereServei;
     @Autowired
     private GenereCrud genereCrud;
+    @Autowired
+    MediaServei mediaServei;
 
     @GetMapping("/perfil/{id}")
     public String galeria(@PathVariable int id, ModelMap model){
@@ -77,19 +78,29 @@ public class EditarGaleriaController {
 
 
 
-    @PostMapping("/imatgesGaleria/{id}")
-    public String imatges(@PathVariable int id, @RequestParam("file")MultipartFile img) throws IOException {
-        if(!img.isEmpty()){
-            Path dirImatges = Paths.get("src//main//resources//static/img");
-            String rutaAbsoluta = dirImatges.toFile().getAbsolutePath();
-           // String rutaAbsoluta = "C://Users//xisca//OneDrive//Documentos//ifc33B//img";
+    @PostMapping("/imatgesGaleria/{id}/{num}")
+    public String imatges(@PathVariable int id, @PathVariable int num, @RequestParam("file")MultipartFile img) throws IOException {
 
-            byte[] bytesImg = img.getBytes();
-            Path ruta = Paths.get(rutaAbsoluta + "//" + id + ".jpg");
-            Files.write(ruta,bytesImg);
+        InputStream is = img.getInputStream();
+        String nomImatge = img.getOriginalFilename();
+
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        byte[] readBuf = new byte[4096];
+        while (is.available() > 0) {
+            int bytesRead = is.read(readBuf);
+            os.write(readBuf, 0, bytesRead);
         }
+        // Passam l'arxiu a dins una carpeta
+        String ruta = "C://Users//xisca//OneDrive//Documentos//ifc33B//imgGaleria/";
+        String fileName = ruta + nomImatge;
 
-        return "redirect:/perfilGaleria/"+id;
+        OutputStream outputStream = new FileOutputStream(fileName);
+        os.writeTo(outputStream);
+
+        Optional<Galeria> g = data.findById(id);
+        Galeria galeria = g.get();
+        mediaServei.addFoto(galeria,nomImatge);
+        return "redirect:/perfil/"+id;
     }
     @PostMapping("/editarDescripcio/{id}")
     public String desc(@PathVariable int id , @RequestParam String desc){
@@ -120,6 +131,22 @@ public class EditarGaleriaController {
         Optional<Galeria> g = data.findById(id);
         Galeria galeria = g.get();
         galeria.setEmail(correu);
+        data.save(galeria);
+        return "redirect:/editarGaleria/"+id;
+    }
+    @PostMapping("/editarTelefon/{id}")
+    public String editarTelefon(@PathVariable int id , @RequestParam String telefon){
+        Optional<Galeria> g = data.findById(id);
+        Galeria galeria = g.get();
+        galeria.setTelefon(telefon);
+        data.save(galeria);
+        return "redirect:/editarGaleria/"+id;
+    }
+    @PostMapping("/editarDireccio/{id}")
+    public String editarDireccio(@PathVariable int id , @RequestParam String direccio){
+        Optional<Galeria> g = data.findById(id);
+        Galeria galeria = g.get();
+        galeria.setDireccio(direccio);
         data.save(galeria);
         return "redirect:/editarGaleria/"+id;
     }

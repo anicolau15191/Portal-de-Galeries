@@ -1,10 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th = "http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Sales</title>
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
 </head>
 <body>
-$END$
+<header th:include="/header :: header"></header>
+    <main>
+        <div class="container mb-3 mt-3">
+            <div class="col-4 d-flex justify-content-start">
+                <a th:href="@{'/perfil/'+${galeria.idGaleria}}" class="btn btn-outline-iesmanacor me-2">Perfil</a>
+                <button type="button" class="btn btn-outline-iesmanacor" id="addSala">Nova Sala</button>
+            </div>
+            <div class="d-flex justify-content-center">
+                <h2>Llistat de Sales</h2>
+            </div>
+        </div>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-4 mb-3" th:each="sala:${sales}">
+                    <a th:href="@{'/sala/'+${sala.idSales}+'/'+${galeria.idGaleria}}" class="text-decoration-none text-black">
+                        <div class="card border-light text-center" >
+                            <div class="card-header">Sala <a th:href="@{'/eliminarSala/'+${galeria.idGaleria}+'/'+${sala.idSales}}" class="link-secondary" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </a>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center" th:text="${sala.nom}"></h5>
+                                <span class="card-text">Aforament</span>
+                                <span class="card-text" th:text="${sala.aforament}"></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Crear Sala -->
+        <div class="modal" tabindex="-1" id="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nova Sala</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" th:action="@{'/addSala/'+ ${galeria.idGaleria}}" class="needs-validation" novalidate >
+                            <span>Nom</span>
+                            <div class="input-group mb-3">
+                                <span for="nom" id="nom" class="input-group-text d-flex justify-content-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                </svg></span>
+                                <input type="text" class="form-control" name="nom" aria-describedby="nom" required>
+                            </div>
+                            <span>Aforament</span>
+                            <div class="input-group mb-3">
+                                <span for="aforament" id="aforament" class="input-group-text d-flex justify-content-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                                <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                                </svg></span>
+                                <input type="number" aria-describedby="aforament" class="form-control" name="aforament" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-iesmanacor">Crear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+<script>
+    let myModal = document.querySelector('#modal')
+    let modal = new bootstrap.Modal(myModal, {
+        backdrop: 'static'
+    })
+
+    document.querySelector('#addSala').addEventListener('click', function () {
+        modal.show();
+    })
+</script>
 </body>
 </html>

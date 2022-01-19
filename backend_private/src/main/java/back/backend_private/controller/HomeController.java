@@ -47,13 +47,9 @@ public class HomeController {
     }
 
     @PostMapping("/add")
-    public String addGaleria(@RequestParam String nom, String email, int pob /*int [] art, int[] generes*/){
-       // List<Genere> llistaArt = genereServei.llistatArt(art);
-       // List<Genere> llistaGenere = genereServei.llistatArt(generes);
+    public String addGaleria(@RequestParam String nom, String email, int pob){
         Poblacio trobada = poblacio.findById(pob);
         Galeria galeria = galeriaServei.crearGaleria(1,nom,trobada,email);
-       // especialitzatServei.crearRelacio(llistaArt,galeria);
-        //especialitzatServei.crearRelacio(llistaGenere,galeria);
         return "redirect:/home";
     }
 
