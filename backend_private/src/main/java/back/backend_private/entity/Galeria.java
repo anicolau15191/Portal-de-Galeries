@@ -28,6 +28,7 @@ public class Galeria implements Serializable {
     private String latitud;
     private String longitut;
     private int enabled;
+    @Column(length = 250)
     private  String descripcio;
     @OneToMany (mappedBy = "galeria")
     private List<Media> fotos;

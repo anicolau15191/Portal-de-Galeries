@@ -2,6 +2,7 @@ package back.backend_private.controller;
 
 import back.backend_private.entity.Galeria;
 import back.backend_private.entity.Genere;
+import back.backend_private.entity.Media;
 import back.backend_private.entity.Poblacio;
 import back.backend_private.repositories.GaleriaCrud;
 import back.backend_private.repositories.GenereCrud;
@@ -37,7 +38,7 @@ public class EditarGaleriaController {
     @Autowired
     private GenereCrud genereCrud;
     @Autowired
-    MediaServei mediaServei;
+    private MediaServei mediaServei;
 
     @GetMapping("/perfil/{id}")
     public String galeria(@PathVariable int id, ModelMap model){
@@ -52,6 +53,8 @@ public class EditarGaleriaController {
         model.addAttribute("poblacions",llistaPoblacions);
         List<Genere> tipusArt = genereServei.list();
         model.addAttribute("tipusArt",tipusArt);
+        List<Media> fotos = mediaServei.getImgGaleria(g);
+        model.addAttribute("fotos",fotos);
         return "perfilGaleria";
     }
 
@@ -79,10 +82,9 @@ public class EditarGaleriaController {
 
 
     @PostMapping("/imatgesGaleria/{id}/{num}")
-    public String imatges(@PathVariable int id, @PathVariable int num, @RequestParam("file")MultipartFile img) throws IOException {
+    public String imatges(@PathVariable int id, @PathVariable int num, @RequestParam("image")MultipartFile img) throws IOException {
 
         InputStream is = img.getInputStream();
-        String nomImatge = img.getOriginalFilename();
 
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         byte[] readBuf = new byte[4096];
@@ -90,18 +92,16 @@ public class EditarGaleriaController {
             int bytesRead = is.read(readBuf);
             os.write(readBuf, 0, bytesRead);
         }
-        // Passam l'arxiu a dins una carpeta
-        String ruta = "C://Users//xisca//OneDrive//Documentos//ifc33B//imgGaleria/";
-        String fileName = ruta + nomImatge;
 
-        OutputStream outputStream = new FileOutputStream(fileName);
-        os.writeTo(outputStream);
+        String uploadDir = "C://imggaleria/"+id;
+        String fileName = id + "-" + num;
 
-        Optional<Galeria> g = data.findById(id);
-        Galeria galeria = g.get();
-        mediaServei.addFoto(galeria,nomImatge);
+        mediaServei.saveFile(uploadDir,fileName,img);
+
         return "redirect:/perfil/"+id;
     }
+
+
     @PostMapping("/editarDescripcio/{id}")
     public String desc(@PathVariable int id , @RequestParam String desc){
         galeriaServei.addDescripcio(desc,id);

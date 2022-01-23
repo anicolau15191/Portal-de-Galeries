@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link th:href="@{/css/custom.css}" rel="stylesheet">
+    <link th:href="@{/css/estils.css}" rel="stylesheet">
 </head>
 <body>
     <header th:include="/header :: header" ”></header>
@@ -19,11 +20,9 @@
                     <div class="col-4 mb-3" th:each="galeria:${llista}">
                         <a th:href="@{'/perfil/'+${galeria.idGaleria}}" class="text-decoration-none text-black">
                             <div class="card" >
-                                <img th:src="@{${'/img/'+galeria.idGaleria+'.jpg'}}" onerror="this.onerror=null;this.src='/img/default.png';">
+                                <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+1}" class="card-img-top" onerror="this.onerror=null;this.src='/img/default.png';">
                                 <div class="card-body">
                                     <h5 class="card-title text-center" th:text="${galeria.nom}"></h5>
-                                    <!--<a th:href="@{'/perfil/'+${galeria.idGaleria}}" class="btn btn-outline-iesmanacor">Perfil</a>
-                                    <a th:href="@{'/eliminar/'+ ${galeria.idGaleria}}" class="btn btn-outline-iesmanacor">Eliminar</a>-->
                                 </div>
                             </div>
                         </a>

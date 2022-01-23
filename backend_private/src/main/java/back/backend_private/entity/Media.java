@@ -15,5 +15,13 @@ public class Media implements Serializable {
     @ManyToOne
     @JoinColumn(name="idGaleria")
     private Galeria galeria;
+    @Column(length = 64)
     private String nom;
+
+   /* @Transient
+    public String getPhotosImagePath() {
+        if (nom == null) return null;
+
+        return "/imgGaleria/" + galeria.idGaleria + "/" + nom;
+    }*/
 }
