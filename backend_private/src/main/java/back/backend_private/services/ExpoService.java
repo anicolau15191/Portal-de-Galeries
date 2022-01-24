@@ -1,4 +1,4 @@
-package back.backend_private.service;
+package back.backend_private.services;
 
 
 import back.backend_private.entity.Exposicio;

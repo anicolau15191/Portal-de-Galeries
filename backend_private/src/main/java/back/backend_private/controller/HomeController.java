@@ -1,7 +1,7 @@
 package back.backend_private.controller;
 
 import back.backend_private.entity.Exposicio;
-import back.backend_private.service.ExpoService;
+import back.backend_private.services.ExpoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
