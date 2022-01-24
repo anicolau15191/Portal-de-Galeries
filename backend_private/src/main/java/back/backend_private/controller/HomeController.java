@@ -1,6 +1,5 @@
 package back.backend_private.controller;
 
-<<<<<<< HEAD
 import back.backend_private.entity.Especialitzat;
 import back.backend_private.entity.Galeria;
 import back.backend_private.entity.Genere;
@@ -13,25 +12,17 @@ import back.backend_private.services.EspecialitzatServei;
 import back.backend_private.services.GaleriaServei;
 import back.backend_private.services.GenereServei;
 import back.backend_private.services.PoblacioServei;
-=======
-import back.backend_private.entity.Exposicio;
-import back.backend_private.services.ExpoService;
->>>>>>> adri
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Optional;
-=======
->>>>>>> adri
 
 @Controller
 @RequestMapping()
 public class HomeController {
-<<<<<<< HEAD
     @Autowired
     private PoblacioServei poblacio;
     @Autowired
@@ -52,43 +43,21 @@ public class HomeController {
         List<Genere> generesFills = genereServei.llistatArtFills();
         model.addAttribute("generesFills",generesFills);
 
-=======
-
-    @Autowired
-    private ExpoService expoService;
-
-    @GetMapping("/home")
-    public String getHome(ModelMap model){
-        List<Exposicio> expos = (List<Exposicio>) expoService.read();
-        model.addAttribute("list",expos);
->>>>>>> adri
         return "home";
     }
 
     @PostMapping("/add")
-<<<<<<< HEAD
     public String addGaleria(@RequestParam String nom, String email, int pob){
         Poblacio trobada = poblacio.findById(pob);
         Galeria galeria = galeriaServei.crearGaleria(1,nom,trobada,email);
-=======
-    public String addExpo(@RequestParam String nom, int idPromotor){
-        Exposicio expo = expoService.initExpo2(1,nom,idPromotor);
->>>>>>> adri
         return "redirect:/home";
     }
 
     @GetMapping("/eliminar/{id}")
-<<<<<<< HEAD
     public String eliminarGaleria(@PathVariable int id){
         galeriaServei.borrar(id);
         return "redirect:/home";
     }
 
 
-=======
-    public String delExpo(@PathVariable int id){
-        expoService.delete(id);
-        return "redirect:/home";
-    }
->>>>>>> adri
 }
