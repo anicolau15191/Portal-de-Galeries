@@ -6,6 +6,7 @@ import back.backend_private.repositories.ExpoCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +22,14 @@ public class ExpoService implements ExpoServiceI{
 
     @Override
     public List<Exposicio> available() {
-        List <Exposicio> 
+        List <Exposicio> all = read();
+        List <Exposicio> available = new ArrayList<>();
+        for(int i=0;i<all.size();i++){
+            if(all.get(i).getEnabled()==0){
+                available.add(all.get(i));
+            }
+        }
+        return available;
     }
 
     @Override

@@ -11,12 +11,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping()
-public class ListExpo {
+public class HomeController {
 
     @Autowired
     private ExpoService expoService;
 
-    @GetMapping("/home")
+    @GetMapping("/expo")
     public String getHome(ModelMap model){
         List<Exposicio> expos = (List<Exposicio>) expoService.read();
         model.addAttribute("list",expos);
@@ -24,12 +24,12 @@ public class ListExpo {
     }
 
     @PostMapping("/add")
-    public String addExpo(@RequestParam String nom, int idProp){
-        Exposicio expo = expoService.initExpo(nom,idProp);
+    public String addExpo(@RequestParam String nom){
+        Exposicio expo = expoService.initExpo(nom,1);
         return "redirect:/home";
     }
 
-    @GetMapping("/eliminar/{id}")
+    @GetMapping("/expo/del/{id}")
     public String delExpo(@PathVariable int id){
         expoService.delete(id);
         return "redirect:/home";

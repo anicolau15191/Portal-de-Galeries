@@ -1,12 +1,76 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
     <link th:href="@{/css/custom.css}" rel="stylesheet">
+    <link th:href="@{/css/estils.css}" rel="stylesheet">
 </head>
 <body>
+<header th:include="/header :: header" ”></header>
+<main>
+    <div class="container mt-3">
+        <div class="d-flex justify-content-start">
+            <button type="button" class="btn btn-outline-iesmanacor" id="addExpo">Nova Exposicio</button>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4 mb-3" th:each="expo:${list}">
+                    <a th:href="" class="text-decoration-none text-black">
+                        <div class="card" >
+                            <img src="/img/default.png" class="card-img-top" onerror="this.onerror=null;this.src='/img/default.png';">
+                            <div class="card-body">
+                                <h5 class="card-title text-center" th:text="${expo.nom}"></h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" id="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nova Exposició</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/add" class="needs-validation" novalidate >
+                        <span>Nom</span>
+                        <div class="input-group mb-3">
+                                <span for="nom" id="nom" class="input-group-text d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                    </svg>
+                                </span>
+                            <input type="text" class="form-control" name="nom" aria-describedby="nom" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-iesmanacor">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
 
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+<script>
+    let myModal = document.querySelector('#modal')
+    let modal = new bootstrap.Modal(myModal, {
+        backdrop: 'static'
+    })
+
+    document.querySelector('#addExpo').addEventListener('click', function () {
+        modal.show();
+    })
+</script>
 </body>
+</html>
 </html>
