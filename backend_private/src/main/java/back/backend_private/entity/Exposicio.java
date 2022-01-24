@@ -1,19 +1,21 @@
 package back.backend_private.entity;
 
 import lombok.Data;
+import lombok.Generated;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name="exposicio")
-public class Exposicio {
+public class Exposicio implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String nom;
-    private String idPropietari;
-    private String idExpoF;
+    private String descripcio;
+    private int idPropietari;
+    private int idPromotor;
+    private int enabled;
 }
