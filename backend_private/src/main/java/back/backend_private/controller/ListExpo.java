@@ -11,7 +11,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping()
-public class HomeController {
+public class ListExpo {
 
     @Autowired
     private ExpoService expoService;
