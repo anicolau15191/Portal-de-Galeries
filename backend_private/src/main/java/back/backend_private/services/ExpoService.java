@@ -32,18 +32,10 @@ public class ExpoService implements ExpoServiceI{
     }
 
     @Override
-    public Exposicio initExpo1(int idExpo, String nom, int idPropietari) {
+    public Exposicio initExpo(int idExpo, String nom, int idPropietari) {
         Exposicio expo = new Exposicio();
         expo.setNom(nom);
         expo.setIdPropietari(idPropietari);
-        return expo;
-    }
-
-    @Override
-    public Exposicio initExpo2(int idExpo, String nom, int idPromotor) {
-        Exposicio expo = new Exposicio();
-        expo.setNom(nom);
-        expo.setIdPromotor(idPromotor);
         return expo;
     }
 

@@ -8,6 +8,6 @@ public interface ExpoServiceI {
     List<Exposicio> read();
     void create (Exposicio expo);
     void delete (int id);
-    Exposicio initExpo1(int idExpo, String nom, int idPropietari);
-    Exposicio initExpo2(int idExpo, String nom, int idPromotor);
+    Exposicio initExpo(int idExpo, String nom, int idPropietari);
+
 }

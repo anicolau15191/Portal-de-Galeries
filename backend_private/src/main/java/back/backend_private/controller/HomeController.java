@@ -24,8 +24,8 @@ public class HomeController {
     }
 
     @PostMapping("/add")
-    public String addExpo(@RequestParam String nom, int idPromotor){
-        Exposicio expo = expoService.initExpo2(1,nom,idPromotor);
+    public String addExpo(@RequestParam String nom, int idProp){
+        Exposicio expo = expoService.initExpo(1,nom,idProp);
         return "redirect:/home";
     }
 
