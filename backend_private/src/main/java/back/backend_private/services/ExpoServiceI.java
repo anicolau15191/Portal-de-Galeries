@@ -6,8 +6,9 @@ import java.util.List;
 
 public interface ExpoServiceI {
     List<Exposicio> read();
+    List<Exposicio> available();
     void create (Exposicio expo);
     void delete (int id);
-    Exposicio initExpo1(int idExpo, String nom, int idPropietari);
-    Exposicio initExpo2(int idExpo, String nom, int idPromotor);
+    Exposicio initExpo(String nom, int idPropietari);
+
 }
