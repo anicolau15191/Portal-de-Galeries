@@ -22,12 +22,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping()
-<<<<<<< HEAD:backend_private/src/main/java/back/backend_private/controller/HomeController.java
 public class HomeController {
-=======
-public class ListExpo {
-
->>>>>>> adri:backend_private/src/main/java/back/backend_private/controller/ListExpo.java
     @Autowired
     private PoblacioServei poblacio;
     @Autowired
@@ -52,14 +47,9 @@ public class ListExpo {
     }
 
     @PostMapping("/add")
-<<<<<<< HEAD:backend_private/src/main/java/back/backend_private/controller/HomeController.java
     public String addGaleria(@RequestParam String nom, String email, int pob){
         Poblacio trobada = poblacio.findById(pob);
         Galeria galeria = galeriaServei.crearGaleria(1,nom,trobada,email);
-=======
-    public String addExpo(@RequestParam String nom, int idProp){
-        Exposicio expo = expoService.initExpo(nom,idProp);
->>>>>>> adri:backend_private/src/main/java/back/backend_private/controller/ListExpo.java
         return "redirect:/home";
     }
 
