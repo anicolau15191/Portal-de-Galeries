@@ -12,10 +12,11 @@ import java.io.Serializable;
 public class Exposicio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    @Column(name="id_exposicio")
     private int id;
     private String nom;
     private String descripcio;
+    @Column(name="id_propietari")
     private int idPropietari;
     private int enabled;
 }

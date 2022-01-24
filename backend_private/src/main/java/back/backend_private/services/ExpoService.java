@@ -20,6 +20,11 @@ public class ExpoService implements ExpoServiceI{
     }
 
     @Override
+    public List<Exposicio> available() {
+        List <Exposicio> 
+    }
+
+    @Override
     public void create(Exposicio expo) {
     }
 
@@ -32,10 +37,11 @@ public class ExpoService implements ExpoServiceI{
     }
 
     @Override
-    public Exposicio initExpo(int idExpo, String nom, int idPropietari) {
+    public Exposicio initExpo(String nom, int idPropietari) {
         Exposicio expo = new Exposicio();
         expo.setNom(nom);
         expo.setIdPropietari(idPropietari);
+        expo.setEnabled(0);
         return expo;
     }
 
