@@ -13,4 +13,6 @@ public class Poblacio implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPoblacio;
     private String nom;
+}
+
 

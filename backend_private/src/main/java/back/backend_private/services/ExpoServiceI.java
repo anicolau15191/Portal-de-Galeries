@@ -9,6 +9,6 @@ public interface ExpoServiceI {
     List<Exposicio> available();
     void delete (int id);
     Exposicio initExpo(String nom, int idPropietari);
-    Exposicio find(int id);
+    Exposicio findById(int id);
 
 }

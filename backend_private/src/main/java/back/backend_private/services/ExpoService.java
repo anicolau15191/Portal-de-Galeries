@@ -34,7 +34,7 @@ public class ExpoService implements ExpoServiceI{
 
     @Override
     public void delete(int id) {
-        Exposicio expo = find(id);
+        Exposicio expo = findById(id);
         expo.setEnabled(1);
         data.save(expo);
     }
@@ -50,7 +50,7 @@ public class ExpoService implements ExpoServiceI{
     }
 
     @Override
-    public Exposicio find(int id) {
+    public Exposicio findById(int id) {
         Optional<Exposicio> e = data.findById(id);
         Exposicio expo = e.get();
         return expo;

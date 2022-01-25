@@ -2,10 +2,7 @@ package back.backend_private.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -17,5 +14,7 @@ public class Usuaris {
     private String nom;
     private String cognoms;
     private String email;
-    private Poblacio
+    @ManyToOne
+    @JoinColumn(name="id_poblacio")
+    private Poblacio poblacio;
 }
