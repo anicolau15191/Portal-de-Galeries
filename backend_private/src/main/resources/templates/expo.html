@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link th:href="@{/css/custom.css}" rel="stylesheet">
-    <link th:href="@{/css/estils.css}" rel="stylesheet">
 </head>
 <body>
 <header th:include="/header :: header" ”></header>
@@ -18,7 +17,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-4 mb-3" th:each="expo:${list}">
-                    <a th:href="" class="text-decoration-none text-black">
+                    <a href="#" class="text-decoration-none text-black">
                         <div class="card" >
                             <img src="/img/default.png" class="card-img-top" onerror="this.onerror=null;this.src='/img/default.png';">
                             <div class="card-body">
@@ -60,7 +59,6 @@
 
 
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/js/custom.js}"></script>
 <script>
     let myModal = document.querySelector('#modal')
     let modal = new bootstrap.Modal(myModal, {

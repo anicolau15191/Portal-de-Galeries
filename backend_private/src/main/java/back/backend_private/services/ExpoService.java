@@ -33,13 +33,8 @@ public class ExpoService implements ExpoServiceI{
     }
 
     @Override
-    public void create(Exposicio expo) {
-    }
-
-    @Override
     public void delete(int id) {
-        Optional<Exposicio> e = data.findById(id);
-        Exposicio expo = e.get();
+        Exposicio expo = find(id);
         expo.setEnabled(1);
         data.save(expo);
     }
@@ -50,7 +45,16 @@ public class ExpoService implements ExpoServiceI{
         expo.setNom(nom);
         expo.setIdPropietari(idPropietari);
         expo.setEnabled(0);
+        data.save(expo);
         return expo;
     }
+
+    @Override
+    public Exposicio find(int id) {
+        Optional<Exposicio> e = data.findById(id);
+        Exposicio expo = e.get();
+        return expo;
+    }
+
 
 }
