@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar</title>
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+</head>
+<body>
+<header th:include="/header :: header"></header>
+    <main>
+        <div class="container mb-3 mt-3">
+            <div class="row">
+                <div class="col-4 d-flex justify-content-start">
+                    <a th:href="@{'/perfil/'+${galeria.idGaleria}}" class="btn btn-outline-iesmanacor">Perfil</a>
+                </div>
+                <div class="d-flex justify-content-center col-4">
+                    <h2>Editar Galeria</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container d-flex justify-content-center mb-3">
+            <div class="row">
+                <!-- Editar nom Galeria-->
+                <div class="col-4 mb-3">
+                    <form method="post" th:action="@{'/editarNom/'+ ${galeria.idGaleria}}">
+                        <span>Nom</span>
+                        <div class="input-group">
+                            <span for="nom" id="nom" class="input-group-text d-flex justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                </svg>
+                            </span>
+                            <input type="text" class="form-control" name="nom" aria-describedby="nom" th:value="${galeria.nom}">
+                            <button type="submit" class="btn btn-outline-iesmanacor">Editar</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Editar poblacio Galeria-->
+                <div class="col-4 mb-3">
+                    <form method="post" th:action="@{'/editarPoblacio/'+ ${galeria.idGaleria}}" class="needs-validation" novalidate>
+                        <span class="col-12" th:text="'Població actual : ' + ${galeria.poblacio.nom}"></span>
+                        <div class="input-group">
+                            <span for="nom" id="poblacio" class="input-group-text d-flex justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>
+                            </span>
+                            <select aria-describedby="poblacio" class="form-select" name="pob" required>
+                                <option value="">Selecciona</option>
+                                <option th:each="poblacio:${poblacions}" th:value="${poblacio.idPoblacio}" th:text="${poblacio.nom}"></option>
+                            </select>
+                            <button type="submit" class="btn btn-outline-iesmanacor">Editar</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Editar correu Galeria-->
+                <div class="col-4 mb-3">
+                    <form method="post" th:action="@{'/editarCorreu/'+ ${galeria.idGaleria}}">
+                        <span>Correu Electrònic</span>
+                        <div class="input-group">
+                        <span for="email" id="correu" class="input-group-text d-flex justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                            </svg>
+                        </span>
+                            <input type="email" aria-describedby="correu" class="form-control" id="email" name="correu" th:value="${galeria.email}">
+                            <button type="submit" class="btn btn-outline-iesmanacor">Editar</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Editar Telefon-->
+                <div class="col-6 mb-3">
+                    <form method="post" th:action="@{'/editarTelefon/'+ ${galeria.idGaleria}}">
+                        <span>Telèfon</span>
+                        <div class="input-group">
+                        <span id="telefon" class="input-group-text d-flex justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                            </svg>
+                        </span>
+                            <input type="text" aria-describedby="correu" class="form-control" name="telefon" th:value="${galeria.telefon}">
+                            <button type="submit" class="btn btn-outline-iesmanacor">Editar</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Editar Direccio-->
+                <div class="col-6 mb-3">
+                    <form method="post" th:action="@{'/editarDireccio/'+ ${galeria.idGaleria}}">
+                        <span>Direcció</span>
+                        <div class="input-group">
+                        <span id="direccio" class="input-group-text d-flex justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                            </svg>
+                        </span>
+                            <input type="text" aria-describedby="correu" class="form-control" name="direccio" th:value="${galeria.direccio}">
+                            <button type="submit" class="btn btn-outline-iesmanacor">Editar</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Afegir Generes Galeria-->
+                <div class="col-6 mb-3">
+                    <form th:action="@{'/afegirGenere/'+ ${galeria.idGaleria}}" method="post" class="needs-validation" novalidate >
+                        <span>Generes</span>
+                        <div class="input-group">
+                            <span for="nom" id="generes" class="input-group-text d-flex justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-easel2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .447.276L8.81 1h4.69A1.5 1.5 0 0 1 15 2.5V11h.5a.5.5 0 0 1 0 1h-2.86l.845 3.379a.5.5 0 0 1-.97.242L12.11 14H3.89l-.405 1.621a.5.5 0 0 1-.97-.242L3.36 12H.5a.5.5 0 0 1 0-1H1V2.5A1.5 1.5 0 0 1 2.5 1h4.691l.362-.724A.5.5 0 0 1 8 0ZM2 11h12V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5V11Zm9.61 1H4.39l-.25 1h7.72l-.25-1Z"/>
+                                </svg>
+                            </span>
+                            <select aria-describedby="generes" class="form-select" name="nouArt" required>
+                                <option value="">Selecciona</option>
+                                <option th:each="art:${allGeneres}" th:value="${art.idGenere}" th:text="${art.nom}"></option>
+                            </select>
+                            <button type="submit" class="btn btn-outline-iesmanacor">Afegir</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Afegir Subgeneres Galeria-->
+                <div class="col-6 mb-3">
+                    <form method="post" th:action="@{'/afegirGenereFill/'+ ${galeria.idGaleria}}" class="needs-validation" novalidate>
+                        <span>Subgeneres</span>
+                        <div class="input-group">
+                            <span for="nom" id="generesFills" class="input-group-text d-flex justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-easel2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .447.276L8.81 1h4.69A1.5 1.5 0 0 1 15 2.5V11h.5a.5.5 0 0 1 0 1h-2.86l.845 3.379a.5.5 0 0 1-.97.242L12.11 14H3.89l-.405 1.621a.5.5 0 0 1-.97-.242L3.36 12H.5a.5.5 0 0 1 0-1H1V2.5A1.5 1.5 0 0 1 2.5 1h4.691l.362-.724A.5.5 0 0 1 8 0ZM2 11h12V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5V11Zm9.61 1H4.39l-.25 1h7.72l-.25-1Z"/>
+                                </svg>
+                            </span>
+                            <select aria-describedby="generes" class="form-select" name="nouGenere" required>
+                                <option value="">Selecciona</option>
+                                <optgroup th:each="art:${generes}" th:label="${art.nom}">
+                                    <option th:each="genereFill:${allGeneresFills}" th:if="${genereFill.getIdGenere2().idGenere == art.idGenere}" th:value="${genereFill.idGenere}" th:text="${genereFill.nom}"></option>
+                                </optgroup>
+                            </select>
+                            <button type="submit" class="btn btn-outline-iesmanacor">Afegir</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Visualitzar Generes Galeria i Eliminar -->
+                <div class="row">
+                    <div class="col-4 mb-3" th:each="art:${generes}">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-secondary d-flex justify-content-between">
+                                <span th:text="${art.nom}"></span>
+                                <a th:href="@{'/eliminarGenere/'+ ${galeria.idGaleria} +'/'+ ${art.idGenere}}" class="link-secondary" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                        <div th:each="fills:${generesFills}">
+                           <ul class="list-group">
+                               <li th:if="${fills.getIdGenere2().idGenere == art.idGenere}" class="list-group-item d-flex justify-content-between" >
+                                   <span th:text="${fills.nom}"></span>
+                                    <a th:href="@{'/eliminarGenere/'+ ${galeria.idGaleria}+'/'+ ${fills.idGenere}}" class="link-secondary" >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                           </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Visualitzar descripcio Galeries i Modificar -->
+                <div class="col-12">
+                    <span>Descripció</span>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-4 mb-3 mt-3">
+                            <div class="mb-3">
+                                <form method="post" th:action="@{'/editarDescripcio/'+ ${galeria.idGaleria}}" class="needs-validation" novalidate>
+                                    <textarea class="form-control" rows="3" id="desc" name="desc" th:text="${galeria.descripcio}" required></textarea>
+                                    <button id="b2" type="submit" class="btn btn-outline-iesmanacor mt-2 " onclick="descripcioMaxLength()">Editar</button>
+                                    <span id="length" class="text-danger"></span>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Google Maps -->
+                        <div class="col-4 mb-3">
+                            <div id="googleMap" style="width:100%;height:300px;"></div>
+                        </div>
+                        <div class="col-4 mb-2">
+                            <form method="post" th:action="@{'/addCoordenades/'+ ${galeria.idGaleria}}" class="needs-validation" novalidate>
+                                <!-- Google afegir Lat i Lng -->
+                                <div class="input-group">
+                                    <span for="lat" id="lat" class="input-group-text d-flex justify-content-center">Lat : </span>
+                                    <input type="text" aria-describedby="lat" class="form-control"  id="latitud" name="lat" required>
+                                </div>
+                                <div class="input-group">
+                                    <span for="lng" id="lng" class="input-group-text d-flex justify-content-center">Log : </span>
+                                    <input type="text" aria-describedby="lng" class="form-control" id="long" name="lng" required>
+                                </div>
+                                    <button id="b1" class="btn btn-outline-iesmanacor">Desa</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+<script th:inline="javascript">
+
+        function descripcioMaxLength(){
+            document.getElementById("desc").maxLength = "250";
+            document.getElementById("length").innerHTML = "El nombre màxim de caràcters permès és 250.";
+        }
+
+        let latitud = [[${galeria.latitud}]];
+        let longitud = [[${galeria.longitut}]];
+        const coordenadesGaleria = { lat: Number.parseFloat(latitud), lng: Number.parseFloat(longitud)};
+        const mallorca = { lat: 39.638224334941164, lng: 2.9989553343109816 };
+
+        function myMap() {
+            let mapOptions= {
+                    center:new google.maps.LatLng(39.638224334941164,2.9989553343109816),
+                    zoom:9,
+            };
+            // init map a mallorca //
+
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+
+            // marcadior lloc galeria//
+
+            new google.maps.Marker({
+                    position: coordenadesGaleria,
+                    map: map,
+                });
+
+            let markers = [];
+
+            google.maps.event.addListener(map, 'click', function(event) {
+                deleteMarkers();
+                placeMarker(map, event.latLng);
+            });
+
+            function placeMarker(map, location) {
+
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+
+                markers.push(marker);
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: 'Latitude: ' + location.lat() +
+                        '<br>Longitude: ' + location.lng()
+                });
+
+                var lat = location.lat();
+                var long = location.lng();
+
+                document.querySelector('#latitud').value = lat;
+                document.querySelector('#long').value = long;
+
+                infowindow.open(map,marker);
+            }
+            function setMapOnAll(map) {
+                for (let i = 0; i < markers.length; i++) {
+                    markers[i].setMap(map);
+                }
+            }
+            // Removes the markers from the map, but keeps them in the array.
+            function hideMarkers() {
+                setMapOnAll(null);
+            }
+            // Deletes all markers in the array by removing references to them.
+            function deleteMarkers() {
+                hideMarkers();
+                markers = [];
+            }
+
+        }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=myMap"></script>
+</body>
+</html>
