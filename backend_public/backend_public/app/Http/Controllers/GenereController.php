@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Galeria;
 use App\Models\Genere;
+use Illuminate\Support\Facades\DB;
+
 
 class GenereController extends Controller
 {
@@ -29,15 +31,15 @@ class GenereController extends Controller
     }
 
     public function getAllGeneresFillsByGaleria($id){
-        $galeria = Galeria::find($id);
-        $g = $galeria->genere;
-        $fills = Genere::all();
-        $n = $fills->diff(Genere::where("id_genere2","=",1)->get());
-        $value = $g->groupBy('id_genere');
-        //return $g->diff(Genere::whereNotNull('id_genere2')->get());
 
-        return $value;
+        $fills = DB::table('genere')
+            ->join('especialitzat', 'especialitzat.id_genere', '=', 'genere.id_genere2')
+            ->where("especialitzat.id_galeria","=",$id)
+            ->select('genere.nom', 'genere.id_genere', 'genere.id_genere2')
+            ->get();
 
+
+        return $fills;
 
     }
 

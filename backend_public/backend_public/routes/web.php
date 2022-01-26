@@ -7,6 +7,7 @@ use App\Http\Controllers\GenereController;
 use App\Models\Galeria;
 use App\Models\Poblacio;
 use App\Models\Genere;
+use App\Models\Sales;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +20,7 @@ use App\Models\Genere;
 
 Route::get('/galeries'); //listat galeries --> OK
 Route::get('/galeries/{galeria}'); //info galeria -->OK
-Route::get('/galeries/{galeria}/especialitzat'); //llistat de galeria per genere
+Route::get('/galeries/{galeria}/especialitzat'); //llistat de galeria per genere -->OK
 Route::get('/galeries/{galeria}/calendari'); // llistat de exposicions de totes ses galeries
 Route::get('/galeries/{galeria}/exposicions'); // //llistat exposiciond de sa galeria
 Route::get('/galeries/{galeria}/exposicions/{exposicio}/horari'); // horari de l'exposicio
@@ -27,7 +28,7 @@ Route::get('/galeries/{galeria}/exposicions/{exposicio}/obra'); // llistat de se
 Route::get('/galeries/{galeria}/exposicions/{exposicio}/artistes'); // llistat artistes exposicio
 Route::get('/galeries/{galeria}/exposicions/{exposicio}/sessions'); // sesions de exposicio
 Route::post('/galeries/{galeria}/exposicions/{exposicio}/sessions/{sessio}/entrada'); // reserva a sa sesio
-Route::get('/galeries/{galeria}/sales'); // llistat de sales
+Route::get('/galeries/{galeria}/sales'); // llistat de sales -->OK
 Route::get('/galeries/{galeria}/sales/{sala}'); // informacio sala galeria
 
 Route::get('/artistes/{artista}/obres'); // llistat totes ses obres per artista
@@ -55,8 +56,13 @@ Route::get('/galeries', [GaleriaController::class,'listAllActive']); // llistat 
 Route::get('/galeries/{galeria}',function (Galeria $galeria){
     return $galeria->toJson();
 });
-Route::get('//galeries/{galeria}/generes', [GenereController::class,'getAllGeneresByGaleria']);
-Route::get('//galeries/{galeria}/subgeneres', [GenereController::class,'getAllGeneresFillsByGaleria']);
+Route::get('/galeries/{galeria}/generes', [GenereController::class,'getAllGeneresByGaleria']);
+Route::get('/galeries/{galeria}/subgeneres', [GenereController::class,'getAllGeneresFillsByGaleria']);
+Route::get('/galeries/{galeria}/sales',function (Galeria $galeria){
+    $listSalesGaleria = Sales::where('id_galeria',"=",$galeria->id_galeria)->where("enabled",0)->get();
+
+    return $listSalesGaleria->toJson();
+});
 
 Route::get('/poblacio', [PoblacioController::class,'listAll']);
 Route::get('/poblacio/{poblacio}/galeries',function (Poblacio $poblacio){

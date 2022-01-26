@@ -20,6 +20,11 @@ class Galeria extends Model
 
     }
 
+    public function galeries(){
+
+        return $this->hasMany(Sales::class);
+    }
+
     public function genere(){
 
         return $this->belongsToMany(Genere::class,'especialitzat','id_galeria','id_genere');
