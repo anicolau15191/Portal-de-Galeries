@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserves</title>
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+    <link th:href="@{/css/estils.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
+</head>
+<body>
+    <header th:include="/header :: header"></header>
+    <main>
+        <div class="container mt-3">
+            <div id='calendar'></div>
+        </div>
+    </main>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                initialDate: '2022-01-07',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: '2022-01-01'
+                    },
+                    {
+                        title: 'Long Event',
+                        start: '2022-01-07',
+                        end: '2022-01-10'
+                    },
+                    {
+                        groupId: '999',
+                        title: 'Repeating Event',
+                        start: '2022-01-09T16:00:00'
+                    },
+                    {
+                        groupId: '999',
+                        title: 'Repeating Event',
+                        start: '2022-01-16T16:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2022-01-11',
+                        end: '2022-01-13'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2022-01-12',
+                        end: '2022-01-12'
+                    },
+                    {
+                        title: 'Lunch',
+                        start: '2022-01-12T12:00:00'
+                    },
+                    {
+                        title: 'Meeting',
+                        url: 'http://google.com/',
+                        start: '2022-01-12T14:30:00'
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: '2022-01-13T07:00:00'
+                    },
+                    {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2022-01-28'
+                    }
+                ],
+                locale: 'ca'
+            });
+
+            calendar.render();
+        });
+
+    </script>
+</body>
+</html>

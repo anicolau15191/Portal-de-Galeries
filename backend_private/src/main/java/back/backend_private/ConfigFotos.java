@@ -15,4 +15,6 @@ public class ConfigFotos implements WebMvcConfigurer {
         WebMvcConfigurer.super.addResourceHandlers(registry);
         registry.addResourceHandler("/imggaleria/**").addResourceLocations("file:/C:/imggaleria/");
     }
+
+
 }
