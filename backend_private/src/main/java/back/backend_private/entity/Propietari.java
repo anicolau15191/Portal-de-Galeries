@@ -11,6 +11,5 @@ import java.io.Serializable;
 public class Propietari implements Serializable {
     @Id
     @Column(name="id_propietari")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 }

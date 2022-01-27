@@ -1,10 +1,8 @@
 package back.backend_private.controller;
 
-import back.backend_private.entity.Galeria;
-import back.backend_private.entity.Genere;
-import back.backend_private.entity.Poblacio;
-import back.backend_private.entity.Sales;
+import back.backend_private.entity.*;
 import back.backend_private.repositories.GaleriaCrud;
+import back.backend_private.services.ExpoService;
 import back.backend_private.services.GaleriaServei;
 import back.backend_private.services.SalesServei;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +23,8 @@ public class SalesController {
     private GaleriaCrud galeriaCrud;
     @Autowired
     SalesServei salesServei;
+    @Autowired
+    ExpoService expoService;
 
     @GetMapping("/sales/{id}")
     public String salesGaleria(@PathVariable int id, ModelMap model){
@@ -53,10 +53,25 @@ public class SalesController {
         Optional<Galeria> g = galeriaCrud.findById(idGaleria);
         Galeria galeria = g.get();
         Sales sala = salesServei.findSalaById(id);
+        List<Exposicio> expos = (List<Exposicio>) expoService.available();
+        model.addAttribute("list",expos);
         model.addAttribute("sala",sala);
         model.addAttribute("galeria",galeria);
         return "sala";
     }
+
+    @PostMapping("/addExpo/{idSala}/{idGaleria}")
+    public String addExpo(@RequestParam String nomE, @PathVariable int idSala, @PathVariable int idGaleria, String descripcio){
+        expoService.create(nomE,descripcio, idSala);
+        return "redirect:/sala/"+idSala+"/"+idGaleria;
+    }
+
+    @GetMapping("/del/{idSala}/{idGaleria}/{id}")
+    public String delExpo(@PathVariable int idSala, @PathVariable int idGaleria,@PathVariable int id){
+        expoService.delete(id);
+        return "redirect:/sala/"+idSala+"/"+idGaleria;
+    }
+
     @PostMapping("/editarSala/{id}/{idGaleria}")
     public String editarSala(@PathVariable int id , @PathVariable int idGaleria , @RequestParam String nom , int aforament){
         salesServei.editarSala(id,nom,aforament);

@@ -14,9 +14,13 @@ public class Exposicio implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_exposicio")
     private int id;
+
     private String nom;
+
     private String descripcio;
-    @Column(name="id_propietari")
-    private int idPropietari;
+
+    @Column(name="id_sala")
+    private int idSala;
+
     private int enabled;
 }

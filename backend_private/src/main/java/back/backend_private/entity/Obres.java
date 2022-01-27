@@ -16,6 +16,11 @@ public class Obres {
     private float preu;
     private int venta;
     private int venut;
-    private int id_expo;
-    private
+    @ManyToOne
+    @JoinColumn(name="id_expo")
+    private Exposicio expo;
+    private int excepcio;
+    @ManyToOne
+    @JoinColumn(name="id_visitant")
+    private Visitant visitant;
 }

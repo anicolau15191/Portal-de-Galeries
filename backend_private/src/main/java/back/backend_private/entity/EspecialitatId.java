@@ -2,8 +2,7 @@ package back.backend_private.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 @Data
 @Embeddable

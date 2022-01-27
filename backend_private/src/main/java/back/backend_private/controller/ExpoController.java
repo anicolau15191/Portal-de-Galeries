@@ -1,6 +1,8 @@
 package back.backend_private.controller;
 
+import back.backend_private.entity.Artista;
 import back.backend_private.entity.Exposicio;
+import back.backend_private.services.ArtistaServei;
 import back.backend_private.services.ExpoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,23 +17,15 @@ public class ExpoController {
 
     @Autowired
     private ExpoService expoService;
+    @Autowired
+    private ArtistaServei artistaServei;
 
-    @GetMapping("/expo")
-    public String getExpo(ModelMap model){
-        List<Exposicio> expos = (List<Exposicio>) expoService.read();
-        model.addAttribute("list",expos);
-        return "expo";
-    }
-
-    @PostMapping("/add")
-    public String addExpo(@RequestParam String nom){
-        Exposicio expo = expoService.initExpo(nom,1);
-        return "redirect:/expo";
-    }
-
-    @GetMapping("/del/{id}")
-    public String delExpo(@PathVariable int id){
-        expoService.delete(id);
-        return "redirect:/expo";
+    @GetMapping("/expo/{id}")
+    public String perfilExpo(@PathVariable int id, ModelMap model){
+        List <Artista> art = artistaServei.read();
+        model.addAttribute("artistes",art);
+        Exposicio expo = expoService.findById(id);
+        model.addAttribute("expo",expo);
+        return "perfilExpo";
     }
 }

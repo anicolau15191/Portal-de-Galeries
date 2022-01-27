@@ -40,10 +40,11 @@ public class ExpoService implements ExpoServiceI{
     }
 
     @Override
-    public Exposicio initExpo(String nom, int idPropietari) {
+    public Exposicio create(String nom, String descripcio, int idSala) {
         Exposicio expo = new Exposicio();
         expo.setNom(nom);
-        expo.setIdPropietari(idPropietari);
+        expo.setDescripcio(descripcio);
+        expo.setIdSala(idSala);
         expo.setEnabled(0);
         data.save(expo);
         return expo;
