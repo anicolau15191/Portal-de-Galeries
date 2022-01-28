@@ -12,14 +12,12 @@ public class Usuaris {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_usuaris")
     private int id;
-
     private String nom;
-
     private String cognoms;
-
     private String email;
-
     @ManyToOne
     @JoinColumn(name="id_poblacio")
     private Poblacio poblacio;
+
+
 }

@@ -11,76 +11,66 @@
     <header th:include="/header :: header"></header>
     <main>
         <div class="container mt-3">
-            <div id='calendar'></div>
+            <div class="row">
+               <div class="col-8">
+                   <!-- Calendari-->
+                   <div id='calendar'></div>
+               </div>
+                <!-- Calendari-->
+                <div class="col-4">
+                    <ul class="list-group" th:if="${sessio}">
+                        <li class="list-group-item list-group-item-secondary" th:text="${sessio.nom}">
+                            <span class="badge rounded-pill" th:text="${sala.aforament}"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center"  th:text="${sessio.nom}">
+                            <span class="badge bg-primary rounded-pill" th:text="${sala.aforament}"></span>
+                        </li>
+                         <div th:if="${users}" th:each="user:${users}">
+                            <li class="list-group-item" th:if="${user.nom != null}" th:text="${user.nom}"></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
         </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/js/custom.js}"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
-    <script>
-
+    <script th:inline="javascript">
         document.addEventListener('DOMContentLoaded', function() {
+
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                timeZone: 'local',
                 initialView: 'dayGridMonth',
-                initialDate: '2022-01-07',
+                initialDate: Date.now(),
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
+                eventSources: [
+                    {
+                        url: '/sesions/1',
+                        method: 'GET',
+                        color: '#0ab7a9',
+
+                    },
+
+                ],
                 events: [
                     {
-                        title: 'All Day Event',
-                        start: '2022-01-01'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: '2022-01-07',
-                        end: '2022-01-10'
-                    },
-                    {
-                        groupId: '999',
-                        title: 'Repeating Event',
-                        start: '2022-01-09T16:00:00'
-                    },
-                    {
-                        groupId: '999',
-                        title: 'Repeating Event',
-                        start: '2022-01-16T16:00:00'
-                    },
-                    {
-                        title: 'Conference',
-                        start: '2022-01-11',
-                        end: '2022-01-13'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2022-01-12',
-                        end: '2022-01-12'
-                    },
-                    {
-                        title: 'Lunch',
-                        start: '2022-01-12T12:00:00'
-                    },
-                    {
-                        title: 'Meeting',
-                        url: 'http://google.com/',
-                        start: '2022-01-12T14:30:00'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: '2022-01-13T07:00:00'
-                    },
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: '2022-01-28'
+                        title: [[${expo.nom}]],
+                        start: [[${expo.data_ini}]],
+                        end: [[${expo.data_fi}]],
+
                     }
                 ],
-                locale: 'ca'
+                locale: 'ca',
+                height: 600,
+                eventColor: '#068076'
             });
 
             calendar.render();

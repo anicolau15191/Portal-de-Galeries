@@ -3,6 +3,7 @@ package back.backend_private.services;
 import back.backend_private.entity.Galeria;
 import back.backend_private.entity.Genere;
 import back.backend_private.entity.Poblacio;
+import back.backend_private.entity.Sales;
 import back.backend_private.repositories.GaleriaCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,6 +72,12 @@ public class GaleriaServei implements MetodesCrudGaleria {
         galeria.setDescripcio(desc);
         data.save(galeria);
 
+    }
+
+    public Galeria findById(int id) {
+        Optional<Galeria> g = data.findById(id);
+        Galeria galeria = g.get();
+        return galeria;
     }
 
 }

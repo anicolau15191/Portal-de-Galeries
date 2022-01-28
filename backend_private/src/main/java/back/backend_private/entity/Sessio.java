@@ -19,6 +19,7 @@ public class Sessio implements Serializable {
     private Date data;
     private Time hora_ini;
     private Time hora_fi;
+    private String nom;
     @ManyToOne
     @JoinColumn(name="id_expo")
     private Exposicio expo;

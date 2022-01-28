@@ -1,5 +1,6 @@
 package back.backend_private.services;
 
+import back.backend_private.entity.Exposicio;
 import back.backend_private.entity.Galeria;
 import back.backend_private.entity.Sales;
 import back.backend_private.repositories.SalesCrud;
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class SalesServei {
     @Autowired
     private SalesCrud sales;
+    @Autowired
+    private ExpoService expoService;
 
     public List<Sales> findSlesByGaleria(Galeria galeria) {
 
@@ -59,6 +62,19 @@ public class SalesServei {
 
         sales.save(sala);
 
+    }
+
+    public Sales getSala(Galeria galeria, int idExpo){
+        List<Sales> sales = findSlesByGaleria(galeria);
+        Exposicio expo = expoService.findById(idExpo);
+        Sales sala = new Sales();
+
+        for (int i = 0; i<sales.size();i++){
+            if (sales.get(i).getIdSales() == expo.getIdSala()){
+                sala = findSalaById(sales.get(i).getIdSales());
+            }
+        }
+        return sala;
     }
 
 
