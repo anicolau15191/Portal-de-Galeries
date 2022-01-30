@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <title>Sales</title>
     <link th:href="@{/css/custom.css}" rel="stylesheet">
+    <link th:href="@{/css/estils.css}" rel="stylesheet">
 </head>
 <body>
     <header th:include="/header :: header"></header>
     <main>
         <div class="container mb-3 mt-3">
+            <div style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{'/perfil/'+${galeria.idGaleria}}" th:text="${galeria.nom}"></a></li>
+                    <li class="breadcrumb-item"><a th:href="@{'/sales/'+${galeria.idGaleria}}">Sales</a></li>
+                    <li class="breadcrumb-item" th:text="${sala.nom}"></li>
+                </ol>
+            </div>
             <div class="row">
                 <div class="col-4 d-flex justify-content-start">
                     <button id="novaExpo" class="btn btn-outline-iesmanacor me-2">Nova Exposicio</button>
-                    <a th:href="@{'/sales/'+${galeria.idGaleria}}" class="btn btn-outline-iesmanacor me-2">Sales</a>
+                    <!--<a th:href="@{'/sales/'+${galeria.idGaleria}}" class="btn btn-outline-iesmanacor me-2">Sales</a>-->
                     <button th:href="@{'/editarSala/'+${sala.idSales}}" id="editarSala" class="btn btn-outline-iesmanacor me-2">Editar Sala</button>
                 </div>
                 <div class="col-4 d-flex justify-content-center">
@@ -25,7 +33,7 @@
                 <div class="container mt-3">
                     <div class="row">
                         <div class="col-4 mb-3" th:each="expos:${list}">
-                            <a th:href="@{'/expo/'+${expos.id}}" class="text-decoration-none text-black">
+                            <a th:href="@{'/expo/'+${expos.id}+'/'+${galeria.idGaleria}}" class="text-decoration-none text-black">
                                 <div class="card border-light text-center" >
                                     <div class="card-header">
                                         <h5 class="card-title text-center" th:text="${expos.nom}"></h5>

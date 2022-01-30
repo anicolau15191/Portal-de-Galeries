@@ -64,14 +64,14 @@ public class SalesServei {
 
     }
 
-    public Sales getSala(Galeria galeria, int idExpo){
-        List<Sales> sales = findSlesByGaleria(galeria);
+    public Sales getSala(int idExpo){
+        List<Sales> allSales = (List<Sales>) sales.findAll();
         Exposicio expo = expoService.findById(idExpo);
         Sales sala = new Sales();
 
-        for (int i = 0; i<sales.size();i++){
-            if (sales.get(i).getIdSales() == expo.getIdSala()){
-                sala = findSalaById(sales.get(i).getIdSales());
+        for (int i = 0; i<allSales.size();i++){
+            if (allSales.get(i).getIdSales() == expo.getIdSala()){
+                sala = findSalaById(allSales.get(i).getIdSales());
             }
         }
         return sala;
