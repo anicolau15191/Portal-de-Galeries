@@ -21,11 +21,11 @@ public class ExpoService implements ExpoServiceI{
     }
 
     @Override
-    public List<Exposicio> available() {
+    public List<Exposicio> available(int idSala) {
         List <Exposicio> all = read();
         List <Exposicio> available = new ArrayList<>();
         for(int i=0;i<all.size();i++){
-            if(all.get(i).getEnabled()==0){
+            if(all.get(i).getEnabled()==0 && all.get(i).getIdSala()==idSala){
                 available.add(all.get(i));
             }
         }

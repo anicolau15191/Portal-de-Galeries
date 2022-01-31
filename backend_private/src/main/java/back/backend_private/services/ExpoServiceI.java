@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ExpoServiceI {
     List<Exposicio> read();
-    List<Exposicio> available();
+    List<Exposicio> available(int idSala);
     void delete (int id);
     Exposicio create(String nom, String descripcio, int idPropietari);
     Exposicio findById(int id);

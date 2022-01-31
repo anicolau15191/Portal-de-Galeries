@@ -23,4 +23,15 @@ public class ArtistaServei {
         Artista artista= a.get();
         return artista;
     }
+
+    public Artista create(String nom){
+        Artista artista = new Artista();
+        artista.setNom(nom);
+        data.save(artista);
+        return artista;
+    }
+
+    public void delete(int id){
+        data.deleteById(id);
+    }
 }

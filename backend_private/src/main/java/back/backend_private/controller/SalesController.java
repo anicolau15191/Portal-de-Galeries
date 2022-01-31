@@ -53,7 +53,7 @@ public class SalesController {
         Optional<Galeria> g = galeriaCrud.findById(idGaleria);
         Galeria galeria = g.get();
         Sales sala = salesServei.findSalaById(id);
-        List<Exposicio> expos = (List<Exposicio>) expoService.available();
+        List<Exposicio> expos = (List<Exposicio>) expoService.available(id);
         model.addAttribute("list",expos);
         model.addAttribute("sala",sala);
         model.addAttribute("galeria",galeria);

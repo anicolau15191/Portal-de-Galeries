@@ -28,12 +28,12 @@ public class FetaService {
         fetaCrud.save(feta);
     }
 
-    public List<Obres> filtrarObres(Artista artista){
-        List<Feta> relacions = fetaCrud.findAllById_idArtista(artista.getId());
+    public List<Obres> filtrarObres(int idArtista){
+        List<Feta> relacions = fetaCrud.findAllById_idArtista(idArtista);
         List<Obres> obres = new ArrayList<>();
 
         for(Feta rela:relacions){
-            Optional<Obres> o = obresCrud.findById(rela.getId().getIdObres());
+            Optional<Obres> o = obresCrud.findById(rela.getId().getIdObra());
             Obres obra = o.get();
             obres.add(obra);
         }
