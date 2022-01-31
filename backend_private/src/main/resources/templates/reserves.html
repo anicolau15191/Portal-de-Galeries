@@ -54,7 +54,7 @@
                </div>
                 <!-- Reserves-->
                 <div class="col-5">
-                    <table id="taula"  class="display" style="width:100%">
+                    <table id="taula"  class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
                             <th>Nom</th>
@@ -115,28 +115,25 @@
                 eventColor: '#068076'
             });
 
-            $('#taula').DataTable( {
+             $('#taula').DataTable( {
                 dom: 'Bfrtip',
                 select: true,
-                buttons: [
-                    {
-                        extend:    'copy',
-                        titleAttr: 'Copy',
-                        className:' btn btn-outline-iesmanacor'
-                    },
-                    {
-                        extend:    'pdf',
-                        titleAttr: 'PDF'
-                    },
-                ],
+                 buttons: {
+                     dom: {
+                         button: {
+                             className: 'btn btn-outline-iesmanacor'
+                         }
+                     },
+                     buttons: [
+                         'excel','pdf'
+                     ]
+                 },
                 language: {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
                 },
             } );
             calendar.render();
             $("button").removeClass("fc-timeGridWeek-button btn btn-primary").addClass("fc-timeGridWeek-button btn btn-outline-iesmanacor");
-            $(".dt-buttons button").removeClass().addClass("btn btn-outline-iesmanacor");
-            $(".pagination li").addClass("btn btn-outline-iesmanacor");
         });
     </script>
 
