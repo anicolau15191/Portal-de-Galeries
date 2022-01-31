@@ -8,6 +8,7 @@ use App\Models\Galeria;
 use App\Models\Poblacio;
 use App\Models\Genere;
 use App\Models\Sales;
+use App\Models\Exposicio;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,7 +64,21 @@ Route::get('/galeries/{galeria}/sales',function (Galeria $galeria){
 
     return $listSalesGaleria->toJson();
 });
+Route::get('/sales/{sala}',function (Sales $sala){
+    $sala = Sales::where("id_sales" ,"=",$sala->id_sales)->get();
 
+    return $sala->toJson();
+});
+Route::get('/sales/{sala}/exposicions',function (Sales $sala){
+    $listExposicions = Exposicio::where("id_sala" ,"=",$sala->id_sales)->where("enabled",0)->get();
+
+    return $listExposicions->toJson();
+});
+Route::get('/exposicions/{exposicio}',function (Exposicio $exposicio){
+    $getExposicio = Exposicio::where("id_exposicio" ,"=",$exposicio->id_exposicio)->where("enabled",0)->get();
+
+    return $getExposicio->toJson();
+});
 Route::get('/poblacio', [PoblacioController::class,'listAll']);
 Route::get('/poblacio/{poblacio}/galeries',function (Poblacio $poblacio){
 

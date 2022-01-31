@@ -17,4 +17,9 @@ class Sales extends Model
 
     }
 
+    public function exposicion(){
+
+        return $this->hasMany(Exposicio::class);
+    }
+
 }
