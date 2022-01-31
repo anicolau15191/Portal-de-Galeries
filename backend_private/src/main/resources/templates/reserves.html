@@ -20,7 +20,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/fixedcolumns/4.0.1/js/dataTables.fixedColumns.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -38,7 +37,16 @@
     <header th:include="/header :: header"></header>
     <main>
         <div class="container mt-3">
-            <h3 th:text="${sala.nom} + ${expo.nom}"></h3>
+            <div style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white">
+                    <li class="breadcrumb-item"><a th:href="@{'/perfil/'+${galeria.idGaleria}}" th:text="${galeria.nom}"></a></li>
+                    <li class="breadcrumb-item"><a th:href="@{'/sales/'+${galeria.idGaleria}}">Sales</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{'/sala/'+${sala.idSales}+'/'+${galeria.idGaleria}}" th:text="${sala.nom}"></a></li>
+                    <li class="breadcrumb-item"><a th:href="@{'/expo/'+${expo.id}+'/'+${galeria.idGaleria}}" th:text="${expo.nom}"></a></li>
+                    <li class="breadcrumb-item">Reserves</li>
+                </ol>
+            </div>
+            <h3>Reserves</h3>
             <div class="row">
                <div class="col-7">
                    <!-- Calendari-->
@@ -52,7 +60,6 @@
                             <th>Nom</th>
                             <th>Cognom</th>
                             <th>Email</th>
-                            <th>OK</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -60,7 +67,6 @@
                             <td th:text="${user.nom}"></td>
                             <td th:text="${user.cognoms}"></td>
                             <td th:text="${user.email}"></td>
-                            <td><input class="form-check-input" type="checkbox"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -76,6 +82,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var idexpo = [[${expo.id}]];
+            var idGaleria = [[${galeria.idGaleria}]]
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 themeSystem: 'bootstrap',
                 timeZone: 'local',
@@ -88,7 +95,7 @@
                 },
                 eventSources: [
                     {
-                        url: '/sesions/'+idexpo,
+                        url: '/sesions/'+idexpo+'/'+idGaleria,
                         method: 'GET',
                         color: '#0ab7a9',
 
@@ -108,35 +115,30 @@
                 eventColor: '#068076'
             });
 
-            calendar.render();
-            calendar.render();
-            $("button").removeClass("fc-timeGridWeek-button btn btn-primary").addClass("fc-timeGridWeek-button btn btn-outline-iesmanacor")
-        });
-    </script>
-    <script>
-
-        $(document).ready(function() {
-
             $('#taula').DataTable( {
                 dom: 'Bfrtip',
                 select: true,
                 buttons: [
                     {
-                        extend:    'copyHtml5',
-                        text:      '<i class="fa fa-files-o"></i> Copia',
+                        extend:    'copy',
                         titleAttr: 'Copy',
+                        className:' btn btn-outline-iesmanacor'
                     },
                     {
-                        extend:    'pdfHtml5',
-                        text:      '<i class="fa fa-file-pdf-o"></i> Pdf',
+                        extend:    'pdf',
                         titleAttr: 'PDF'
                     },
                 ],
-                "language": {
+                language: {
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
-                }
+                },
             } );
-        } );
+            calendar.render();
+            $("button").removeClass("fc-timeGridWeek-button btn btn-primary").addClass("fc-timeGridWeek-button btn btn-outline-iesmanacor");
+            $(".dt-buttons button").removeClass().addClass("btn btn-outline-iesmanacor");
+            $(".pagination li").addClass("btn btn-outline-iesmanacor");
+        });
     </script>
+
 </body>
 </html>

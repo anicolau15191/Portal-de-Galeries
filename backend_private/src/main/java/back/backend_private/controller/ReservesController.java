@@ -31,19 +31,21 @@ public class ReservesController {
     @Autowired
     GaleriaCrud galeriaCrud;
 
-    @GetMapping("/reserves/{id}")
-    public String reserves(@PathVariable int id, ModelMap model){
+    @GetMapping("/reserves/{id}/{idGaleria}")
+    public String reserves(@PathVariable int id,@PathVariable int idGaleria, ModelMap model){
         Exposicio expo = expoService.findById(id);
         model.addAttribute("expo",expo);
         List<Sessio> sesions = sessioService.sessionsForExpo(id);
         model.addAttribute("sesions",sesions);
         Sales sala = salesServei.getSala(id);
         model.addAttribute("sala",sala);
+        Galeria galeria = galeriaServei.findById(idGaleria);
+        model.addAttribute("galeria",galeria);
         return "reserves";
     }
 
-    @GetMapping("/reserves/{idExpo}/sessio/{idSessio}/entrades")
-        public String reservesSessio(@PathVariable int idExpo,@PathVariable int idSessio, ModelMap model){
+    @GetMapping("/reserves/{idGaleria}/{idExpo}/sessio/{idSessio}/entrades")
+        public String reservesSessio(@PathVariable int idGaleria,@PathVariable int idExpo,@PathVariable int idSessio, ModelMap model){
         List<Usuaris> users = entradaServei.getUsuarisSessio(idSessio);
         model.addAttribute("users",users);
         Sessio sessio = entradaServei.getSesioEntrada(idSessio);
@@ -54,6 +56,8 @@ public class ReservesController {
         model.addAttribute("sesions",sesions);
         Sales sala = salesServei.getSala(expo.getId());
         model.addAttribute("sala",sala);
+        Galeria galeria = galeriaServei.findById(idGaleria);
+        model.addAttribute("galeria",galeria);
         return "reserves";
     }
 

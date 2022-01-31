@@ -18,8 +18,8 @@ public class RestController {
     @Autowired
     private SessioService sessioService;
 
-    @GetMapping("/sesions/{id}")
-    public List<SessioJson> exposicio(@PathVariable int id){
+    @GetMapping("/sesions/{id}/{idGaleria}")
+    public List<SessioJson> exposicio(@PathVariable int id,@PathVariable int idGaleria){
         List<Sessio> sesions = sessioService.sessionsForExpo(id);
         List<SessioJson> json = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class RestController {
             SessioJson sessio = new SessioJson();
             sessio.setStart(sesions.get(i).getData().toString()+"T"+sesions.get(i).getHora_ini());
             sessio.setTitle(sesions.get(i).getNom());
-            sessio.setUrl("/reserves"+"/"+id+"/sessio/"+sesions.get(i).getId()+"/entrades");
+            sessio.setUrl("/reserves"+"/"+idGaleria+"/"+id+"/sessio/"+sesions.get(i).getId()+"/entrades");
             json.add(sessio);
         }
         return json;
