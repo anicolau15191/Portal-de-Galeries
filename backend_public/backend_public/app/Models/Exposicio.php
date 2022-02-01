@@ -18,4 +18,9 @@ class Exposicio extends Model
 
     }
 
+    public function obres(){
+
+        return $this->hasMany(Obres::class);
+    }
+
 }

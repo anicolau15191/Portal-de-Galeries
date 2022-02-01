@@ -14,4 +14,9 @@ class Obres extends Model
 
         return $this->belongsToMany(Galeria::class,'feta','id_obra','id_artista');
     }
+
+    public function exposicio(){
+
+        return $this->belongsTo(Exposicio::class);
+    }
 }
