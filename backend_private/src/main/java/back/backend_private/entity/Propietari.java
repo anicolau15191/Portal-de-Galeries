@@ -12,4 +12,7 @@ public class Propietari implements Serializable {
     @Id
     @Column(name="id_propietari")
     private int id;
+    @OneToOne
+    @JoinColumn(name ="id_propietari")
+    private Usuaris usuari;
 }

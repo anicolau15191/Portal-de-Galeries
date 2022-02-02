@@ -1,0 +1,9 @@
+html,section{
+    background: url(../img/registre.jpg) no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+
+}
+#formulari{
+    padding-top: 60px;
+}

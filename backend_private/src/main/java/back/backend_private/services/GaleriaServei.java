@@ -1,9 +1,6 @@
 package back.backend_private.services;
 
-import back.backend_private.entity.Galeria;
-import back.backend_private.entity.Genere;
-import back.backend_private.entity.Poblacio;
-import back.backend_private.entity.Sales;
+import back.backend_private.entity.*;
 import back.backend_private.repositories.GaleriaCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,15 +19,23 @@ public class GaleriaServei implements MetodesCrudGaleria {
     private GenereServei genereServei;
 
     @Override
-    public List<Galeria> list() {
+    public List<Galeria> galeriesPropietari(Usuaris usuari) {
 
-        return (List<Galeria>) data.findAll();
+        List<Galeria> all = (List<Galeria>) data.findAll();
+        List<Galeria> propietari = new ArrayList<>();
+        for (int i = 0; i < all.size();i++){
+            if(all.get(i).getIdPropietari() == usuari.getId()){
+                propietari.add(all.get(i));
+            }
+        }
+
+        return propietari;
     }
 
     @Override
-    public List<Galeria> noEliminades() {
+    public List<Galeria> noEliminades(Usuaris usuari) {
 
-        List<Galeria> llistat = (List<Galeria>) data.findAll();
+        List<Galeria> llistat = galeriesPropietari(usuari);
         List<Galeria> llistaNoEliminats = new ArrayList<>();
 
         for (int i = 0; i < llistat.size(); i++){

@@ -1,9 +1,6 @@
 package back.backend_private.controller;
 
-import back.backend_private.entity.Especialitzat;
-import back.backend_private.entity.Galeria;
-import back.backend_private.entity.Genere;
-import back.backend_private.entity.Poblacio;
+import back.backend_private.entity.*;
 import back.backend_private.repositories.EspecialitzatCrud;
 import back.backend_private.repositories.GaleriaCrud;
 import back.backend_private.repositories.GenereCrud;
@@ -17,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,9 +31,11 @@ public class HomeController {
     @Autowired
     private EspecialitzatServei especialitzatServei;
 
-    @GetMapping("/home") //nomes dexar barra
-    public String llistat(ModelMap model){
-        List<Galeria> galeries = (List<Galeria>) galeriaServei.noEliminades();
+    @GetMapping("/home")
+    public String llistat(ModelMap model, HttpServletRequest request){
+        Usuaris user = (Usuaris) request.getSession().getAttribute("session");
+        model.addAttribute("user",user);
+        List<Galeria> galeries = (List<Galeria>) galeriaServei.noEliminades(user);
         model.addAttribute("llista",galeries);
         List<Poblacio> llistaPoblacions = poblacio.list();
         model.addAttribute("poblacions",llistaPoblacions);
@@ -42,14 +43,14 @@ public class HomeController {
         model.addAttribute("tipusArt",tipusArt);
         List<Genere> generesFills = genereServei.llistatArtFills();
         model.addAttribute("generesFills",generesFills);
-
         return "home";
     }
 
     @PostMapping("/add")
-    public String addGaleria(@RequestParam String nom, String email, int pob){
+    public String addGaleria(@RequestParam String nom, String email, int pob,HttpServletRequest request){
+        Usuaris user = (Usuaris) request.getSession().getAttribute("session");
         Poblacio trobada = poblacio.findById(pob);
-        Galeria galeria = galeriaServei.crearGaleria(1,nom,trobada,email);
+        galeriaServei.crearGaleria(user.getId(),nom,trobada,email);
         return "redirect:/home";
     }
 
