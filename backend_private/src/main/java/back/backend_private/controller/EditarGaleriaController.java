@@ -160,7 +160,7 @@ public class EditarGaleriaController {
         return "redirect:/editarGaleria/"+id;
     }
     @PostMapping("/afegirGenereFill/{id}")
-    public String addGenere(@PathVariable int id , @RequestParam int nouGenere){
+    public String addGenere(@PathVariable int id, @RequestParam int nouGenere){
         Optional<Galeria> g = data.findById(id);
         Galeria galeria = g.get();
         Optional<Genere> gen = genereCrud.findById(nouGenere);

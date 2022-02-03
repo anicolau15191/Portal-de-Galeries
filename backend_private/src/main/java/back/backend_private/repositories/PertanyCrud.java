@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface PertanyCrud extends CrudRepository<Pertany, PertanyId> {
-    List<Pertany> findAllById_idObres(int idObres);
+    List<Pertany> findAllByPertanyId_idObres(int idObres);
 }

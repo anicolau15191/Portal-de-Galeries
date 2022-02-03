@@ -10,12 +10,12 @@ import java.io.Serializable;
 @Embeddable
 public class PertanyId implements Serializable {
 
-    private int id_obres;
-    private int id_genere;
+    private int idObres;
+    private int idGenere;
 
     public PertanyId(int idObres, int idGenere){
-        this.id_obres = idObres;
-        this.id_genere= idGenere;
+        this.idObres = idObres;
+        this.idGenere= idGenere;
     }
 
     public PertanyId(){}

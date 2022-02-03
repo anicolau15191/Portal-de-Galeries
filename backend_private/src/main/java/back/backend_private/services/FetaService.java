@@ -22,8 +22,8 @@ public class FetaService {
     @Autowired
     FetaCrud fetaCrud;
 
-    public void enllaçarObra(Obres obra, Artista artista){
-        FetaId fetaId = new FetaId(obra.getId(), artista.getId());
+    public void enllaçarObra(int obra, int artista){
+        FetaId fetaId = new FetaId(obra, artista);
         Feta feta = new Feta(fetaId);
         fetaCrud.save(feta);
     }
