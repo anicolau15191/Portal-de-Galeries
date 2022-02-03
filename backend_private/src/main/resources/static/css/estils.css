@@ -12,4 +12,9 @@ a{
 a:hover{
   color: black;
 }
-
+html,body{
+  background-color: #EEEEEE;
+}
+header{
+  background-color: rgb(227, 226, 226);
+}

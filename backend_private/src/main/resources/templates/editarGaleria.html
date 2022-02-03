@@ -141,7 +141,7 @@
                                     <option th:each="genereFill:${allGeneresFills}" th:if="${genereFill.getIdGenere2().idGenere == art.idGenere}" th:value="${genereFill.idGenere}" th:text="${genereFill.nom}"></option>
                                 </optgroup>
                             </select>
-                            <button type="submit" class="btn btn-outline-iesmanacor">Afegir</button>
+                            <button type="submit" class="btn btn-iesmanacor">Afegir</button>
                         </div>
                     </form>
                 </div>
@@ -184,7 +184,7 @@
                             <div class="mb-3">
                                 <form method="post" th:action="@{'/editarDescripcio/'+ ${galeria.idGaleria}}" class="needs-validation" novalidate>
                                     <textarea class="form-control" rows="3" id="desc" name="desc" th:text="${galeria.descripcio}" required></textarea>
-                                    <button id="b2" type="submit" class="btn btn-outline-iesmanacor mt-2 " onclick="descripcioMaxLength()">Editar</button>
+                                    <button id="b2" type="submit" class="btn btn-iesmanacor mt-2 " onclick="descripcioMaxLength()">Editar</button>
                                     <span id="length" class="text-danger"></span>
                                 </form>
                             </div>
@@ -204,7 +204,7 @@
                                     <span for="lng" id="lng" class="input-group-text d-flex justify-content-center">Log : </span>
                                     <input type="text" aria-describedby="lng" class="form-control" id="long" name="lng" required>
                                 </div>
-                                    <button id="b1" class="btn btn-outline-iesmanacor">Desa</button>
+                                    <button id="b1" class="btn btn-iesmanacor">Desa</button>
                             </form>
                         </div>
                     </div>
