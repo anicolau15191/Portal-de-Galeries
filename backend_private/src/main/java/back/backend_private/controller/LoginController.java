@@ -29,7 +29,11 @@ public class LoginController {
         }else{
             return "redirect:/";
         }
+    }
 
-        //return "/home";
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 }
