@@ -1,9 +1,6 @@
 package back.backend_private.controller;
 
-import back.backend_private.entity.Galeria;
-import back.backend_private.entity.Genere;
-import back.backend_private.entity.Media;
-import back.backend_private.entity.Poblacio;
+import back.backend_private.entity.*;
 import back.backend_private.repositories.GaleriaCrud;
 import back.backend_private.repositories.GenereCrud;
 import back.backend_private.repositories.MediaCrud;
@@ -15,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +39,9 @@ public class EditarGaleriaController {
     private MediaServei mediaServei;
 
     @GetMapping("/perfil/{id}")
-    public String galeria(@PathVariable int id, ModelMap model){
+    public String galeria(@PathVariable int id, ModelMap model, HttpServletRequest request){
+        Usuaris user = (Usuaris) request.getSession().getAttribute("session");
+        model.addAttribute("user",user);
         Optional<Galeria> galeria = data.findById(id);
         Galeria g = galeria.get();
         List<Genere> generes = especialitzatServei.getGeneres(g);
@@ -60,7 +60,9 @@ public class EditarGaleriaController {
 
 
     @GetMapping("/editarGaleria/{id}")
-    public String editarGaleria(@PathVariable int id, ModelMap model){
+    public String editarGaleria(@PathVariable int id, ModelMap model,HttpServletRequest request){
+        Usuaris user = (Usuaris) request.getSession().getAttribute("session");
+        model.addAttribute("user",user);
         Optional<Galeria> galeria = data.findById(id);
         Galeria g = galeria.get();
         List<Genere> generes = especialitzatServei.getGeneres(g);

@@ -59,10 +59,10 @@ public class HomeController {
         galeriaServei.borrar(id);
         return "redirect:/home";
     }
-    @GetMapping("/reserves")
+    /*@GetMapping("/reserves")
     public String eliminarGaleria(){
         return "reserves";
-    }
+    }*/
 
 
 }

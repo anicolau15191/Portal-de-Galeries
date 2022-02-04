@@ -29,6 +29,6 @@ public class RegistreController {
     public String addGaleria(@RequestParam String nom, String cognom, String email, int pob, String password){
         Poblacio pobl = poblacio.findById(pob);
         usuariServei.addPropietari(nom,cognom,email,pobl,password);
-        return "redirect:/login";
+        return "redirect:/";
     }
 }

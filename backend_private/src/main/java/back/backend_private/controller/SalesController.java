@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,9 @@ public class SalesController {
     ExpoService expoService;
 
     @GetMapping("/sales/{id}")
-    public String salesGaleria(@PathVariable int id, ModelMap model){
+    public String salesGaleria(@PathVariable int id, ModelMap model, HttpServletRequest request){
+        Usuaris user = (Usuaris) request.getSession().getAttribute("session");
+        model.addAttribute("user",user);
         Optional<Galeria> g = galeriaCrud.findById(id);
         Galeria galeria = g.get();
         List<Sales> llistatSales = salesServei.findSlesByGaleria(galeria);
@@ -49,7 +52,9 @@ public class SalesController {
         return "redirect:/sales/"+id;
     }
     @GetMapping("/sala/{id}/{idGaleria}")
-    public String sala(@PathVariable int id, @PathVariable int idGaleria, ModelMap model){
+    public String sala(@PathVariable int id, @PathVariable int idGaleria, ModelMap model,HttpServletRequest request){
+        Usuaris user = (Usuaris) request.getSession().getAttribute("session");
+        model.addAttribute("user",user);
         Optional<Galeria> g = galeriaCrud.findById(idGaleria);
         Galeria galeria = g.get();
         Sales sala = salesServei.findSalaById(id);
