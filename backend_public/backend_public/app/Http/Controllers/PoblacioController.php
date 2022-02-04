@@ -14,4 +14,10 @@ class PoblacioController extends Controller
 
     }
 
+    public function listAllGaleriesInPOblacio(Poblacio $poblacio){
+        $listGaleriesInPoblacio =  Galeria::where("id_poblacio","=",$poblacio->id_poblacio)->where("enabled",0)->get();
+
+        return $listGaleriesInPoblacio->toJson();
+    }
+
 }

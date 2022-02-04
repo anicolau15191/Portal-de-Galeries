@@ -2,12 +2,21 @@ package back.backend_private.controller;
 
 import back.backend_private.entity.Artista;
 import back.backend_private.entity.Exposicio;
+<<<<<<< HEAD
 import back.backend_private.entity.Genere;
 import back.backend_private.entity.Obres;
 import back.backend_private.repositories.ArtistaCrud;
 import back.backend_private.repositories.ObresCrud;
 import back.backend_private.services.*;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
+=======
+import back.backend_private.entity.Galeria;
+import back.backend_private.entity.Sales;
+import back.backend_private.services.ArtistaServei;
+import back.backend_private.services.ExpoService;
+import back.backend_private.services.GaleriaServei;
+import back.backend_private.services.SalesServei;
+>>>>>>> xisca
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,6 +37,7 @@ public class ExpoController {
     @Autowired
     private ArtistaServei artistaServei;
     @Autowired
+<<<<<<< HEAD
     private FetaService fetaService;
     @Autowired
     private ObresServei obresServei;
@@ -48,14 +58,29 @@ public class ExpoController {
         model.addAttribute("generePare",generePare);
         List<Genere> genereFill = genereServei.llistatArtFills();
         model.addAttribute("genereFill",genereFill);
+=======
+    GaleriaServei galeriaServei;
+    @Autowired
+    SalesServei salesServei;
+
+    @GetMapping("/expo/{id}/{idGaleria}")
+    public String perfilExpo(@PathVariable int id,@PathVariable int idGaleria, ModelMap model){
+>>>>>>> xisca
         List <Artista> art = artistaServei.read();
         model.addAttribute("artistes",art);
         List<Obres> obrEx = obresCrud.findAllByExpo(expoService.findById(id));
         model.addAttribute("obresEx",obrEx);
         Exposicio expo = expoService.findById(id);
         model.addAttribute("expo",expo);
+<<<<<<< HEAD
         Artista artista = new Artista();
         model.addAttribute("artista",artista);
+=======
+        Galeria galeria = galeriaServei.findById(idGaleria);
+        model.addAttribute("galeria",galeria);
+        Sales sala = salesServei.findSalaById(expo.getIdSala());
+        model.addAttribute("sala",sala);
+>>>>>>> xisca
         return "perfilExpo";
     }
 

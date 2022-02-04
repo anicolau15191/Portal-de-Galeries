@@ -43,4 +43,10 @@ class GenereController extends Controller
 
     }
 
+    public function listFillsByGenere(Genere $genere){
+        $listGenereAmbFills =  Genere::where("id_genere2","=",$genere->id_genere)->get();
+
+        return $listGenereAmbFills->toJson();
+    }
+
 }

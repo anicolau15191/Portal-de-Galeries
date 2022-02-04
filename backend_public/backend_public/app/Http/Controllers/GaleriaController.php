@@ -15,6 +15,9 @@ class GaleriaController extends Controller
         return $galeries->toJson();
     }
 
+    public function getGaleria(Galeria $galeria){
+        return $galeria->toJson();
+    }
 
 
 }
