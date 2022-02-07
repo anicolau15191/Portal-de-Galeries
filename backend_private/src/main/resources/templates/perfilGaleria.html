@@ -33,7 +33,9 @@
                    <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/1'}" enctype="multipart/form-data" class="mt-2  needs-validation" novalidate>
                        <div class="input-group">
                            <input type="file" class="form-control" id="inputGroupFile01" name="image" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
-                           <button class="btn btn-secondary" type="submit" id="inputGroupFileAddon01">Add</button>
+                           <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon01"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                               <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                           </svg></button>
                        </div>
                    </form>
                </div>
@@ -42,7 +44,7 @@
                    <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/2'}" enctype="multipart/form-data" class="mt-2  needs-validation" novalidate>
                        <div class="input-group">
                            <input type="file" class="form-control" id="inputGroupFile02" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
-                           <button class="btn btn-secondary" type="submit" id="inputGroupFileAddon02">Add</button>
+                           <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon02">Add</button>
                        </div>
                    </form>
                </div>
@@ -51,7 +53,7 @@
                    <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/3'}" enctype="multipart/form-data" class="mt-2 needs-validation" novalidate >
                        <div class="input-group">
                            <input type="file" class="form-control" id="inputGroupFile03" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
-                           <button class="btn btn-secondary" type="submit" id="inputGroupFileAddon03">Add</button>
+                           <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon03">Add</button>
                        </div>
                    </form>
                </div>
@@ -60,7 +62,7 @@
                    <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/4'}" enctype="multipart/form-data" class="mt-2  needs-validation" novalidate>
                        <div class="input-group">
                            <input type="file" class="form-control" id="inputGroupFile04" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
-                           <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Add</button>
+                           <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon04">Add</button>
                        </div>
                    </form>
                </div>
@@ -79,7 +81,7 @@
                 </div>
                 <!-- Detalls -->
                 <div class="row mt-2">
-                    <div class="col-4 mt-3">
+                    <div class="col-6 mt-3">
                         <span class="mb-1">Dades</span>
                         <hr/>
                         <div class="row">
@@ -116,7 +118,7 @@
                         </div>
                     </div>
                     <!-- Descripcio -->
-                    <div class="col-4 mt-3">
+                    <div class="col-6 mt-3">
                         <p>Descripció</p>
                         <hr/>
                         <p th:text="${galeria.descripcio}"></p>

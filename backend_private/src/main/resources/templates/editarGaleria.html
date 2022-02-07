@@ -38,7 +38,7 @@
                                 </svg>
                             </span>
                             <input type="text" class="form-control" name="nom" aria-describedby="nom" th:value="${galeria.nom}">
-                            <button type="submit" class="btn btn-outline-iesmanacor">Editar</button>
+                            <button type="submit" class="btn btn-iesmanacor">Editar</button>
                         </div>
                     </form>
                 </div>
@@ -57,7 +57,7 @@
                                 <option value="">Selecciona</option>
                                 <option th:each="poblacio:${poblacions}" th:value="${poblacio.idPoblacio}" th:text="${poblacio.nom}"></option>
                             </select>
-                            <button type="submit" class="btn btn-outline-iesmanacor">Editar</button>
+                            <button type="submit" class="btn btn-iesmanacor">Editar</button>
                         </div>
                     </form>
                 </div>
@@ -72,7 +72,7 @@
                             </svg>
                         </span>
                             <input type="email" aria-describedby="correu" class="form-control" id="email" name="correu" th:value="${galeria.email}">
-                            <button type="submit" class="btn btn-outline-iesmanacor">Editar</button>
+                            <button type="submit" class="btn btn-iesmanacor">Editar</button>
                         </div>
                     </form>
                 </div>
@@ -87,7 +87,7 @@
                             </svg>
                         </span>
                             <input type="text" aria-describedby="correu" class="form-control" name="telefon" th:value="${galeria.telefon}">
-                            <button type="submit" class="btn btn-outline-iesmanacor">Editar</button>
+                            <button type="submit" class="btn btn-iesmanacor">Editar</button>
                         </div>
                     </form>
                 </div>
@@ -103,7 +103,7 @@
                             </svg>
                         </span>
                             <input type="text" aria-describedby="correu" class="form-control" name="direccio" th:value="${galeria.direccio}">
-                            <button type="submit" class="btn btn-outline-iesmanacor">Editar</button>
+                            <button type="submit" class="btn btn-iesmanacor">Editar</button>
                         </div>
                     </form>
                 </div>
@@ -121,7 +121,7 @@
                                 <option value="">Selecciona</option>
                                 <option th:each="art:${allGeneres}" th:value="${art.idGenere}" th:text="${art.nom}"></option>
                             </select>
-                            <button type="submit" class="btn btn-outline-iesmanacor">Afegir</button>
+                            <button type="submit" class="btn btn-iesmanacor">Afegir</button>
                         </div>
                     </form>
                 </div>
@@ -196,15 +196,17 @@
                         <div class="col-4 mb-2">
                             <form method="post" th:action="@{'/addCoordenades/'+ ${galeria.idGaleria}}" class="needs-validation" novalidate>
                                 <!-- Google afegir Lat i Lng -->
-                                <div class="input-group">
-                                    <span for="lat" id="lat" class="input-group-text d-flex justify-content-center">Lat : </span>
-                                    <input type="text" aria-describedby="lat" class="form-control"  id="latitud" name="lat" required>
+                                <div class=" d-flex justify-content-between">
+                                    <div class="input-group me-1">
+                                        <span for="lat" id="lat" class="input-group-text d-flex justify-content-center">Lat : </span>
+                                        <input type="text" aria-describedby="lat" class="form-control"  id="latitud" name="lat" readonly required>
+                                    </div>
+                                    <div class="input-group">
+                                        <span for="lng" id="lng" class="input-group-text d-flex justify-content-center">Log : </span>
+                                        <input type="text" aria-describedby="lng" class="form-control" id="long" name="lng" readonly required>
+                                    </div>
                                 </div>
-                                <div class="input-group">
-                                    <span for="lng" id="lng" class="input-group-text d-flex justify-content-center">Log : </span>
-                                    <input type="text" aria-describedby="lng" class="form-control" id="long" name="lng" required>
-                                </div>
-                                    <button id="b1" class="btn btn-iesmanacor">Desa</button>
+                                <button id="b1" class="btn btn-iesmanacor mt-2">Desa</button>
                             </form>
                         </div>
                     </div>

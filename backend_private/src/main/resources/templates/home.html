@@ -9,13 +9,12 @@
 <body>
 <header th:include="/header :: header" ”></header>
 <main>
-    <div class="container mt-3">
-        <div class="d-flex justify-content-start">
-            <button type="button" class="btn btn-iesmanacor" id="addGaleria">Nova Galeria</button>
-        </div>
+    <div class="container d-flex justify-content-start mt-3">
+        <button type="button" class="btn btn-iesmanacor ms-2" id="addGaleria">Nova Galeria</button>
     </div>
     <div class="container d-flex justify-content-center mt-3">
         <div class="container-fluid">
+            <h3 class="mb-3">Llistat galeries</h3>
             <div class="row">
                 <div class="col-4 mb-3" th:each="galeria:${llista}">
                     <a th:href="@{'/perfil/'+${galeria.idGaleria}}" class="text-decoration-none text-black">
