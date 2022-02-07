@@ -83,11 +83,12 @@
             var calendarEl = document.getElementById('calendar');
             var idexpo = [[${expo.id}]];
             var idGaleria = [[${galeria.idGaleria}]]
+            var inici = [[${expo.data_ini}]];
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 themeSystem: 'bootstrap',
                 timeZone: 'local',
                 initialView: 'dayGridMonth',
-                initialDate: Date.now(),
+                initialDate: inici,
                 headerToolbar: {
                     left: 'title',
                     center: '',
