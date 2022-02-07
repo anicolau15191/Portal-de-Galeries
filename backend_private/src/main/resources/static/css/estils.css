@@ -5,7 +5,6 @@ img{
 a{
   text-decoration: none;
   color: black;
-<<<<<<< HEAD
 }
 
 .card input[type="checkbox"]{
@@ -14,9 +13,8 @@ a{
   top:5px;
   right:5px;
 }
-=======
 
-}
+
 a:hover{
   color: black;
 }
@@ -27,4 +25,8 @@ html,body{
 header{
   background-color: rgb(227, 226, 226);
 }
->>>>>>> xisca
+
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}

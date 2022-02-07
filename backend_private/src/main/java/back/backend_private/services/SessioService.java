@@ -1,19 +1,13 @@
 package back.backend_private.services;
 
-<<<<<<< HEAD
 import back.backend_private.entity.Exposicio;
-=======
 import back.backend_private.entity.Entrada;
->>>>>>> xisca
 import back.backend_private.entity.Sessio;
 import back.backend_private.repositories.SessioCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import java.sql.Date;
-=======
->>>>>>> xisca
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
