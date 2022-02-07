@@ -37,8 +37,14 @@ $colors-personalitzats: (
         "dark": #20c997
 
 );
+
+
 // Merge the maps
 $theme-colors: map-merge($theme-colors, $colors-personalitzats);
+
+.active{
+  background-color: rgb(105, 38, 105); !important;
+}
 /*$theme-colors-rgb: map-merge($theme-colors, $colors-personalitzats);
 $utilities-bg-colors: map-merge($utilities-bg-colors, $colors-personalitzats);
 $utilities-text-colors: map-merge($utilities-text-colors, $colors-personalitzats);*/

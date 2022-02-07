@@ -8,8 +8,8 @@
 </head>
 <body>
     <header th:include="/header :: header"></header>
-    <main>
-        <div class="container-fluid ms-3 mt-3 d-flex justify-content-start flex-wrap">
+    <main class="container">
+        <div class="container mt-3 d-flex justify-content-start flex-wrap">
             <div style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a th:href="@{'/perfil/'+${galeria.idGaleria}}" th:text="${galeria.nom}"></a></li>
@@ -18,12 +18,21 @@
                     <li class="breadcrumb-item" th:text="${expo.nom}"></li>
                 </ol>
             </div>
+        <section class="row w-100 mt-3 d-flex justify-content-start flex-wrap">
+                <div class="col-12 mb-3 d-flex justify-content-start">
+                    <a th:href="@{'/sala/'+${sala.idSales}+'/'+${galeria.idGaleria}}" class="btn btn-iesmanacor me-2">Enrere</a>
+                    <a th:href="@{''}" class="btn btn-iesmanacor me-2 d-flex flex-nowrap">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3 me-2 mb-1" viewBox="0 0 16 16">
+                            <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                            <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                            </svg>
+                        </span>
+                        <span>Horari</span>
+                    </a>
+                </div>
             <div class="row w-100">
                 <div class="container mt-3">
-                    <div class="col-4 mb-3 d-flex justify-content-start">
-                        <a th:href="@{'/perfil/'+${expo.id}}" class="btn btn-outline-iesmanacor me-2">Enrere</a>
-                        <a th:href="@{'/reserves/'+${expo.id}+'/'+${galeria.idGaleria}}" class="btn btn-iesmanacor me-2">Reserves</a>
-                    </div>
                     <div class="d-flex justify-content-start">
                         <h2 th:text="${expo.nom}"></h2>
                     </div>
@@ -33,24 +42,236 @@
                     <p th:text="${expo.descripcio}"></p>
                 </div>
             </div>
-            <div class="row w-100 d-flex flex-wrap justify-content-start">
-                <div class="container d-flex flex-nowrap">
-                    <h4 class="text-decoration-underline">Artistes</h4>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle ms-3 mt-2" viewBox="0 0 16 16">
+        </section>
+        <section class="row w-100">
+            <div class="container d-flex justify-content-start mt-3 w-100">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 d-flex flex-wrap justify-content-start mb-3">
+                            <h2 class="w-100">Obres assignades a l'exposició</h2>
+                            <div class="card col-2 me-3" th:each="obra:${obresEx}">
+                                <div class="card-header">
+                                    <img th:src="@{'/imggaleria/imgObres/'+${obra.id}}" style="object-fit:contain" onerror="this.onerror=null;this.src='/img/default.png';">
+                                </div>
+                                <div class="card-body d-flex flex-wrap justify-content-center">
+                                    <h5 class="card-title w-100 text-center" th:text="${obra.nom}"></h5>
+                                </div>
+                                <div class="card-footer d-flex flex-wrap justify-content-center">
+                                    <a th:href="@{'/unassignObra/'+${expo.id}+'/'+${artista.id}+'/'+${obra.id}+'/'+${galeria.idGaleria}}" class="link-secondary mx-auto" >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="row w-100 d-flex flex-wrap justify-content-start">
+            <div class="container d-flex flex-nowrap">
+                <h4 class="text-decoration-underline">Artistes</h4>
+                <button class="btn" id="addArtista">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle mb-2" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                     </svg>
+                </button>
+            </div>
+            <div class="w-25 d-flex justify-content-start">
+                <ul class="list-group w-100">
+                    <a th:each="artist:${artistes}" th:href="@{'/'+${expo.id}+'/obres/'+${galeria.idGaleria}+'/'+${artist.id}}">
+                        <li th:classappend="${artista!=null && artista.id==artist.id ? ' list-group-item-iesmanacor':''}" class="list-group-item" th:text="${artist.nom}"></li>
+                    </a>
+                </ul>
+            </div>
+        </section>
+        <section class="row w-100 d-flex flex-wrap justify-content-start">
+            <div class="container d-flex flex-nowrap">
+                <h4 class="text-decoration-underline">Obres de l'artista seleccionat</h4>
+                <button class="btn" id="addObra">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle mb-2" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="container d-flex justify-content-start mt-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 d-flex flex-wrap justify-content-start mb-3">
+                            <form method="post" class="col-12 d-flex flex-wrap justify-content-start" th:action="@{'/addObraEx/'+${expo.id}+'/'+${artista.id}+'/'+${galeria.idGaleria}}">
+                                <div class="card col-2 me-3" th:each="obra:${obres}">
+                                    <div class="card-header">
+                                        <img th:src="@{'/imggaleria/imgObres/'+${obra.id}}" style="object-fit:contain" onerror="this.onerror=null;this.src='/img/default.png';">
+                                    </div>
+                                    <div class="card-body d-flex flex-wrap justify-content-center">
+                                        <h5 class="card-title w-100 text-center" th:text="${obra.nom}"></h5>
+                                        <input type="checkbox" class="position-absolute" name="check" th:value="${obra.id}"/>
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-3 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-outline-iesmanacor w-25">Afegir</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="container w-25 d-flex justify-content-start flex-wrap">
-                    <ul class="list-group w-100">
-                        <li class="list-group-item"  th:each="artista:${artistes}" th:text="${artista.nom}"></li>
-                    </ul>
+            </div>
+        </section>
+        <div class="modal" tabindex="-1" id="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nou Autor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" th:action="@{'/'+${expo.id}+'/addArtista/'+${galeria.idGaleria}}" class="needs-validation" novalidate >
+                            <span>Nom</span>
+                            <div class="input-group mb-3">
+                                <span for="nom" id="nom" class="input-group-text d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                    </svg>
+                                </span>
+                                <input type="text" class="form-control" name="nom" aria-describedby="nom" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-iesmanacor">Crear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" tabindex="-1" th:id="${artista.nom!='' ? 'modalO':''}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nova Obra</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" th:action="@{'/'+${expo.id}+'/addObra/'+${artista.id}+'/'+${galeria.idGaleria}}" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="inputGroupFile01" name="image" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
+                            </div>
+                            <span>Nom</span>
+                            <div class="input-group mb-3">
+                                <span for="titol" id="titol" class="input-group-text d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                    </svg>
+                                </span>
+                                <input type="text" class="form-control" name="titol" aria-describedby="titol" required>
+                            </div>
+                            <span>Esta a la venta?</span>
+                            <div class="input-group mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="venta" value="0" id="si">
+                                    <label class="form-check-label" for="si">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="venta" id="no" value="1" checked>
+                                    <label class="form-check-label" for="no">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <span>Preu</span>
+                            <div class="input-group mb-3">
+                                <span for="preu" id="preu" class="input-group-text d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">
+                                      <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936c0-.11 0-.219.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.617 6.617 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
+                                    </svg>
+                                </span>
+                                <input type="number" step=0.01 class="form-control" id="preuInput" name="preu" aria-describedby="preu" value=0 required readonly>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="col-6 mb-3">
+                                    <span>Generes</span>
+                                    <div class="input-group">
+                                    <span for="nom" id="generes" class="input-group-text d-flex justify-content-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-easel2" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .447.276L8.81 1h4.69A1.5 1.5 0 0 1 15 2.5V11h.5a.5.5 0 0 1 0 1h-2.86l.845 3.379a.5.5 0 0 1-.97.242L12.11 14H3.89l-.405 1.621a.5.5 0 0 1-.97-.242L3.36 12H.5a.5.5 0 0 1 0-1H1V2.5A1.5 1.5 0 0 1 2.5 1h4.691l.362-.724A.5.5 0 0 1 8 0ZM2 11h12V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5V11Zm9.61 1H4.39l-.25 1h7.72l-.25-1Z"/>
+                                        </svg>
+                                    </span>
+                                        <select aria-describedby="generes" class="form-select" name="pare" id="pare" required>
+                                            <option value="">Selecciona</option>
+                                            <option th:each="art:${generePare}" th:value="${art.idGenere}" th:text="${art.nom}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <span>Subgeneres</span>
+                                    <div class="input-group">
+                                        <span for="nom" id="generesFills" class="input-group-text d-flex justify-content-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-easel2" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .447.276L8.81 1h4.69A1.5 1.5 0 0 1 15 2.5V11h.5a.5.5 0 0 1 0 1h-2.86l.845 3.379a.5.5 0 0 1-.97.242L12.11 14H3.89l-.405 1.621a.5.5 0 0 1-.97-.242L3.36 12H.5a.5.5 0 0 1 0-1H1V2.5A1.5 1.5 0 0 1 2.5 1h4.691l.362-.724A.5.5 0 0 1 8 0ZM2 11h12V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5V11Zm9.61 1H4.39l-.25 1h7.72l-.25-1Z"/>
+                                            </svg>
+                                        </span>
+                                        <select aria-describedby="generes" class="form-select" name="fill" id="fill" required>
+                                            <option value="">Selecciona</option>
+                                            <option th:each="art:${genereFill}" th:value="${art.idGenere}" th:text="${art.nom}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-iesmanacor">Crear</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/js/custom.js}"></script>
+<script th:inline="javascript">
+    let myModal = document.querySelector('#modal')
+    let myModalO = document.querySelector('#modalO')
+
+    let modal = new bootstrap.Modal(myModal, {
+        backdrop: 'static'
+    })
+
+    let modalO = new bootstrap.Modal(myModalO, {
+        backdrop: 'static'
+    })
+
+    document.querySelector('#addArtista').addEventListener('click', function () {
+        modal.show();
+    })
+
+    document.querySelector('#addObra').addEventListener('click', function () {
+        modalO.show();
+    })
+
+    $(document).ready(function(){
+            $("main li").click(function(){
+                $("main li").removeClass().addClass("list-group-item");
+                $(this).removeClass().addClass("list-group-item list-group-item-iesmanacor");
+            });
+
+            $("#no").click(function(){
+                $("#preuInput").val(0);
+                $("#preuInput").prop("readonly",true);
+            });
+            $("#si").click(function(){
+                $("#preuInput").prop("readonly",false);
+            });
+            }
+
+
+
+    );
+</script>
 </body>
 </html>

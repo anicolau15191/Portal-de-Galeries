@@ -9,11 +9,11 @@ import java.io.Serializable;
 @Embeddable
 public class FetaId implements Serializable {
 
-    private int idObres;
+    private int idObra;
     private int idArtista;
 
-    public FetaId(int id_obres, int id_artista){
-        this.idObres=id_obres;
+    public FetaId(int id_obra, int id_artista){
+        this.idObra=id_obra;
         this.idArtista=id_artista;
     }
 
