@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exposicio;
 use App\Models\Galeria;
 use App\Models\Sales;
 
@@ -17,4 +18,5 @@ class SalesController extends Controller
 
         return $listSalesGaleria->toJson();
     }
+
 }

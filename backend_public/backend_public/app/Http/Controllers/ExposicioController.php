@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exposicio;
+use App\Models\Galeria;
 use App\Models\Obres;
 use App\Models\Sales;
+use Illuminate\Support\Facades\DB;
 
 class ExposicioController extends Controller
 {
@@ -12,6 +14,17 @@ class ExposicioController extends Controller
         $listExposicions = Exposicio::where("id_sala" ,"=",$sala->id_sales)->where("enabled",0)->get();
 
         return $listExposicions->toJson();
+    }
+
+    public function getAllExposicionsGaleria(Galeria $galeria){
+        $listExpo = DB::table('exposicio')
+            ->join("sales","sales.id_sales","=","exposicio.id_sala")
+            ->where("sales.id_galeria","=",$galeria->id_galeria)
+            ->select('exposicio.nom', 'exposicio.descripcio', 'exposicio.data_ini','exposicio.data_fi')
+            ->get();
+
+
+        return $listExpo;
     }
 
     public function getExposicio(Exposicio $exposicio){
