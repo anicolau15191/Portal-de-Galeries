@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import Galeria from "./Contents/Galeria"
 import Nav from "./Component/Nav"
-//import './App.css';
+import Tabs from './Component/Tabs';
+import './App.css'
+
 
 class App extends Component {
 
@@ -14,7 +16,17 @@ class App extends Component {
     return(
       <div className='App'>
         <Nav/>
-        <Galeria/>
+        <Tabs>
+            <div label="Perfil">
+             <Galeria/>
+            </div>
+            <div label="Sales">
+              
+            </div>
+            <div label="Exposicions">
+              
+            </div>
+          </Tabs>
       </div>
     );
   }

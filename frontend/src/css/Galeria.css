@@ -1,0 +1,45 @@
+.carrusel{
+    height: 535px;
+    width: 620px;
+}
+#info{
+    background-color: #80878d;
+    color: #e5e5e5;
+}
+p{
+    line-height: 30px;
+    padding-left: 25px;
+    padding-top: 6px;
+    padding-right: 25px;
+}
+span{
+    padding-left: 25px;
+    padding-right: 25px;
+}
+#fotos{
+    padding-left: 0%;
+}
+#tab{
+    padding-left: 0%;
+    padding-right: 0;
+}
+#mapa{
+    padding: 0%;
+}
+.tab-list {
+    border-bottom: 1px solid #ccc;
+    padding-left: 0;
+}
+  
+.tab-list-item {
+    display: inline-block;
+    list-style: none;
+    margin-bottom: -1px;
+    padding: 0.5rem 0.75rem;
+}
+  
+.tab-list-active {
+    background-color: white;
+    border: solid #ccc;
+    border-width: 1px 1px 0 1px;
+}

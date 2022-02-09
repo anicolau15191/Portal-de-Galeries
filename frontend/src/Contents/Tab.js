@@ -1,36 +1,42 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { Nav } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 class Tab extends Component {
-    
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    activeTab: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+  };
 
-    this.state = {
-      galeria: [],
-    }
+  onClick = () => {
+    const { label, onClick } = this.props;
+    onClick(label);
   }
 
-  componentDidMount() {
-    axios.get('http://127.0.0.1:8000/galeries/3')
-      .then(res => {
-        const galeria = res.data;
-        this.setState({ galeria });
-      })
-  }
-    render() {
-        return (
-            <Nav variant="tabs" defaultActiveKey="/home">
-                <Nav.Item>
-                    <Nav.Link href="/home">{this.state.galeria.nom}</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="link-1">Exposicions</Nav.Link>
-                </Nav.Item>
-            </Nav>
-        )
+  render() {
+    const {
+      onClick,
+      props: {
+        activeTab,
+        label,
+      },
+    } = this;
+
+    let className = 'tab-list-item';
+
+    if (activeTab === label) {
+      className += ' tab-list-active';
     }
+
+    return (
+      <li
+        className={className}
+        onClick={onClick}
+      >
+        {label}
+      </li>
+    );
+  }
 }
 
 export default Tab;
