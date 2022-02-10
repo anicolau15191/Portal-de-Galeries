@@ -7,6 +7,7 @@ use App\Http\Controllers\GenereController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ExposicioController;
 use App\Http\Controllers\ObresController;
+use App\Http\Controllers\ArtistaController;
 use App\Models\Galeria;
 use App\Models\Poblacio;
 use App\Models\Genere;
@@ -81,9 +82,11 @@ Route::get('/galeries/{galeria}/exposicions', [ExposicioController::class,'getAl
 
 Route::get('exposicions/{exposicio}', [ExposicioController::class,'getExposicio']);
 
-Route::get('exposicions/{exposicio}/obres',[ExposicioController::class,'getObresExposicio']);
+Route::get('exposicions/{exposicio}/autors', [ArtistaController::class,'getAutorsExposicio']);
 
-Route::get('exposicions/{exposicio}/obres/autors',[ExposicioController::class,'getAutorsExposicio']);
+Route::get('exposicions/{exposicio}/primeraObra', [ExposicioController::class,'getFirtsObraExpo']);
+
+Route::get('exposicions/{exposicio}/obres',[ExposicioController::class,'getObresExposicio']);
 
 Route::get('/poblacio', [PoblacioController::class,'listAll']);
 

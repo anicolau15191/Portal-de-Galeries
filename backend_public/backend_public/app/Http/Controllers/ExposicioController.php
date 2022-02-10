@@ -20,7 +20,9 @@ class ExposicioController extends Controller
         $listExpo = DB::table('exposicio')
             ->join("sales","sales.id_sales","=","exposicio.id_sala")
             ->where("sales.id_galeria","=",$galeria->id_galeria)
-            ->select('exposicio.nom', 'exposicio.descripcio', 'exposicio.data_ini','exposicio.data_fi')
+            ->where("sales.enabled","=",0)
+            ->where("exposicio.enabled","=",0)
+            ->select('exposicio.id_exposicio','exposicio.nom', 'exposicio.descripcio', 'exposicio.data_ini','exposicio.data_fi')
             ->get();
 
 
@@ -35,19 +37,14 @@ class ExposicioController extends Controller
 
     public function getObresExposicio(Exposicio $exposicio){
 
-        $lisObres = Obres::where("id_expo","=",$exposicio->id_exposicio)->where("venut",0)->get();
+        $lisObres = Obres::where("id_expo","=",$exposicio->id_exposicio)->get();
 
         return$lisObres->toJson();
     }
 
-    public function getAutorsExposicio(Exposicio $exposicio){
+    public function getFirtsObraExpo(Exposicio $exposicio){
+        $obra = Obres::where("id_expo","=",$exposicio->id_exposicio)->first();
 
-        $listObres = $this->getObresExposicio($exposicio);
-
-        $lenght = count($listObres);
-
-        for ($i = 0; $i<$lenght;$i++){
-            echo $i;
-        }
+        return $obra->toJson();
     }
 }

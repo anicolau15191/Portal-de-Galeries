@@ -12,6 +12,6 @@ class Artista extends Model
 
     public function obres(){
 
-        return $this->belongsToMany(Genere::class,'feta','id_obra','id_artista');
+        return $this->belongsToMany(Genere::class,'feta','id_artista','id_obra');
     }
 }
