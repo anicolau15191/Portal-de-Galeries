@@ -6,6 +6,7 @@ use App\Models\Exposicio;
 use App\Models\Galeria;
 use App\Models\Obres;
 use App\Models\Sales;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ExposicioController extends Controller
@@ -22,6 +23,7 @@ class ExposicioController extends Controller
             ->where("sales.id_galeria","=",$galeria->id_galeria)
             ->where("sales.enabled","=",0)
             ->where("exposicio.enabled","=",0)
+            ->where("exposicio.data_fi",">=",Carbon::today())
             ->select('exposicio.id_exposicio','exposicio.nom', 'exposicio.descripcio', 'exposicio.data_ini','exposicio.data_fi')
             ->get();
 
