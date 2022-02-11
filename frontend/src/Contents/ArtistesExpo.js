@@ -20,9 +20,9 @@ class ArtistesExpo extends Component {
 
     render() {
         return (
-            <Col className='col-12'>
+            <Col className='col-12 d-flex justify-content-md-center'>
                 {this.state.artista.map((artista) => (
-                    <p>{artista.nom}</p>
+                    <p key={artista.nom}>{artista.nom}</p>
                 ))}
             </Col>
         );

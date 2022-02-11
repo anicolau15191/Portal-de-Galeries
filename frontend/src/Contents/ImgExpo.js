@@ -19,7 +19,7 @@ class ImgExpo extends Component{
 
       render(){
         return(
-            <img className="card-img-top" src={'http://localhost/imgObres/'+this.state.obra.id_obres} style={{ height: 250 }}></img>
+            <img className="img-fluid rounded-start" src={'http://localhost/imgObres/'+this.state.obra.id_obres} style={{ height: 250}}></img>
         );
       }
 }

@@ -13,7 +13,7 @@ class GaleriaMap extends Component {
     }
     render() {
         return (this.props.galeria.map((g) =>
-            <MapContainer center={[g.latitud, g.longitut]} zoom={15}>
+            <MapContainer key={1} center={[g.latitud, g.longitut]} zoom={15}>
                 <TileLayer
                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url=" https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png"

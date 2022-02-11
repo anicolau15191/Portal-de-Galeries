@@ -3,9 +3,7 @@ import GaleriaMap from '../Component/GaleriaMap';
 import axios from 'axios';
 import '../css/Galeria.css'
 import { Container, Row, Col } from 'reactstrap';
-import { Button } from 'reactstrap';
 import { Carousel } from 'react-bootstrap';
-import Tabs from '../Component/Tabs';
 
 
 class Galeria extends Component {
@@ -16,7 +14,8 @@ class Galeria extends Component {
     this.state = {
       galeria: [],
       poblacio: [],
-      galeriaCoordenades: []
+      galeriaCoordenades: [],
+      generes: []
     }
   }
 
@@ -25,6 +24,11 @@ class Galeria extends Component {
       .then(res => {
         const galeria = res.data;
         this.setState({ galeria });
+        axios.get('http://127.0.0.1:8000/galeries/' + this.state.galeria.id_galeria + '/generes')
+          .then(res => {
+            const generes = res.data;
+            this.setState({ generes });
+          })
       })
 
     axios.get('http://127.0.0.1:8000/galeria/3/poblacio')
@@ -64,14 +68,20 @@ class Galeria extends Component {
             </Col>
             <Col>
               <Row>
-                <Col className='col-12 mt-4 d-flex justify-content-md-center'>
+                <Col className='col-12 mt-3 d-flex justify-content-md-center'>
                   <h3>{this.state.galeria.nom}</h3>
                 </Col>
                 <Col className='col-12 mt-1'>
                   <hr />
                 </Col>
-                <Col className='col-12 mt-2'>
-                  <p>Contacte : </p>
+                <Col className='col-12 mt-1 d-flex justify-content-md-start'>
+                  <span>Generes : </span>
+                  {this.state.generes.map((g) => (
+                    <span key={g.id_genere}>{g.nom}</span>
+                  ))}
+                </Col>
+                <Col className='col-12 mt-1'>
+                  <hr />
                 </Col>
                 <Col className='col-6 d-flex justify-content-md-center flex-column'>
                   <span className='mb-3'> Telèfon :  {this.state.galeria.telefon}</span>
