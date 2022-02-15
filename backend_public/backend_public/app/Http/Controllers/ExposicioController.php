@@ -27,7 +27,6 @@ class ExposicioController extends Controller
             ->select('exposicio.id_exposicio','exposicio.nom', 'exposicio.descripcio', 'exposicio.data_ini','exposicio.data_fi')
             ->get();
 
-
         return $listExpo;
     }
 
