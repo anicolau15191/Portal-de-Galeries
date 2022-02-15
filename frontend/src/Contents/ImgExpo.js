@@ -19,7 +19,7 @@ class ImgExpo extends Component{
 
       render(){
         return(
-            <img className="img-fluid rounded-start img-thumbnail" src={'http://localhost/imgObres/'+this.state.obra.id_obres} style={{ height: 250 , objectFit: 'contain'}}></img>
+            <img className="img-fluid rounded-start " src={'http://localhost/imgObres/'+this.state.obra.id_obres} style={{ height: 300 , objectFit: 'contain'}}></img>
         );
       }
 }

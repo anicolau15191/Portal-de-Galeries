@@ -2,6 +2,10 @@
     background-color: #80878d;
     color: #e5e5e5;
 }
-.card-text{
+.card-text p{
     padding: 0%;
+    margin-bottom: 0%;
+}
+p{
+    padding-left: 0%;
 }

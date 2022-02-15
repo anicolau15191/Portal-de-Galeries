@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Col} from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 
 class ArtistesExpo extends Component {
     constructor(props) {
@@ -20,11 +20,13 @@ class ArtistesExpo extends Component {
 
     render() {
         return (
-            <Col className='col-12 d-flex justify-content-md-center'>
+            <div>
                 {this.state.artista.map((artista) => (
-                    <p key={artista.nom}>{artista.nom}</p>
+                    <p className="fw-light" key={artista.nom}>{artista.nom}</p>
                 ))}
-            </Col>
+            </div>
+
+
         );
     }
 }

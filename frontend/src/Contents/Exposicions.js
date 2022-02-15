@@ -22,14 +22,6 @@ class Exposicions extends Component {
         this.setState({ exposicions });
       })
   }
-  filtre = () => {
-
-    const url = `https://api.restaurat.me/controller/establiment/filtre.php?nom=${this.state.establiment}&poblacio=${this.state.poblacio}&categoria=${this.state.especialitat}`;
-
-    fetch(url)
-      .then(resposta => resposta.json())
-      .then(resultat => this.setState({ filtre: resultat }))
-  }
 
   render() {
     return (
@@ -40,19 +32,14 @@ class Exposicions extends Component {
               <Col className="col-md-4 mb-2" key={expo.id_exposicio}>
                <Card className="card rounded border-0 h-100" id='card' >
                   <ImgExpo id={expo.id_exposicio} />
-                  <Card.Body className="card-body p-4" >
+                  <Card.Body className="card-body" >
                     <Card.Title> {expo.nom}</Card.Title>
                     <Card.Text>
-                      <Col className='col-12'>{expo.descripcio}</Col>
+                      <ArtistesExpo id={expo.id_exposicio} />
+                      <p className="fw-light">{expo.data_ini} - {expo.data_fi}</p>
                     </Card.Text>
                   </Card.Body>
-                  <Container className='mb-2 d-flex justify-content-md-center'>
-                    <Row>
-                      <ArtistesExpo id={expo.id_exposicio} />
-                      <Col className='col-12 d-flex justify-content-md-center'>{expo.data_ini} - {expo.data_fi}</Col>
-                    </Row>
-                  </Container>
-                  <Link to={{ pathname : "/Exposicio/"+expo.id_exposicio }} className="text-decoration-none stretched-link"  >    
+                  <Link to={"/Exposicio/"+expo.nom+'/'+expo.id_exposicio}  className="text-decoration-none stretched-link"  >    
 									</Link>
                 </Card>
               </Col>
