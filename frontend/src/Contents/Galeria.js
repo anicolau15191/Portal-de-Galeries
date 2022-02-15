@@ -20,7 +20,7 @@ class Galeria extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://api.artgalleryxisca.me/galeries/3')
+    axios.get('http://127.0.0.1:8000/galeries/3')
       .then(res => {
         const galeria = res.data;
         this.setState({ galeria });
