@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { TileLayer, MapContainer,Marker } from 'react-leaflet'
-import {MarkerIcon} from './react-leaflet-icon.js';
+import { TileLayer, MapContainer, Marker ,CircleMarker} from 'react-leaflet'
+//import {MarkerIcon} from './react-leaflet-icon.js';
 import '../css/mapa.css'
 import 'leaflet/dist/leaflet.css';
 
@@ -18,7 +18,15 @@ class GaleriaMap extends Component {
                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url=" https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png"
                 />
-                <Marker position={[g.latitud, g.longitut]} icon={MarkerIcon}/>
+                <CircleMarker
+                    center={[g.latitud, g.longitut]}
+                    radius={10}
+                    fillOpacity={0.5}
+                    stroke={false}
+                    color={'#80878d'}
+
+                >
+                </CircleMarker>
             </MapContainer>
         ));
     }
