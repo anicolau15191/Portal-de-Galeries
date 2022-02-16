@@ -2,6 +2,7 @@ package back.backend_private.controller;
 
 import back.backend_private.entity.*;
 import back.backend_private.repositories.ArtistaCrud;
+import back.backend_private.repositories.ExpoCrud;
 import back.backend_private.repositories.ObresCrud;
 import back.backend_private.services.*;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
@@ -18,6 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +31,8 @@ public class ExpoController {
 
     @Autowired
     private ExpoService expoService;
+    @Autowired
+    private ExpoCrud expoCrud;
     @Autowired
     private ArtistaServei artistaServei;
     @Autowired
@@ -47,6 +53,8 @@ public class ExpoController {
     GaleriaServei galeriaServei;
     @Autowired
     SalesServei salesServei;
+    @Autowired
+    SessioService sessioService;
 
     @GetMapping("/expo/{id}/{idGaleria}")
     public String perfilExpo(@PathVariable int id, @PathVariable int idGaleria, ModelMap model, HttpServletRequest request){
@@ -68,7 +76,8 @@ public class ExpoController {
     }
 
     @GetMapping("/expo/{id}/{idGaleria}/{idArtista}")
-    public String perfilExpoArt(@PathVariable int id, @PathVariable int idArtista, @PathVariable int idGaleria, ModelMap model, HttpServletRequest request){
+    public String perfilExpoArt(@PathVariable int id, @PathVariable int idArtista, @PathVariable int idGaleria,
+                                ModelMap model, HttpServletRequest request){
         model.clear();
         Usuaris user = (Usuaris) request.getSession().getAttribute("session");
         model.addAttribute("user",user);
@@ -106,6 +115,15 @@ public class ExpoController {
         return "redirect:/expo/"+idExpo;
     }
 
+    @PostMapping("/updateExpo/{idGaleria}/{idExpo}")
+    public String updateExpo(@PathVariable int idGaleria, @PathVariable int idExpo,@RequestParam String nomE,@RequestParam String descripcio){
+        Exposicio expo = expoService.findById(idExpo);
+        expo.setNom(nomE);
+        expo.setDescripcio(descripcio);
+        expoCrud.save(expo);
+        return "redirect:/expo/"+idExpo+"/"+idGaleria;
+    }
+
     @GetMapping("/{idExpo}/obres/{idGaleria}/{idArtista}")
     public String listObres(@PathVariable int idExpo, @PathVariable int idArtista,@PathVariable int idGaleria, ModelMap model){
         List<Obres> obres = fetaService.filtrarObres(idArtista);
@@ -114,7 +132,10 @@ public class ExpoController {
     }
 
     @PostMapping("/{idExpo}/addObra/{idArtista}/{idGaleria}")
-    public String addObra(@PathVariable int idExpo, @PathVariable int idArtista,@PathVariable int idGaleria, @RequestParam("image") MultipartFile img, @RequestParam String titol, @RequestParam int venta, @RequestParam float preu, @RequestParam int pare, @RequestParam int fill) throws IOException {
+    public String addObra(@PathVariable int idExpo, @PathVariable int idArtista,@PathVariable int idGaleria,
+                          @RequestParam("image") MultipartFile img, @RequestParam String titol, @RequestParam int venta,
+                          @RequestParam float preu, @RequestParam int pare, @RequestParam int fill) throws IOException {
+
         int id = obresServei.create(titol,venta,preu);
         InputStream is = img.getInputStream();
 
@@ -136,16 +157,62 @@ public class ExpoController {
 
     @PostMapping("/addObraEx/{idExpo}/{idArtista}/{idGaleria}")
     public String addObraEx(@PathVariable int idExpo, @PathVariable int idArtista, @PathVariable int idGaleria,@RequestParam int[] check){
-        Obres obra = new Obres();
         for(int i=0;i<check.length;i++){
             obresServei.addExpo(expoService.findById(idExpo),check[i]);
         }
         return "redirect:/expo/"+idExpo+"/"+idGaleria+"/"+idArtista;
     }
 
-    @GetMapping("/unassignObra/{idExpo}/{idArtista}/{idObra}/{idGaleria}")
-    public String delObra(@PathVariable int idExpo, @PathVariable int idArtista,@PathVariable int idGaleria, @PathVariable int idObra){
+    @GetMapping("/unassignObra/{idExpo}/{idObra}/{idGaleria}")
+    public String delObra(@PathVariable int idExpo, @PathVariable int idGaleria, @PathVariable int idObra){
         obresServei.deleteExpo(idObra);
-        return "redirect:/expo/"+idExpo+"/"+idGaleria+"/"+idArtista;
+        return "redirect:/expo/"+idExpo+"/"+idGaleria;
+    }
+
+    @GetMapping("/addSessio/{idGaleria}/{idSala}/{idExpo}")
+    public String addSessio(@PathVariable int idGaleria, @PathVariable int idExpo,@PathVariable int idSala,
+                            ModelMap model){
+        Exposicio expo = expoService.findById(idExpo);
+        model.addAttribute("expo",expo);
+        Sales sala = salesServei.findSalaById(idSala);
+        model.addAttribute("sala",sala);
+        Galeria galeria = galeriaServei.findById(idGaleria);
+        model.addAttribute("galeria",galeria);
+        return "sessio";
+    }
+
+    @PostMapping("/addDate/{idGaleria}/{idSala}/{idExpo}")
+    public String addDate(@PathVariable int idExpo,@PathVariable int idGaleria,@PathVariable int idSala,
+                          @RequestParam Date start, @RequestParam Date end){
+        expoService.addDate(idExpo,start,end);
+        return "redirect:/addSessio/"+idGaleria+"/"+idSala+"/"+idExpo;
+    }
+
+    @PostMapping("/addTime/{idGaleria}/{idSala}/{idExpo}")
+    public String addTime(@PathVariable int idExpo,@PathVariable int idGaleria,@PathVariable int idSala,
+                          @RequestParam String tstart, @RequestParam String tend, @RequestParam String nom) throws Exception{
+        Exposicio expo = expoService.findById(idExpo);
+        String [] str1 = tstart.split("T");
+        String [] str2 = tend.split("T");
+        Date data = Date.valueOf(str1[0]);
+        Time hora_ini = Time.valueOf(str1[1].substring(0,8));
+        Time hora_fi = Time.valueOf(str2[1].substring(0,8));
+        if(data.after(expo.getData_ini()) && data.before(expo.getData_fi()) || data.equals(expo.getData_ini())){
+            sessioService.create(data,hora_ini,hora_fi,nom,idExpo);
+        }
+        return "redirect:/addSessio/"+idGaleria+"/"+idSala+"/"+idExpo;
+    }
+
+    @GetMapping("/comprArt")
+    public String comprArt(HttpServletRequest request,ModelMap model){
+        Usuaris user = (Usuaris) request.getSession().getAttribute("session");
+        model.addAttribute("user",user);
+        return "comprArt";
+    }
+
+    @GetMapping("/delSessio/{idGaleria}/{idSala}/{idExpo}/{idSessio}")
+    public String delSessio(@PathVariable int idExpo,@PathVariable int idGaleria,@PathVariable int idSala,@PathVariable int idSessio){
+        sessioService.delete(idSessio);
+        return "redirect:/addSessio/"+idGaleria+"/"+idSala+"/"+idExpo;
     }
 }

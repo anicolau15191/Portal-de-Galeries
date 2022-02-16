@@ -59,7 +59,6 @@ public class SalesServei {
         Sales sala = getSala.get();
         sala.setNom(nom);
         sala.setAforament(aforament);
-
         sales.save(sala);
 
     }

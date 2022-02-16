@@ -6,5 +6,6 @@ import lombok.Data;
 public class SessioJson {
     private String start;
     private String title;
+    private String end;
     private String url;
 }

@@ -2,9 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sessions</title>
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+    <link th:href="@{/css/estils.css}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
 </head>
 <body>
+    <header th:include="/header :: header"></header>
+    <main class="container">
+        <section>
+            <div class="container mt-3 d-flex justify-content-start flex-wrap">
+                <div style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{'/perfil/'+${galeria.idGaleria}}" th:text="${galeria.nom}"></a></li>
+                        <li class="breadcrumb-item"><a th:href="@{'/sales/'+${galeria.idGaleria}}">Sales</a></li>
+                        <li class="breadcrumb-item"><a th:href="@{'/sala/'+${sala.idSales}+'/'+${galeria.idGaleria}}" th:text="${sala.nom}"></a></li>
+                        <li class="breadcrumb-item"><a th:href="@{'/expo/'+${expo.id}+'/'+${galeria.idGaleria}}" th:text="${expo.nom}"></a></li>
+                    </ol>
+                </div>
+            </div>
+            <h1>Horari de la exposició</h1>
+        </section>
+        <section class="container d-flex flex-nowrap mt-5">
+            <form method="post" class="col-6" th:action="@{'/addDate/'+${galeria.idGaleria}+'/'+${sala.idSales}+'/'+${expo.id}}" needs-validation>
+                <div class="d-flex flex-wrap">
+                    <div class="col-12 d-flex flex-wrap justify-content-around px-4">
+                        <input type="date" id="start" name="start" class="none">
+                        <input type="date" id="end" name="end" class="none">
+                        <div id="calendar" class="col-12"></div>
+                    </div>
+                    <div class="w-100 mt-3 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-iesmanacor w-25">Afegir</button>
+                    </div>
+                </div>
+            </form>
+            <form method="post" class="col-6" th:action="@{'/addTime/'+${galeria.idGaleria}+'/'+${sala.idSales}+'/'+${expo.id}}" needs-validation>
+                <div class="d-flex flex-wrap justify-content-around px-4">
+                    <div class="col-12 d-flex flex-wrap justify-content-around">
+                        <input type="text" id="tstart" name="tstart" class="none">
+                        <input type="text" id="tend" name="tend" class="none">
+                        <input type="text" id="nom" name="nom" class="none">
+                        <div th:id="${expo.data_ini!=null ? 'calendarS':''}" class="col-12"></div>
+                    </div>
+                    <div class="w-100 mt-3 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-iesmanacor w-25">Afegir</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendarS = document.getElementById('calendarS');
+        var idexpo = [[${expo.id}]];
+        var idsala = [[${sala.idSales}]];
+        var idgaleria = [[${galeria.idGaleria}]];
 
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            selectable: true,
+            firstDay:1,
+            headerToolbar: {
+                left: 'title',
+                center: '',
+                right: 'today,prev,next'
+            },
+            events:[
+                {
+                    title: [[${expo.nom}]],
+                    start: [[${expo.data_ini}]],
+                    end: [[${expo.data_fi}]],
+                }
+            ],
+            select: function(info) {
+                $("#start").val(info.startStr);
+                $("#end").val(info.endStr);
+            },
+            locale: 'ca',
+            eventColor: '#726A95'
+        });
+        var calendarS = new FullCalendar.Calendar(calendarS, {
+            selectable: true,
+            firstDay:1,
+            allDaySlot:false,
+            initialDate:[[${expo.data_ini}]],
+            timeZone:'local',
+            initialView:'timeGridWeek',
+            headerToolbar: {
+                left: 'title',
+                center: '',
+                right: 'today,prev,next'
+            },
+            events: "/sesions/"+idgaleria+"/"+idsala+"/"+idexpo,
+            select: function(info) {
+                $("#tstart").val(info.startStr);
+                $("#tend").val(info.endStr);
+                var nom = prompt("Introdueix el nom de la sessió:");
+                $("#nom").val(nom);
+            },
+            locale: 'ca',
+            eventColor: '#726A95'
+        });
+        calendarS.render();
+        calendar.render();
+        //$("button").removeClass("fc-timeGridWeek-button btn btn-primary").addClass("fc-timeGridWeek-button btn btn-iesmanacor");
+    });
+</script>
 </body>
 </html>

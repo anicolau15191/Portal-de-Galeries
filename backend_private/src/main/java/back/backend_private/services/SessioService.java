@@ -3,11 +3,13 @@ package back.backend_private.services;
 import back.backend_private.entity.Exposicio;
 import back.backend_private.entity.Entrada;
 import back.backend_private.entity.Sessio;
+import back.backend_private.repositories.ExpoCrud;
 import back.backend_private.repositories.SessioCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,10 +18,26 @@ import java.util.Optional;
 public class SessioService {
     @Autowired
     SessioCrud sessioCrud;
+    @Autowired
+    ExpoService expoService;
 
     public List<Sessio> read(){
         List<Sessio> all = (List<Sessio>) sessioCrud.findAll();
         return all;
+    }
+
+    public void create(Date data, Time hora_ini, Time hora_fi, String nom, int idExpo){
+        Sessio sessio = new Sessio();
+        sessio.setData(data);
+        sessio.setHora_ini(hora_ini);
+        sessio.setHora_fi(hora_fi);
+        sessio.setNom(nom);
+        sessio.setExpo(expoService.findById(idExpo));
+        sessioCrud.save(sessio);
+    }
+
+    public void delete(int id){
+        sessioCrud.delete(findById(id));
     }
 
     public List<Sessio> readByData(Exposicio expo,Date data){
@@ -56,4 +74,5 @@ public class SessioService {
         Sessio sessio = s.get();
         return sessio;
     }
+
 }

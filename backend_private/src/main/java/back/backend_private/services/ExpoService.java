@@ -6,6 +6,7 @@ import back.backend_private.repositories.ExpoCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,13 @@ public class ExpoService implements ExpoServiceI{
         expo.setEnabled(0);
         data.save(expo);
         return expo;
+    }
+
+    public void addDate(int idExpo, Date inici, Date fi){
+        Exposicio expo= findById(idExpo);
+        expo.setData_ini(inici);
+        expo.setData_fi(fi);
+        data.save(expo);
     }
 
     @Override
