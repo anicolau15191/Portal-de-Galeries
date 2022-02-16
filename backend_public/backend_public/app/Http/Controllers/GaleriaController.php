@@ -19,5 +19,12 @@ class GaleriaController extends Controller
         return $galeria->toJson();
     }
 
+    public function getCoordenades(Galeria $galeria){
+
+        $coordenades = Galeria::where("id_galeria","=",$galeria->id_galeria)->get();
+
+        return $coordenades->toJson();
+    }
+
 
 }

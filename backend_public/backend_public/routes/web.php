@@ -7,11 +7,18 @@ use App\Http\Controllers\GenereController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ExposicioController;
 use App\Http\Controllers\ObresController;
+use App\Http\Controllers\ArtistaController;
 use App\Models\Galeria;
 use App\Models\Poblacio;
 use App\Models\Genere;
 use App\Models\Sales;
 use App\Models\Exposicio;
+
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,6 +66,8 @@ Route::get('/galeries', [GaleriaController::class,'listAllActive']);
 
 Route::get('/galeries/{galeria}', [GaleriaController::class,'getGaleria']);
 
+Route::get('/galeries/{galeria}/coordenades', [GaleriaController::class,'getCoordenades']);
+
 Route::get('/galeries/{galeria}/generes', [GenereController::class,'getAllGeneresByGaleria']);
 
 Route::get('/galeries/{galeria}/subgeneres', [GenereController::class,'getAllGeneresFillsByGaleria']);
@@ -69,13 +78,19 @@ Route::get('/sales/{sala}', [SalesController::class,'getSalaId']);
 
 Route::get('/sales/{sala}/exposicions', [ExposicioController::class,'getExposicionsSala']);
 
+Route::get('/galeries/{galeria}/exposicions', [ExposicioController::class,'getAllExposicionsGaleria']);
+
 Route::get('exposicions/{exposicio}', [ExposicioController::class,'getExposicio']);
+
+Route::get('exposicions/{exposicio}/autors', [ArtistaController::class,'getAutorsExposicio']);
+
+Route::get('exposicions/{exposicio}/primeraObra', [ExposicioController::class,'getFirtsObraExpo']);
 
 Route::get('exposicions/{exposicio}/obres',[ExposicioController::class,'getObresExposicio']);
 
-Route::get('exposicions/{exposicio}/obres/autors',[ExposicioController::class,'getAutorsExposicio']);
-
 Route::get('/poblacio', [PoblacioController::class,'listAll']);
+
+Route::get('/galeria/{galeria}/poblacio', [PoblacioController::class,'poblacioGaleria']);
 
 Route::get('/poblacio/{poblacio}/galeries', [PoblacioController::class,'listAllGaleriesInPOblacio']);
 

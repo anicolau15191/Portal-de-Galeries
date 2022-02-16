@@ -38,9 +38,7 @@ class GenereController extends Controller
             ->select('genere.nom', 'genere.id_genere', 'genere.id_genere2')
             ->get();
 
-
         return $fills;
-
     }
 
     public function listFillsByGenere(Genere $genere){
