@@ -95,7 +95,7 @@ public class EditarGaleriaController {
             os.write(readBuf, 0, bytesRead);
         }
 
-        String uploadDir = "C://imggaleria/"+id;
+        String uploadDir = "/imggaleria/"+id+"/";
         String fileName = id + "-" + num;
 
         mediaServei.saveFile(uploadDir,fileName,img);

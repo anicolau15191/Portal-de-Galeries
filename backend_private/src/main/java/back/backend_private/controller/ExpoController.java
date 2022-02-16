@@ -125,7 +125,7 @@ public class ExpoController {
             os.write(readBuf, 0, bytesRead);
         }
 
-        String uploadDir = "C://imggaleria/imgObres/";
+        String uploadDir = "/imggaleria/imgObres/";
         String fileName = Integer.toString(id);
 
         mediaServei.saveFile(uploadDir,fileName,img);
