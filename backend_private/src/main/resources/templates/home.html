@@ -37,8 +37,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="/add" class="needs-validation" novalidate >
-                        <span>Nom</span>
+                    <form method="post" action="/add" class="needs-validation" id="novaGaleria" novalidate >
+                        <span>Nom <span class="text-danger">*</span></span>
                         <div class="input-group mb-3">
                                 <span for="nom" id="nom" class="input-group-text d-flex justify-content-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -47,7 +47,7 @@
                                 </span>
                             <input type="text" class="form-control" name="nom" aria-describedby="nom" required>
                         </div>
-                        <span>Població</span>
+                        <span>Població <span class="text-danger">*</span></span>
                         <div class="input-group mb-3">
                                 <span for="nom" id="poblacio" class="input-group-text d-flex justify-content-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -60,7 +60,7 @@
                                 <option th:each="poblacio:${poblacions}" th:value="${poblacio.idPoblacio}" th:text="${poblacio.nom}"></option>
                             </select>
                         </div>
-                        <span>Correu Electrònic</span>
+                        <span>Correu Electrònic <span class="text-danger">*</span></span>
                         <div class="input-group mb-3">
                                 <span for="email" id="correu" class="input-group-text d-flex justify-content-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -71,6 +71,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-iesmanacor">Crear</button>
+                            <a class="btn btn-iesmanacor me-2" id="reset">
+                                <span class="ms-1">Borrar</span>
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -90,6 +93,10 @@
 
     document.querySelector('#addGaleria').addEventListener('click', function () {
         modal.show();
+    })
+
+    document.querySelector('#reset').addEventListener('click',function (){
+        document.getElementById('novaGaleria').reset();
     })
 </script>
 </body>

@@ -136,28 +136,5 @@
     </main>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/js/custom.js}"></script>
-<script th:inline="javascript">
-    let latitud = [[${galeria.latitud}]];
-    let longitud = [[${galeria.longitut}]];
-    const coordenadesGaleria = { lat: Number.parseFloat(latitud), lng: Number.parseFloat(longitud)};
-    function myMap() {
-        let mapOptions = {
-            center: new google.maps.LatLng(39.638224334941164, 2.9989553343109816),
-            zoom: 9,
-        };
-        // init map a mallorca //
-
-        var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-
-        // marcadior lloc galeria//
-
-        new google.maps.Marker({
-            position: coordenadesGaleria,
-            map: map,
-        });
-    }
-    myMap();
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=myMap"></script>
 </body>
 </html>

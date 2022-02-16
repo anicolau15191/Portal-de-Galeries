@@ -22,18 +22,18 @@
                                     <div class="col-xl-6">
                                         <div class="card-body p-md-5 text-black">
                                             <h3 class="mb-5">Registre</h3>
-                                            <form method="post" action="/addPropietari" class="needs-validation" novalidate >
+                                            <form method="post" action="/addPropietari" id="registre" class="needs-validation" novalidate >
                                                 <div class="row">
                                                     <div class="col-md-6 mb-3">
                                                         <div class="form-outline">
                                                             <input type="text" id="form3Example1m" class="form-control form-control-lg" name="nom" required/>
-                                                            <label class="form-label" for="form3Example1m">Nom</label>
+                                                            <label class="form-label" for="form3Example1m">Nom <span class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 mb-3">
                                                         <div class="form-outline">
                                                             <input type="text" id="form3Example1n" class="form-control form-control-lg"name="cognom" required/>
-                                                            <label class="form-label" for="form3Example1n">Cognom</label>
+                                                            <label class="form-label" for="form3Example1n">Cognom <span class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -41,7 +41,7 @@
                                                     <div class="col-md-12 mb-3">
                                                         <div class="form-outline">
                                                             <input type="email" id="form3Example1n1" class="form-control form-control-lg" name="email" required/>
-                                                            <label class="form-label" for="form3Example1n1">Email</label>
+                                                            <label class="form-label" for="form3Example1n1">Email <span class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -51,14 +51,14 @@
                                                             <option value="">Selecciona</option>
                                                             <option th:each="poblacio:${poblacions}" th:value="${poblacio.idPoblacio}" th:text="${poblacio.nom}"></option>
                                                         </select>
-                                                        <label class="form-label" for="poblacio">Poblacio</label>
+                                                        <label class="form-label" for="poblacio">Poblacio <span class="text-danger">*</span></label>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 mb-3">
                                                         <div class="form-outline">
                                                             <input type="password" class="form-control form-control-lg" name="password" required/>
-                                                            <label class="form-label" for="form3Example1n1">Contrasenya</label>
+                                                            <label class="form-label" for="form3Example1n1">Contrasenya <span class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -70,6 +70,9 @@
                                                         </svg>
                                                         <span class="ms-1">Registre</span>
                                                     </button>
+                                                    <a class="btn btn-iesmanacor me-2" id="reset">
+                                                        <span class="ms-1">Borrar</span>
+                                                    </a>
                                                 </div>
                                             </form>
                                         </div>
@@ -83,5 +86,12 @@
     </main>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/js/custom.js}"></script>
+    <script th:inline="javascript">
+
+        document.querySelector('#reset').addEventListener('click',function (){
+            document.getElementById('registre').reset();
+        })
+
+    </script>
 </body>
 </html>
