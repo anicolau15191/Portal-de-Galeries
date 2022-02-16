@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+    <link th:href="@{/css/estils.css}" rel="stylesheet">
+</head>
+<body>
+<header th:include="/header :: header" ”></header>
+<main>
+    <div class="container d-flex justify-content-start mt-3">
+        <button type="button" class="btn btn-iesmanacor ms-2" id="addGaleria">Nova Galeria</button>
+        <a class="btn btn-iesmanacor" href="/comprArt">Compres</a>
+    </div>
+    <div class="container d-flex justify-content-center mt-3">
+        <div class="container-fluid">
+            <h3 class="mb-3">Llistat galeries</h3>
+            <div class="row">
+                <div class="col-4 mb-3" th:each="galeria:${llista}">
+                    <a th:href="@{'/perfil/'+${galeria.idGaleria}}" class="text-decoration-none text-black">
+                        <div class="card" >
+                            <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+1}" class="card-img-top" onerror="this.onerror=null;this.src='/img/default.png';">
+                            <div class="card-body">
+                                <h5 class="card-title text-center" th:text="${galeria.nom}"></h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" id="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nova Galeria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/add" class="needs-validation" novalidate >
+                        <span>Nom</span>
+                        <div class="input-group mb-3">
+                                <span for="nom" id="nom" class="input-group-text d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                    </svg>
+                                </span>
+                            <input type="text" class="form-control" name="nom" aria-describedby="nom" required>
+                        </div>
+                        <span>Població</span>
+                        <div class="input-group mb-3">
+                                <span for="nom" id="poblacio" class="input-group-text d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>
+                                </span>
+                            <select aria-describedby="poblacio" class="form-select" name="pob" required>
+                                <option value="">Selecciona</option>
+                                <option th:each="poblacio:${poblacions}" th:value="${poblacio.idPoblacio}" th:text="${poblacio.nom}"></option>
+                            </select>
+                        </div>
+                        <span>Correu Electrònic</span>
+                        <div class="input-group mb-3">
+                                <span for="email" id="correu" class="input-group-text d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                                    </svg>
+                                </span>
+                            <input type="email" aria-describedby="correu" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-iesmanacor">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+<script>
+    let myModal = document.querySelector('#modal')
+    let modal = new bootstrap.Modal(myModal, {
+        backdrop: 'static'
+    })
+
+    document.querySelector('#addGaleria').addEventListener('click', function () {
+        modal.show();
+    })
+</script>
+</body>
+</html>
