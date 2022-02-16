@@ -18,17 +18,17 @@ class Exposicio extends Component {
 
     componentDidMount() {
         let idExpo = this.props.match.params.id;
-        axios.get('http://127.0.0.1:8000/exposicions/' + idExpo + '/obres')
+        axios.get('http://api.artgalleryxisca.me/exposicions/' + idExpo + '/obres')
             .then(res => {
                 const obres = res.data;
                 this.setState({ obres });
-                axios.get('http://127.0.0.1:8000/exposicions/' + idExpo)
+                axios.get('http://api.artgalleryxisca.me/exposicions/' + idExpo)
                     .then(res => {
                         const exposicio = res.data;
                         this.setState({ exposicio });
 
                     })
-                axios.get('http://127.0.0.1:8000/exposicions/' + idExpo + '/autors')
+                axios.get('http://api.artgalleryxisca.me/exposicions/' + idExpo + '/autors')
                     .then(res => {
                         const autors = res.data;
                         this.setState({ autors });

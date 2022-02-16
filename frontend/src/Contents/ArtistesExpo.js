@@ -11,7 +11,7 @@ class ArtistesExpo extends Component {
         }
     }
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/exposicions/' + this.props.id + '/autors')
+        axios.get('http://api.artgalleryxisca.me/exposicions/' + this.props.id + '/autors')
             .then(res => {
                 const artista = res.data;
                 this.setState({ artista });

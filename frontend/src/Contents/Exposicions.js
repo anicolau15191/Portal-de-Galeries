@@ -16,7 +16,7 @@ class Exposicions extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/galeries/3/exposicions')
+    axios.get('http://api.artgalleryxisca.me/galeries/3/exposicions')
       .then(res => {
         const exposicions = res.data;
         this.setState({ exposicions });

@@ -20,24 +20,24 @@ class Galeria extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/galeries/3')
+    axios.get('http://api.artgalleryxisca.me/galeries/3')
       .then(res => {
         const galeria = res.data;
         this.setState({ galeria });
-        axios.get('http://127.0.0.1:8000/galeries/' + this.state.galeria.id_galeria + '/generes')
+        axios.get('http://api.artgalleryxisca.me/galeries/' + this.state.galeria.id_galeria + '/generes')
           .then(res => {
             const generes = res.data;
             this.setState({ generes });
           })
       })
 
-    axios.get('http://127.0.0.1:8000/galeria/3/poblacio')
+    axios.get('http://api.artgalleryxisca.me/galeria/3/poblacio')
       .then(res => {
         const poblacio = res.data;
         this.setState({ poblacio });
       })
 
-    axios.get('http://127.0.0.1:8000/galeries/3/coordenades')
+    axios.get('http://api.artgalleryxisca.me/galeries/3/coordenades')
       .then(res => {
         const galeriaCoordenades = res.data;
         this.setState({ galeriaCoordenades });
@@ -53,16 +53,16 @@ class Galeria extends Component {
             <Col id='fotos'>
               <Carousel>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src="	http://admin.artgalleryxisca.me:8080/imggaleria/52/52-1" alt="First slide" />
+                  <img className="carrusel d-block w-100" src="	http://admin.artgalleryxisca.me:8080/imggaleria/3/3-1" alt="First slide" />
                 </Carousel.Item>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src="http://localhost/52/52-2" alt="Second slide" />
+                  <img className="carrusel d-block w-100" src="http://admin.artgalleryxisca.me:8080/imggaleria/3/3-2" alt="Second slide" />
                 </Carousel.Item>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src="http://localhost/52/52-3" alt="Third slide" />
+                  <img className="carrusel d-block w-100" src="http://admin.artgalleryxisca.me:8080/imggaleria/3/3-3" alt="Third slide" />
                 </Carousel.Item>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src="http://localhost/52/52-4" alt="Third slide" />
+                  <img className="carrusel d-block w-100" src="http://admin.artgalleryxisca.me:8080/imggaleria/3/3-4" alt="Third slide" />
                 </Carousel.Item>
               </Carousel>
             </Col>
