@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Obres;
 use Illuminate\Support\Facades\DB;
 
 class ObresController extends Controller
 {
-    public function getAutorsObra($idArtista){
-        $artista = DB::table('artista')
-            ->join('feta', 'feta.id_obra', '=', 'obres.id_obres')
-            ->where("feta.id_artista","=",$idArtista)
-            ->select('artista.nom')
-            ->get();
+    public function getAutorsObra($idObra){
+        return  DB::select('select distinct artista.nom from artista,obres,feta where feta.id_obra ='.$idObra.' and feta.id_artista = artista.id_artista');
 
+    }
 
-        return $artista->toJson();
+    public function getObra(Obres $obra){
+        return $obra->toJson();
     }
 }

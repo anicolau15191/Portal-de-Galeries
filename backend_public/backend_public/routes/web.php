@@ -29,17 +29,9 @@ header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 | contains the "web" middleware group. Now create something great!
 |
 
-Route::get('/galeries'); //listat galeries --> OK
-Route::get('/galeries/{galeria}'); //info galeria -->OK
-Route::get('/galeries/{galeria}/especialitzat'); //llistat de galeria per genere -->OK
 Route::get('/galeries/{galeria}/calendari'); // llistat de exposicions de totes ses galeries
-Route::get('/galeries/{galeria}/exposicions'); // //llistat exposiciond de sa galeria --OKsicio
-Route::get('/galeries/{galeria}/exposicions/{exposicio}/obra'); // llistat de ses obres de sa exposicio
-Route::get('/galeries/{galeria}/exposicions/{exposicio}/artistes'); // llistat artistes exposicio
 Route::get('/galeries/{galeria}/exposicions/{exposicio}/sessions'); // sesions de exposicio
 Route::post('/galeries/{galeria}/exposicions/{exposicio}/sessions/{sessio}/entrada'); // reserva a sa sesio
-Route::get('/galeries/{galeria}/sales'); // llistat de sales -->OK
-Route::get('/galeries/{galeria}/sales/{sala}'); // informacio sala galeria
 
 Route::get('/artistes/{artista}/obres'); // llistat totes ses obres per artista
 Route::get('/generes/{genere}/obres'); // llistat obres per genere
@@ -52,13 +44,6 @@ Route::post('/logout'); // sortir de sa sesio
 Route::get('/perfil/{user}'); // llistar informacio de l'usurai
 Route::post('/perfil/{user}/entrades'); // llistat totes ses entrades usuari
 Route::post('/perfil/{user}/editar'); // editar informacio l'usuari
-
-Route::get('/poblacio/llistar'); // llistar totes ses poblacions -->OK
-Route::get('/poblacio/{poblacio}'); // llistar totes ses galeries de sa poblacio -->OK
-
-Route::get('/propietari'); // llistat propietaris
-Route::get('/generes'); // llistat de generes -->OK
-Route::get('/generes/{genere}/subgeneres');// llistat de subgeneres del genere -->OK
 
 */
 
@@ -101,6 +86,9 @@ Route::get('/generes/subgeneres', [GenereController::class,'getGeneresFills']);
 Route::get('/generes/{genere}/subgeneres', [GenereController::class,'listFillsByGenere']);
 
 Route::get('/obres/{obra}', [ObresController::class,'getAutorsObra']);
+
+Route::get('/obres/{obra}/info', [ObresController::class,'getObra']);
+
 
 
 
