@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TabsGaleria from './Component/TabsGaleria';
 import Nav from "./Component/Nav"
+import Compra from './Component/Compra'
 import Exposicio from './Component/Exposicio'
 import './App.css'
 import { BrowserRouter as Router, Route , useParams} from "react-router-dom";
@@ -19,6 +20,7 @@ class App extends Component {
           <Route path="/" component={Nav} />
           <Route path="/Galeria" component={TabsGaleria} />
           <Route path="/Exposicio/:nom/:id" component={Exposicio} />
+          <Route path="/Compra/:nom/:id" component={Compra} />
         </Router>
       
     );

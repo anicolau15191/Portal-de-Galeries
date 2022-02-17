@@ -65,19 +65,22 @@ class Exposicio extends Component {
                     <Row>
                         {this.state.obres.map((obra) => (
                             <Col className="col-md-3 mb-2 mt-3" key={obra.id_obres}>
-                                <img className="img-fluid rounded-start col-12 " src={'http://localhost/imgObres/' + obra.id_obres} style={{ height: 300, objectFit: 'contain' }}></img>
-                                <p className='col-12 d-flex justify-content-center'>{obra.nom}</p>
-                                {(() => {
-                                    if (obra.venut == 1 || obra.preu == 0) {
-                                        return (
-                                            <p className="fw-light col-12 d-flex justify-content-center" >No disponible</p>
-                                        )
-                                    } else {
-                                        return (
-                                            <p className="fw-light col-12 d-flex justify-content-center">{obra.preu}€</p>
-                                        )
-                                    }
-                                })()}
+                                <Card className="card rounded border-0 h-100" id='card' >
+                                    <img className="img-fluid rounded-start col-12 " src={'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/' + obra.id_obres} style={{ height: 300, objectFit: 'contain' }}></img>
+                                    <p className='col-12 d-flex justify-content-center'>{obra.nom}</p>
+                                    {(() => {
+                                        if (obra.venut === 1 || obra.preu === 0) {
+                                            return (
+                                                <p className="fw-light col-12 d-flex justify-content-center" >No disponible</p>
+                                            )
+                                        } else {
+                                            return (
+                                                <p className="fw-light col-12 d-flex justify-content-center">{obra.preu}€</p>
+                                            )
+                                        }
+                                    })()}
+                                    <Link to={"/Compra/" + obra.nom + '/' + obra.id_obres} className="text-decoration-none stretched-link"  />
+                                </Card>
                             </Col>
                         ))}
                     </Row>

@@ -39,8 +39,7 @@ class Exposicions extends Component {
                       <p className="fw-light">{expo.data_ini} - {expo.data_fi}</p>
                     </Card.Text>
                   </Card.Body>
-                  <Link to={"/Exposicio/"+expo.nom+'/'+expo.id_exposicio}  className="text-decoration-none stretched-link"  >    
-									</Link>
+                  <Link to={"/Exposicio/"+expo.nom+'/'+expo.id_exposicio}  className="text-decoration-none stretched-link"></Link>
                 </Card>
               </Col>
             ))}
