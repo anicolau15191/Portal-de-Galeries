@@ -83,11 +83,15 @@ Route::get('/generes', [GenereController::class,'getGeneresPare']);
 
 Route::get('/generes/subgeneres', [GenereController::class,'getGeneresFills']);
 
-Route::get('/generes/{genere}/subgeneres', [GenereController::class,'listFillsByGenere']);
+Route::get('/exposicio/{exposicio}/genere', [GenereController::class,'genereExposicio']);
+
+Route::get('/generes/subgeneres', [GenereController::class,'getGeneresFills']);
 
 Route::get('/obres/{obra}', [ObresController::class,'getAutorsObra']);
 
 Route::get('/obres/{obra}/info', [ObresController::class,'getObra']);
+
+Route::get('/obres/{obra}/genere', [ObresController::class,'getGenereObra']);
 
 
 

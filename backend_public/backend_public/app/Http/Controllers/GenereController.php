@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Exposicio;
 use App\Models\Galeria;
 use App\Models\Genere;
 use Illuminate\Support\Facades\DB;
@@ -47,4 +48,10 @@ class GenereController extends Controller
         return $listGenereAmbFills->toJson();
     }
 
+    public function genereExposicio ($expo){
+
+        return DB::select('select distinct genere.nom from genere,obres,pertany,exposicio where pertany.id_genere = genere.id_genere and genere.id_genere2 is not null
+                            and obres.id_expo ='.$expo.' and obres.id_obres = pertany.id_obres');
+
+    }
 }

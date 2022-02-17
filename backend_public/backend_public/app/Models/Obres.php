@@ -19,4 +19,9 @@ class Obres extends Model
 
         return $this->belongsTo(Exposicio::class);
     }
+
+    public function genere(){
+
+        return $this->belongsToMany(Genere::class,'pertany','id_obres','id_genere');
+    }
 }
