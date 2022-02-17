@@ -1,6 +1,7 @@
 package back.backend_private.controller;
 
 import back.backend_private.entity.*;
+import back.backend_private.repositories.FetaCrud;
 import back.backend_private.repositories.ObresJsonCrud;
 import back.backend_private.entity.ObresJson;
 import back.backend_private.services.*;
@@ -28,6 +29,8 @@ public class RestController {
     private GenereServei genereServei;
     @Autowired
     private ObresJsonCrud obresJsonCrud;
+    @Autowired
+    private FetaCrud fetaCrud;
 
     @GetMapping("/sesions/{id}/{idGaleria}")
     public List<SessioJson> exposicio(@PathVariable int id,@PathVariable int idGaleria){
@@ -86,9 +89,18 @@ public class RestController {
     }
 
     @GetMapping("/artistes")
-    public List<Artista> artistes(){
+    public List<ArtistaJson> artistes(){
         List<Artista> artistes = artistaServei.read();
-        return artistes;
+        List<ArtistaJson> list = new ArrayList<>();
+        for(int i=0;i< artistes.size();i++){
+            ArtistaJson art = new ArtistaJson();
+            art.setId_artista(artistes.get(i).getId());
+            art.setNom(artistes.get(i).getNom());
+            art.setCount(fetaCrud.countById_IdArtista(artistes.get(i).getId()));
+            list.add(art);
+        }
+
+        return list;
     }
 
     @GetMapping("/generes")

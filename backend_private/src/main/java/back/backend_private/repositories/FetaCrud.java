@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface FetaCrud extends CrudRepository<Feta, FetaId> {
     List<Feta> findAllById_idArtista(int idArtista);
+    int countById_IdArtista(int idArtista);
 }

@@ -40,3 +40,7 @@ header{
   background-color: #726A95 !important;
   border:0px !important;
 }
+
+.select-item{
+  margin-left:20px;
+}
