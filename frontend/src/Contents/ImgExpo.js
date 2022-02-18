@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+const API = 'http://api.artgalleryxisca.me';
+const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
 
 class ImgExpo extends Component{
     constructor(props) {
@@ -10,7 +12,7 @@ class ImgExpo extends Component{
         }
       }
       componentDidMount() {
-        axios.get('http://api.artgalleryxisca.me/exposicions/'+this.props.id+'/primeraObra')
+        axios.get(API+'/exposicions/'+this.props.id+'/primeraObra')
           .then(res => {
             const obra = res.data;
             this.setState({ obra });
@@ -19,7 +21,8 @@ class ImgExpo extends Component{
 
       render(){
         return(
-            <img className="img-fluid rounded-start " src={'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/'+this.state.obra.id_obres} style={{ height: 300 , objectFit: 'contain'}}></img>
+            <img className="img-fluid rounded-start " src={FOTO+this.state.obra.id_obres} style={{ height: 300 , objectFit: 'cover'}} alt={this.state.obra.nom}></img>
+
         );
       }
 }

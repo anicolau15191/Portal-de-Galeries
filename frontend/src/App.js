@@ -18,8 +18,8 @@ class App extends Component {
       
         <Router>
           <Route path="/" component={Nav} />
-          <Route path="/Galeria" component={TabsGaleria} />
-          <Route path="/Exposicio/:nom/:id" component={Exposicio} />
+          <Route path="/Galeria/:idGaleria" component={TabsGaleria} />
+          <Route path="/Exposicio/:nom/:id/:idGaleria" component={Exposicio} />
           <Route path="/Compra/:nom/:id" component={Compra} />
         </Router>
       

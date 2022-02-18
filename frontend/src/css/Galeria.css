@@ -3,8 +3,8 @@
     width: 620px;
 }
 #info{
-    background-color: #80878d;
-    color: #e5e5e5;
+    background-color: rgba(0, 0, 0, 0.753);
+    color: white;
 }
 p{
     line-height: 30px;

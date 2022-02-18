@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Col } from 'react-bootstrap';
+const API = 'http://api.artgalleryxisca.me';
 
 class ArtistesExpo extends Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class ArtistesExpo extends Component {
         }
     }
     componentDidMount() {
-        axios.get('http://api.artgalleryxisca.me/exposicions/' + this.props.id + '/autors')
+        axios.get(API + '/exposicions/' + this.props.id + '/autors')
             .then(res => {
                 const artista = res.data;
                 this.setState({ artista });
@@ -19,15 +19,24 @@ class ArtistesExpo extends Component {
     }
 
     render() {
-        return (
-            <div>
-                {this.state.artista.map((artista) => (
-                    <p className="fw-light" key={artista.nom}>{artista.nom}</p>
-                ))}
-            </div>
+        if (this.state.artista.length > 1) {
+            return (
+                <div className='d-flex flex-wrap'>
+                    {this.state.artista.map((artista) => (
+                        <p className="fw-light col-6" key={artista.nom}>{artista.nom}</p>
+                    ))}
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    {this.state.artista.map((artista) => (
+                        <p className="fw-light" key={artista.nom}>{artista.nom}</p>
+                    ))}
+                </div>
+            );
+        }
 
-
-        );
     }
 }
 export default ArtistesExpo;
