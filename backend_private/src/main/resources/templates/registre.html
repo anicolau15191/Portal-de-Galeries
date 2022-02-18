@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registre</title>
     <link th:href="@{/css/custom.css}" rel="stylesheet">
     <link th:href="@{/css/estils.css}" rel="stylesheet">
@@ -26,22 +27,22 @@
                                                 <div class="row">
                                                     <div class="col-md-6 mb-3">
                                                         <div class="form-outline">
-                                                            <input type="text" id="form3Example1m" class="form-control form-control-lg" name="nom" required/>
-                                                            <label class="form-label" for="form3Example1m">Nom <span class="text-danger">*</span></label>
+                                                            <input type="text" id="form3Example1m" class="form-control form-control-lg" id="nom" name="nom" required/>
+                                                            <label class="form-label" for="nom">Nom <span class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 mb-3">
                                                         <div class="form-outline">
-                                                            <input type="text" id="form3Example1n" class="form-control form-control-lg"name="cognom" required/>
-                                                            <label class="form-label" for="form3Example1n">Cognom <span class="text-danger">*</span></label>
+                                                            <input type="text" id="form3Example1n" id="cognom" class="form-control form-control-lg"name="cognom" required/>
+                                                            <label class="form-label" for="cognom">Cognom <span class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 mb-3">
                                                         <div class="form-outline">
-                                                            <input type="email" id="form3Example1n1" class="form-control form-control-lg" name="email" required/>
-                                                            <label class="form-label" for="form3Example1n1">Email <span class="text-danger">*</span></label>
+                                                            <input type="email" id="email" class="form-control form-control-lg" name="email" required/>
+                                                            <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -57,8 +58,8 @@
                                                 <div class="row">
                                                     <div class="col-md-12 mb-3">
                                                         <div class="form-outline">
-                                                            <input type="password" class="form-control form-control-lg" name="password" required/>
-                                                            <label class="form-label" for="form3Example1n1">Contrasenya <span class="text-danger">*</span></label>
+                                                            <input type="password" id="password" class="form-control form-control-lg" name="password" required/>
+                                                            <label class="form-label" for="password">Contrasenya <span class="text-danger">*</span></label>
                                                         </div>
                                                     </div>
                                                 </div>
