@@ -31,6 +31,12 @@ class GenereController extends Controller
         return $g->toJson();
     }
 
+    public function getAllGeneresPare($id){
+        $galeria = Galeria::find($id);
+        $g = $galeria->genere->whereNull('id_genere2');
+        return $g->toJson();
+    }
+
     public function getAllGeneresFillsByGaleria($id){
 
         $fills = DB::table('genere')
