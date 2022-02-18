@@ -1,3 +1,10 @@
 img{
     height:150px;
 }
+
+html,body{
+    background-color: whitesmoke;
+}
+header{
+    background-color: rgb(227, 226, 226);
+}

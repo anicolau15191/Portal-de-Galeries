@@ -21,10 +21,10 @@
                     <a th:href="@{'/perfil/'+${galeria.idGaleria}}" class="text-decoration-none text-black">
                         <div class="card">
                             <div class="card-header">
-                                <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+1}" style="object-fit:cover" class="card-img-top" onerror="this.onerror=null;this.src='/img/default.png';">
+                                <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+1}" th:alt="${galeria.idGaleria}" style="object-fit:cover" class="card-img-top" onerror="this.onerror=null;this.src='/img/default.png';">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center" th:text="${galeria.nom}"></h5>
+                                <p class="card-title text-center fs-5" th:text="${galeria.nom}"></p>
                             </div>
                         </div>
                     </a>
