@@ -8,6 +8,8 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ExposicioController;
 use App\Http\Controllers\ObresController;
 use App\Http\Controllers\ArtistaController;
+use App\Http\Controllers\Pago;
+
 
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
@@ -89,6 +91,8 @@ Route::get('/obres/{obra}', [ObresController::class,'getAutorsObra']);
 Route::get('/obres/{obra}/info', [ObresController::class,'getObra']);
 
 Route::get('/obres/{obra}/genere', [ObresController::class,'getGenereObra']);
+
+Route::get('/pago', [Pago::class,'pago']);
 
 
 
