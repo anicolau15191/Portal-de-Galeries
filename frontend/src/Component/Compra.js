@@ -11,7 +11,10 @@ class Compra extends Component {
         this.state = {
             obra: [],
             autor: [],
-            genere: []
+            genere: [],
+            preu: [],
+            compra : []
+
         }
     }
     componentDidMount() {
@@ -20,6 +23,7 @@ class Compra extends Component {
             .then(res => {
                 const obra = res.data;
                 this.setState({ obra });
+                this.setState({ preu: this.state.obra.preu });
             })
         axios.get(API + '/obres/' + idObra)
             .then(res => {
@@ -33,6 +37,18 @@ class Compra extends Component {
             })
 
     }
+
+    compra(a) {
+        const p = a;
+        axios.get('http://127.0.0.1:8000/pago?amount='+p)
+        .then(res => {
+            const compra = res.data;
+            this.setState({ compra });
+        })
+        console.log(p)
+    }
+
+
 
 
     render() {
@@ -82,7 +98,13 @@ class Compra extends Component {
                                     } else {
                                         return (
                                             <Col className="d-grid gap-2 mt-3">
-                                                <Button className='p-2' variant="dark">COMPRA</Button>
+                                                <form class="form-amount" action="http://127.0.0.1:8000/pago" method="get">
+                                                    <div class="form-group">
+                                                   
+                                                    </div>
+                                                    <input class="btn btn-lg btn-primary btn-block" name="submitPayment" type="submit" value="Pagar"/>
+                                                </form>
+                                                <Button className='p-2' variant="dark" onClick={() => this.compra(this.state.preu)}>COMPRA</Button>
                                                 <Accordion defaultActiveKey="0" flush className='mt-5'>
                                                     <Accordion.Item eventKey="0">
                                                         <Accordion.Header><p>Informació sobre l'enviament</p></Accordion.Header>
@@ -98,7 +120,7 @@ class Compra extends Component {
                                                         <Accordion.Header><p>Garantia d'autenticitat</p></Accordion.Header>
                                                         <Accordion.Body>
                                                             <p className='fw-light'> La Galeria garanteix l'autenticitat de totes les obres d'art.</p>
-                                                           
+
                                                         </Accordion.Body>
                                                     </Accordion.Item>
                                                 </Accordion>
