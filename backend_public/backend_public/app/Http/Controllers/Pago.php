@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
+use App\Models\Obres;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\RedsysAPI;
 
 class Pago extends Controller
@@ -12,12 +13,11 @@ public function pago(){
 
        $miObj = new RedsysAPI;
 
-        //$amount = 1000;
-        //$amount = $_POST['amount'];
+       $id = $_GET['idObra'];
         $amount = $_GET['amount'];
-        $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
+        $url_tpv = 'https://sis-t.redsys.es:25443/sis/realizarPago';
         $version = "HMAC_SHA256_V1";
-        $clave = "sq7HjrUOBfKmC576ILgskD5srU870gJ7"; //poner la clave SHA-256 facilitada por el banco
+        $clave = "sq7HjrUOBfKmC576ILgskD5srU870gJ7";
         $name = 'Art Gallery';
         $code = "999008881";
         $terminal = '1';
@@ -44,15 +44,8 @@ public function pago(){
         $params = $miObj->createMerchantParameters();
         $signature = $miObj->createMerchantSignature($clave);
 
-    $array = array(
-        "url" => $url_tpv,
-        "version" => $version,
-        "params" => $params,
-        "signature" => $signature
-    );
-
-    return $array
         ?>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <form id="realizarPago" action="<?php echo $url_tpv; ?>" method="post">
             <input type='hidden' name='Ds_SignatureVersion' value='<?php echo $version; ?>'>
             <input type='hidden' name='Ds_MerchantParameters' value='<?php echo $params; ?>'>
@@ -65,5 +58,15 @@ public function pago(){
         </script>
         <?php
 
+    $this->update($id);
+
 }
+
+function update ($idObra){
+    DB::table('obres')
+    ->where('id_obres',$idObra)
+        ->update(['venut' => 1]);
+}
+
+
 }

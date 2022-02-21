@@ -94,6 +94,8 @@ Route::get('/obres/{obra}/genere', [ObresController::class,'getGenereObra']);
 
 Route::get('/pago', [Pago::class,'pago']);
 
+Route::get('/ventaObra/{obra}',[Pago::class,'update']);
+
 
 
 
