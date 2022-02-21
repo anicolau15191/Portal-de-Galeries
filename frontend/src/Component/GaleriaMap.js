@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { TileLayer, MapContainer, Marker ,CircleMarker} from 'react-leaflet'
-//import {MarkerIcon} from './react-leaflet-icon.js';
 import '../css/mapa.css'
 import 'leaflet/dist/leaflet.css';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Accordion, Button } from 'react-bootstrap';
+import { Container, Row, Col, Accordion, Button, Alert } from 'react-bootstrap';
 const API = 'http://api.artgalleryxisca.me';
 const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
 
@@ -12,8 +12,7 @@ class Compra extends Component {
             obra: [],
             autor: [],
             genere: [],
-            preu: [],
-            compra : []
+            preu: []
 
         }
     }
@@ -39,17 +38,10 @@ class Compra extends Component {
     }
 
     compra(a) {
-        const p = a;
-        axios.get('http://127.0.0.1:8000/pago?amount='+p)
-        .then(res => {
-            const compra = res.data;
-            this.setState({ compra });
-        })
-        console.log(p)
+        const preu = a;
+        axios.get('http://127.0.0.1:8000/pago?amount=1300')
+
     }
-
-
-
 
     render() {
         return (
@@ -98,13 +90,9 @@ class Compra extends Component {
                                     } else {
                                         return (
                                             <Col className="d-grid gap-2 mt-3">
-                                                <form class="form-amount" action="http://127.0.0.1:8000/pago" method="get">
-                                                    <div class="form-group">
-                                                   
-                                                    </div>
-                                                    <input class="btn btn-lg btn-primary btn-block" name="submitPayment" type="submit" value="Pagar"/>
-                                                </form>
-                                                <Button className='p-2' variant="dark" onClick={() => this.compra(this.state.preu)}>COMPRA</Button>
+                                                <a href={"http://127.0.0.1:8000/pago?amount=" + this.state.obra.preu+'&idObra='+this.state.obra.id_obres} className="text-decoration-none stretched-link mt-2" id='link' >
+                                                    <Button className='p-2' variant="dark">COMPRA</Button>
+                                                </a>
                                                 <Accordion defaultActiveKey="0" flush className='mt-5'>
                                                     <Accordion.Item eventKey="0">
                                                         <Accordion.Header><p>Informació sobre l'enviament</p></Accordion.Header>
