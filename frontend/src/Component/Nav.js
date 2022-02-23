@@ -13,9 +13,13 @@ class Nav extends Component {
     return (
       <Navbar>
         <Container fluid>
-          <Navbar.Brand href="/home"><img src={icone} alt="logo" width={40} height={40}></img></Navbar.Brand>
+          <Navbar.Brand >
+            <Link to={"/home"} className="text-decoration-none stretched-link" id='link' >
+              <img src={icone} alt="logo" width={40} height={40}></img>
+            </Link>
+          </Navbar.Brand>
           <Link to={"/Login/"} className="text-decoration-none stretched-link" id='link' >
-            <Button variant='dark'>Inici Sessió</Button>
+            <Button variant='dark' id="iniciSessio">Inici Sessió</Button>
           </Link>
         </Container>
       </Navbar>
