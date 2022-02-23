@@ -60,7 +60,7 @@ class Exposicio extends Component {
                         {this.state.exposicio.map((expo) => (
                             <Col className='col-12' key={expo.nom}>
                                 <Col className='col-12'><h3 className='fw-normal'>{expo.nom}</h3></Col>
-                                <h5 className='fw-normal mt-3'>{expo.data_ini} - {expo.data_fi}</h5>
+                                <p className='fw-normal mt-3'>{expo.data_ini} - {expo.data_fi}</p>
                             </Col>
                         ))}
                     </Row>
