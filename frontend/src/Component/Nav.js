@@ -13,7 +13,7 @@ class Nav extends Component {
     return (
       <Navbar>
         <Container fluid>
-          <Navbar.Brand href="#"><img src={icone} alt="logo" width={40} height={40}></img></Navbar.Brand>
+          <Navbar.Brand href="/home"><img src={icone} alt="logo" width={40} height={40}></img></Navbar.Brand>
           <Link to={"/Login/"} className="text-decoration-none stretched-link" id='link' >
             <Button variant='dark'>Inici Sessió</Button>
           </Link>
