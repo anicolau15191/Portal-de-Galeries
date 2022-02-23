@@ -2,6 +2,7 @@
 <html lang="es" xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link th:href="@{/css/custom.css}" rel="stylesheet">
     <link th:href="@{/css/estils.css}" rel="stylesheet">
@@ -17,12 +18,14 @@
         <div class="container-fluid">
             <h3 class="mb-3">Llistat galeries</h3>
             <div class="row">
-                <div class="col-4 mb-3" th:each="galeria:${llista}">
+                <div class="col-4 mb-3"  th:each="galeria:${llista}">
                     <a th:href="@{'/perfil/'+${galeria.idGaleria}}" class="text-decoration-none text-black">
-                        <div class="card" >
-                            <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+1}" class="card-img-top" onerror="this.onerror=null;this.src='/img/default.png';">
+                        <div class="card">
+                            <div class="card-header">
+                                <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+1}" th:alt="${galeria.idGaleria}" style="object-fit:cover" class="card-img-top" onerror="this.onerror=null;this.src='/img/default.png';">
+                            </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center" th:text="${galeria.nom}"></h5>
+                                <p class="card-title text-center fs-5" th:text="${galeria.nom}"></p>
                             </div>
                         </div>
                     </a>
@@ -38,8 +41,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="/add" class="needs-validation" novalidate >
-                        <span>Nom</span>
+                    <form method="post" action="/add" class="needs-validation" id="novaGaleria" novalidate >
+                        <span>Nom <span class="text-danger">*</span></span>
                         <div class="input-group mb-3">
                                 <span for="nom" id="nom" class="input-group-text d-flex justify-content-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -48,7 +51,7 @@
                                 </span>
                             <input type="text" class="form-control" name="nom" aria-describedby="nom" required>
                         </div>
-                        <span>Població</span>
+                        <span>Població <span class="text-danger">*</span></span>
                         <div class="input-group mb-3">
                                 <span for="nom" id="poblacio" class="input-group-text d-flex justify-content-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -61,7 +64,7 @@
                                 <option th:each="poblacio:${poblacions}" th:value="${poblacio.idPoblacio}" th:text="${poblacio.nom}"></option>
                             </select>
                         </div>
-                        <span>Correu Electrònic</span>
+                        <span>Correu Electrònic <span class="text-danger">*</span></span>
                         <div class="input-group mb-3">
                                 <span for="email" id="correu" class="input-group-text d-flex justify-content-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -72,6 +75,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-iesmanacor">Crear</button>
+                            <a class="btn btn-iesmanacor me-2" id="reset">
+                                <span class="ms-1">Borrar</span>
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -91,6 +97,10 @@
 
     document.querySelector('#addGaleria').addEventListener('click', function () {
         modal.show();
+    })
+
+    document.querySelector('#reset').addEventListener('click',function (){
+        document.getElementById('novaGaleria').reset();
     })
 </script>
 </body>

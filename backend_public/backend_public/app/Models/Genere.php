@@ -25,4 +25,9 @@ class Genere extends Model
 
         return $this->belongsToMany(Galeria::class,'especialitzat','id_galeria','id_genere');
     }
+
+    public function obres(){
+
+        return $this->belongsToMany(Galeria::class,'pertany','id_obra','id_genere');
+    }
 }

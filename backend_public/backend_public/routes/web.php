@@ -8,11 +8,8 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ExposicioController;
 use App\Http\Controllers\ObresController;
 use App\Http\Controllers\ArtistaController;
-use App\Models\Galeria;
-use App\Models\Poblacio;
-use App\Models\Genere;
-use App\Models\Sales;
-use App\Models\Exposicio;
+use App\Http\Controllers\Pago;
+
 
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
@@ -29,17 +26,9 @@ header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 | contains the "web" middleware group. Now create something great!
 |
 
-Route::get('/galeries'); //listat galeries --> OK
-Route::get('/galeries/{galeria}'); //info galeria -->OK
-Route::get('/galeries/{galeria}/especialitzat'); //llistat de galeria per genere -->OK
 Route::get('/galeries/{galeria}/calendari'); // llistat de exposicions de totes ses galeries
-Route::get('/galeries/{galeria}/exposicions'); // //llistat exposiciond de sa galeria --OKsicio
-Route::get('/galeries/{galeria}/exposicions/{exposicio}/obra'); // llistat de ses obres de sa exposicio
-Route::get('/galeries/{galeria}/exposicions/{exposicio}/artistes'); // llistat artistes exposicio
 Route::get('/galeries/{galeria}/exposicions/{exposicio}/sessions'); // sesions de exposicio
 Route::post('/galeries/{galeria}/exposicions/{exposicio}/sessions/{sessio}/entrada'); // reserva a sa sesio
-Route::get('/galeries/{galeria}/sales'); // llistat de sales -->OK
-Route::get('/galeries/{galeria}/sales/{sala}'); // informacio sala galeria
 
 Route::get('/artistes/{artista}/obres'); // llistat totes ses obres per artista
 Route::get('/generes/{genere}/obres'); // llistat obres per genere
@@ -53,13 +42,6 @@ Route::get('/perfil/{user}'); // llistar informacio de l'usurai
 Route::post('/perfil/{user}/entrades'); // llistat totes ses entrades usuari
 Route::post('/perfil/{user}/editar'); // editar informacio l'usuari
 
-Route::get('/poblacio/llistar'); // llistar totes ses poblacions -->OK
-Route::get('/poblacio/{poblacio}'); // llistar totes ses galeries de sa poblacio -->OK
-
-Route::get('/propietari'); // llistat propietaris
-Route::get('/generes'); // llistat de generes -->OK
-Route::get('/generes/{genere}/subgeneres');// llistat de subgeneres del genere -->OK
-
 */
 
 Route::get('/galeries', [GaleriaController::class,'listAllActive']);
@@ -69,6 +51,8 @@ Route::get('/galeries/{galeria}', [GaleriaController::class,'getGaleria']);
 Route::get('/galeries/{galeria}/coordenades', [GaleriaController::class,'getCoordenades']);
 
 Route::get('/galeries/{galeria}/generes', [GenereController::class,'getAllGeneresByGaleria']);
+
+Route::get('/galeries/{galeria}/generesPare', [GenereController::class,'getGeneresPare']);
 
 Route::get('/galeries/{galeria}/subgeneres', [GenereController::class,'getAllGeneresFillsByGaleria']);
 
@@ -98,9 +82,22 @@ Route::get('/generes', [GenereController::class,'getGeneresPare']);
 
 Route::get('/generes/subgeneres', [GenereController::class,'getGeneresFills']);
 
-Route::get('/generes/{genere}/subgeneres', [GenereController::class,'listFillsByGenere']);
+Route::get('/exposicio/{exposicio}/genere', [GenereController::class,'genereExposicio']);
+
+Route::get('/generes/subgeneres', [GenereController::class,'getGeneresFills']);
 
 Route::get('/obres/{obra}', [ObresController::class,'getAutorsObra']);
+
+Route::get('/obres/{obra}/info', [ObresController::class,'getObra']);
+
+Route::get('/obres/{obra}/genere', [ObresController::class,'getGenereObra']);
+
+Route::get('/prova', [ObresController::class,'p']);
+
+Route::get('/pago', [Pago::class,'pago']);
+
+Route::get('/resposta',[\App\Http\Controllers\respostaPago::class,'res']);
+
 
 
 

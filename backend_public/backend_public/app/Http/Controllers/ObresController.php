@@ -2,18 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Obres;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpKernel\Fragment\FragmentUriGenerator;
 
 class ObresController extends Controller
 {
-    public function getAutorsObra($idArtista){
-        $artista = DB::table('artista')
-            ->join('feta', 'feta.id_obra', '=', 'obres.id_obres')
-            ->where("feta.id_artista","=",$idArtista)
-            ->select('artista.nom')
+    public function getAutorsObra($idObra){
+        return  DB::select('select distinct artista.nom from artista,obres,feta where feta.id_obra ='.$idObra.' and feta.id_artista = artista.id_artista');
+
+    }
+
+    public function getObra(Obres $obra){
+        return $obra->toJson();
+    }
+
+    public function getGenereObra(Obres $obra){
+
+        $genere = DB::table('genere')
+            ->join('pertany', 'pertany.id_genere', '=', 'genere.id_genere')
+            ->where("pertany.id_obres","=",$obra->id_obres)
+            ->whereNotNull('genere.id_genere2')
+            ->select('genere.nom')
             ->get();
 
+        return $genere;
+    }
 
-        return $artista->toJson();
+    public  function  p(){
+        $idProvisional = DB::select("select obres.id_obres from obres where obres.codi_ordre =1234");
+        $idObra =  $idProvisional[0]->id_obres;
+
+
+
+        return $idObra;
     }
 }

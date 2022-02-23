@@ -25,6 +25,7 @@ class ExposicioController extends Controller
             ->where("exposicio.enabled","=",0)
             ->where("exposicio.data_fi",">=",Carbon::today())
             ->select('exposicio.id_exposicio','exposicio.nom', 'exposicio.descripcio', 'exposicio.data_ini','exposicio.data_fi')
+            ->orderBy('exposicio.data_ini','ASC')
             ->get();
 
         return $listExpo;

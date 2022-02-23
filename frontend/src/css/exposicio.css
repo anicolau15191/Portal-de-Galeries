@@ -2,3 +2,19 @@ p{
     margin-bottom: 0% !important; 
     padding-top: 0%; 
 }
+
+#link{
+    position: relative !important;
+}
+.accordion-button{
+    color: black !important;
+    background-color: white !important;
+    border-color: black !important;
+    box-shadow:none !important;
+}
+
+.list-group :first-child{
+    background-color: black;
+    color: white;
+
+}

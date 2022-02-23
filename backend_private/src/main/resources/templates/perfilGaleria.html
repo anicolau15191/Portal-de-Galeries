@@ -2,9 +2,10 @@
 <html lang="es" xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link th:href="@{/css/custom.css}" rel="stylesheet">
-    <link th:href="@{/css/estils.css}" rel="stylesheet">
+    <link th:href="@{/css/perfilGaleria.css}" rel="stylesheet">
 </head>
 <body>
 <header th:include="/header :: header"></header>
@@ -23,54 +24,65 @@
         </div>
         <div class="container d-flex justify-content-center mb-3">
             <div class="row">
-                <!-- Fotos -->
-                <!-- <div th:each="foto:${fotos}">
-                    <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+1}" class="img-fluid text-center" >
-                       <img th:src="@{${foto.getPhotosImagePath}}" class="img-fluid text-center" >
-               </div>-->
                <div class="col-3">
-                   <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+1}" class="card-img-top img"onerror="this.onerror=null;this.src='/img/default.png';" >
-                   <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/1'}" enctype="multipart/form-data" class="mt-2  needs-validation" novalidate>
-                       <div class="input-group">
-                           <input type="file" class="form-control" id="inputGroupFile01" name="image" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
-                           <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon01"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                               <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                           </svg></button>
+                   <div class="card">
+                       <div class="card-header">
+                           <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+1}" alt="galeria" style="object-fit:cover" class="card-img-top" onerror="this.onerror=null;this.src='/img/default.png';">
                        </div>
-                   </form>
+                       <div class="card-body">
+                           <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/1'}" enctype="multipart/form-data" class=" needs-validation" novalidate>
+                               <div class="input-group">
+                                   <input type="file" class="form-control" id="inputGroupFile01" name="image" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
+                                   <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon01">Afegir</button>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
                </div>
                <div class="col-3">
-                   <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+2}" class="card-img-top img" onerror="this.onerror=null;this.src='/img/default.png';" >
-                   <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/2'}" enctype="multipart/form-data" class="mt-2  needs-validation" novalidate>
-                       <div class="input-group">
-                           <input type="file" class="form-control" id="inputGroupFile02" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
-                           <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon02"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                               <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                           </svg></button>
+                   <div class="card">
+                       <div class="card-header">
+                           <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+2}" alt="galeria" style="object-fit:cover" class="card-img-top img" onerror="this.onerror=null;this.src='/img/default.png';" >
                        </div>
-                   </form>
+                       <div class="card-body">
+                           <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/2'}" enctype="multipart/form-data" class=" needs-validation" novalidate>
+                               <div class="input-group">
+                                   <input type="file" class="form-control" id="inputGroupFile02" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
+                                   <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon02">Afegir</button>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
                </div>
                <div class="col-3">
-                   <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+3}" onerror="this.onerror=null;this.src='/img/default.png';" class="card-img-top img" >
-                   <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/3'}" enctype="multipart/form-data" class="mt-2 needs-validation" novalidate >
-                       <div class="input-group">
-                           <input type="file" class="form-control" id="inputGroupFile03" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
-                           <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon03"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                               <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                           </svg></button>
+                   <div class="card">
+                       <div class="card-header">
+                           <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+3}" alt="galeria" style="object-fit:cover" class="card-img-top img" onerror="this.onerror=null;this.src='/img/default.png';" >
                        </div>
-                   </form>
+                       <div class="card-body">
+                           <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/3'}" enctype="multipart/form-data" class=" needs-validation" novalidate>
+                               <div class="input-group">
+                                   <input type="file" class="form-control" id="inputGroupFile03" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
+                                   <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon03">Afegir</button>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
                </div>
                <div class="col-3">
-                   <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+4}" onerror="this.onerror=null;this.src='/img/default.png';" class="card-img-top img" >
-                   <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/4'}" enctype="multipart/form-data" class="mt-2  needs-validation" novalidate>
-                       <div class="input-group">
-                           <input type="file" class="form-control" id="inputGroupFile04" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
-                           <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon04"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                               <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                           </svg></button>
+                   <div class="card">
+                       <div class="card-header">
+                           <img th:src="@{'/imggaleria/'+${galeria.idGaleria}+'/'+${galeria.idGaleria}+'-'+4}" alt="galeria" style="object-fit:cover" class="card-img-top img" onerror="this.onerror=null;this.src='/img/default.png';" >
                        </div>
-                   </form>
+                       <div class="card-body">
+                           <form method="post" th:action="@{'/imatgesGaleria/'+ ${galeria.idGaleria}+'/1'}" enctype="multipart/form-data" class=" needs-validation" novalidate>
+                               <div class="input-group">
+                                   <input type="file" class="form-control" id="inputGroupFile04" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
+                                   <button class="btn btn-iesmanacor" type="submit" id="inputGroupFileAddon04">Afegir</button>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
                </div>
                <!-- Generes -->
                 <div class="row mt-2">
@@ -136,28 +148,5 @@
     </main>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/js/custom.js}"></script>
-<script th:inline="javascript">
-    let latitud = [[${galeria.latitud}]];
-    let longitud = [[${galeria.longitut}]];
-    const coordenadesGaleria = { lat: Number.parseFloat(latitud), lng: Number.parseFloat(longitud)};
-    function myMap() {
-        let mapOptions = {
-            center: new google.maps.LatLng(39.638224334941164, 2.9989553343109816),
-            zoom: 9,
-        };
-        // init map a mallorca //
-
-        var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
-
-        // marcadior lloc galeria//
-
-        new google.maps.Marker({
-            position: coordenadesGaleria,
-            map: map,
-        });
-    }
-    myMap();
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=myMap"></script>
 </body>
 </html>

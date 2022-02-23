@@ -2,6 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar</title>
     <link th:href="@{/css/custom.css}" rel="stylesheet">
     <link th:href="@{/css/estils.css}" rel="stylesheet">
@@ -183,7 +184,7 @@
                         <div class="col-4 mb-3 mt-3">
                             <div class="mb-3">
                                 <form method="post" th:action="@{'/editarDescripcio/'+ ${galeria.idGaleria}}" class="needs-validation" novalidate>
-                                    <textarea class="form-control" rows="3" id="desc" name="desc" th:text="${galeria.descripcio}" required></textarea>
+                                    <textarea class="form-control" rows="10"  id="desc" name="desc" maxlength="250" th:text="${galeria.descripcio}" required></textarea>
                                     <button id="b2" type="submit" class="btn btn-iesmanacor mt-2 " onclick="descripcioMaxLength()">Editar</button>
                                     <span id="length" class="text-danger"></span>
                                 </form>
@@ -218,10 +219,13 @@
 <script th:src="@{/js/custom.js}"></script>
 <script th:inline="javascript">
 
-        function descripcioMaxLength(){
-            document.getElementById("desc").maxLength = "250";
-            document.getElementById("length").innerHTML = "El nombre màxim de caràcters permès és 250.";
-        }
+      /* function descripcioMaxLength(){
+           if ( document.getElementById("desc").maxLength = '250'){
+               document.getElementById("length").innerHTML = "El nombre màxim de caràcters permès és 250.";
+           }else{
+               document.getElementById("length").innerHTML = "";
+           }
+        }*/
 
         let latitud = [[${galeria.latitud}]];
         let longitud = [[${galeria.longitut}]];

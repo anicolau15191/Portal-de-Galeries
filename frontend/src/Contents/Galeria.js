@@ -4,7 +4,8 @@ import axios from 'axios';
 import '../css/Galeria.css'
 import { Container, Row, Col } from 'reactstrap';
 import { Carousel } from 'react-bootstrap';
-
+const API = 'http://api.artgalleryxisca.me';
+const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria';
 
 class Galeria extends Component {
 
@@ -20,24 +21,24 @@ class Galeria extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://api.artgalleryxisca.me/galeries/3')
+    axios.get(API+'/galeries/3')
       .then(res => {
         const galeria = res.data;
         this.setState({ galeria });
-        axios.get('http://api.artgalleryxisca.me/galeries/' + this.state.galeria.id_galeria + '/generes')
+        axios.get(API+'/galeries/'+this.state.galeria.id_galeria+'/generesPare')
           .then(res => {
             const generes = res.data;
             this.setState({ generes });
           })
       })
 
-    axios.get('http://api.artgalleryxisca.me/galeria/3/poblacio')
+    axios.get(API+'/galeria/3/poblacio')
       .then(res => {
         const poblacio = res.data;
         this.setState({ poblacio });
       })
 
-    axios.get('http://api.artgalleryxisca.me/galeries/3/coordenades')
+    axios.get(API+'/galeries/3/coordenades')
       .then(res => {
         const galeriaCoordenades = res.data;
         this.setState({ galeriaCoordenades });
@@ -50,19 +51,19 @@ class Galeria extends Component {
         </Container>
         <Container id='info' className='d-flex justify-content-md-center mb-3'>
           <Row>
-            <Col id='fotos'>
+            <Col md="12" lg="6" id='fotos'>
               <Carousel>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src="	http://admin.artgalleryxisca.me:8080/imggaleria/3/3-1" alt="First slide" />
+                  <img className="carrusel d-block w-100" src={FOTO + '/3/3-1'} style={{ objectFit: 'cover'}} alt="..." />
                 </Carousel.Item>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src="http://admin.artgalleryxisca.me:8080/imggaleria/3/3-2" alt="Second slide" />
+                  <img className="carrusel d-block w-100" src={FOTO + '/3/3-2'} style={{ objectFit: 'cover'}} alt=".." />
                 </Carousel.Item>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src="http://admin.artgalleryxisca.me:8080/imggaleria/3/3-3" alt="Third slide" />
+                  <img className="carrusel d-block w-100" src={FOTO + '/3/3-3'} style={{ objectFit: 'cover'}} alt=".." />
                 </Carousel.Item>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src="http://admin.artgalleryxisca.me:8080/imggaleria/3/3-4" alt="Third slide" />
+                  <img className="carrusel d-block w-100" src={FOTO + '/3/3-4'} style={{ objectFit: 'cover'}} alt=".." />
                 </Carousel.Item>
               </Carousel>
             </Col>
