@@ -40,4 +40,10 @@ public class FetaService {
         return obres;
     }
 
+    public void deleteObra(int obra, int artista){
+        FetaId fetaId = new FetaId(obra, artista);
+        Feta feta = new Feta(fetaId);
+        fetaCrud.delete(feta);
+    }
+
 }

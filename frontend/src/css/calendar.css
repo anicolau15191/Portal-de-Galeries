@@ -1,0 +1,9 @@
+a{
+    text-decoration: none !important;
+    color:black !important;
+}
+
+.fc-prev-button{
+    display:flex !important;
+    justify-content: center o !important;
+}

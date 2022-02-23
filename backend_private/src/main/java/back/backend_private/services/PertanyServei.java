@@ -4,6 +4,7 @@ import back.backend_private.entity.Genere;
 import back.backend_private.entity.Pertany;
 import back.backend_private.entity.PertanyId;
 import back.backend_private.repositories.GenereCrud;
+import back.backend_private.repositories.ObresJsonCrud;
 import back.backend_private.repositories.PertanyCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class PertanyServei {
     GenereCrud genereCrud;
     @Autowired
     GenereServei genereServei;
+    @Autowired
+    ObresJsonCrud crud;
 
     public void assignarGenere(int pare, int fill, int obra){
         PertanyId pertanyIdPare = new PertanyId(obra,pare);
@@ -40,5 +43,9 @@ public class PertanyServei {
             generes.add(g);
         }
         return generes;
+    }
+
+    public void deleteObra(int idObra){
+        crud.deleteObra(idObra);
     }
 }

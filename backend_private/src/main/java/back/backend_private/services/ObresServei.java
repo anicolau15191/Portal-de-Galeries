@@ -13,8 +13,6 @@ import java.util.Optional;
 public class ObresServei {
     @Autowired
     private ObresCrud data;
-    @Autowired
-    private PertanyServei pertanyServei;
 
     public List<Obres> read(){
         return (List<Obres>) data.findAll();
@@ -28,7 +26,7 @@ public class ObresServei {
         return obra.getId();
     }
 
-    public int create(String nom, int venta, float preu){
+    public int create(String nom, int venta, float preu, int any){
         Obres obra = new Obres();
         obra.setNom(nom);
         obra.setVenta(venta);

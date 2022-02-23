@@ -59,10 +59,10 @@
             <div class="container d-flex justify-content-start mt-3 w-100">
                 <div class="row">
                     <div class="col-12 d-flex flex-wrap justify-content-start mb-3">
-                        <h2 class="w-100">Obres assignades a l'exposició</h2>
-                        <article class="card col-2 me-3" th:each="obra:${obresEx}">
+                        <h2 class="w-100 align-items-start">Obres assignades a l'exposició</h2>
+                        <article class="card col-2 m-3" th:each="obra:${obresEx}">
                             <div class="card-header">
-                                <img th:src="@{'/imggaleria/imgObres/'+${obra.id}}" onerror="this.onerror=null;this.src='/img/default.png';">
+                                <img th:src="@{'/imggaleria/imgObres/'+${obra.id}}" alt="..." onerror="this.onerror=null;this.src='/img/default.png';">
                             </div>
                             <div class="card-body d-flex flex-wrap justify-content-center">
                                 <h5 class="card-title w-100 text-center" th:text="${obra.nom}"></h5>
@@ -84,6 +84,11 @@
             <div class="container d-flex flex-nowrap">
                 <h4 class="text-decoration-underline">Artistes</h4>
                 <button class="btn" id="addArtista">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill mb-2" viewBox="0 0 16 16">
+                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                    </svg>
+                </button>
+                <button class="btn" id="nouArtista">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle mb-2" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -92,7 +97,7 @@
             </div>
             <div class="w-25 d-flex justify-content-start">
                 <ul class="list-group w-100">
-                    <a th:each="artist:${artistes}" th:href="@{'/'+${expo.id}+'/obres/'+${galeria.idGaleria}+'/'+${artist.id}}">
+                    <a th:each="artist:${expoArt}" th:href="@{'/'+${expo.id}+'/obres/'+${galeria.idGaleria}+'/'+${artist.id}}">
                         <li th:classappend="${artista!=null && artista.id==artist.id ? ' list-group-item-iesmanacor':''}" class="list-group-item" th:text="${artist.nom}"></li>
                     </a>
                 </ul>
@@ -112,14 +117,22 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 d-flex flex-wrap justify-content-start mb-3">
-                            <form method="post" class="col-12 d-flex flex-wrap justify-content-start" th:action="@{'/addObraEx/'+${expo.id}+'/'+${artista.id}+'/'+${galeria.idGaleria}}">
-                                <article class="card col-2 me-3" th:each="obra:${obres}">
+                            <form method="post" class="col-12 d-flex flex-wrap justify-content-start" th:action="@{'/addObraEx/'+${expo.id}+'/'+${artista==null?0:artista.id}+'/'+${galeria.idGaleria}}">
+                                <article class="card col-2 m-3" th:each="obra:${obres}">
                                     <div class="card-header">
-                                        <img th:src="@{'/imggaleria/imgObres/'+${obra.id}}" onerror="this.onerror=null;this.src='/img/default.png';">
+                                        <img th:src="@{'/imggaleria/imgObres/'+${obra.id}}" alt="..." onerror="this.onerror=null;this.src='/img/default.png';">
                                     </div>
                                     <div class="card-body d-flex flex-wrap justify-content-center">
                                         <h5 class="card-title w-100 text-center" th:text="${obra.nom}"></h5>
                                         <input type="checkbox" class="position-absolute" name="check" th:value="${obra.id}"/>
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-around">
+                                        <a th:href="@{'/deleteObra/'+${expo.id}+'/'+${obra.id}+'/'+${galeria.idGaleria}+'/'+${artista==null?0:artista.id}}" class="link-secondary w-25 d-flex justify-content-center" >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash align-self-center" viewBox="0 0 16 16">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                            </svg>
+                                        </a>
                                     </div>
                                 </article>
                                 <div class="w-100 mt-3 d-flex justify-content-center">
@@ -131,6 +144,8 @@
                 </div>
             </div>
         </section>
+        <!-- MODALS -->
+        <!-- Update Exposicio -->
         <div class="modal" tabindex="-1" id="modalExpo">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -166,6 +181,7 @@
                 </div>
             </div>
         </div>
+        <!-- Afegir Autor -->
         <div class="modal" tabindex="-1" id="modal">
             <div class="modal-dialog modal-wide">
                 <div class="modal-content">
@@ -174,7 +190,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" th:action="@{'/'+${expo.id}+'/addArtista/'+${galeria.idGaleria}}" class="needs-validation" novalidate >
+                        <form method="post" th:action="@{'/expo/'+${expo.id}+'/'+${galeria.idGaleria}+'/newArtista'}" class="needs-validation" novalidate >
                             <table id="table" class="display">
                                 <thead>
                                 <th>ID</th>
@@ -183,15 +199,44 @@
                                 </thead>
                                 <tbody></tbody>
                             </table>
+                            <div id="inputs"></div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-outline-iesmanacor">Crear</button>
+                                <button id="btnGetData" class="btn btn-iesmanacor">Afegir</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal" tabindex="-1" th:id="${artista.nom!='' ? 'modalO':''}">
+        <!-- Afegir Nou Autor -->
+        <div class="modal" tabindex="-1" id="modalAutor">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nou Autor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" th:action="@{'/'+${expo.id}+'/addArtista/'+${galeria.idGaleria}}" class="needs-validation" novalidate >
+                            <span>Nom</span>
+                            <div class="input-group mb-3">
+                                        <span for="nom" id="nom" class="input-group-text d-flex justify-content-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                            </svg>
+                                        </span>
+                                <input type="text" class="form-control" name="nom" aria-describedby="nom" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-iesmanacor">Crear</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <!-- Nova Obra -->
+        <div class="modal" tabindex="-1" th:id="${artista!=null ? 'modalO':''}">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -199,7 +244,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" th:action="@{'/'+${expo.id}+'/addObra/'+${artista.id}+'/'+${galeria.idGaleria}}" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        <form method="post" th:action="@{'/'+${expo.id}+'/addObra/'+${artista==null?0:artista.id}+'/'+${galeria.idGaleria}}" enctype="multipart/form-data" class="needs-validation" novalidate>
                             <div class="input-group">
                                 <input type="file" class="form-control" id="inputGroupFile01" name="image" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
                             </div>
@@ -211,6 +256,17 @@
                                     </svg>
                                 </span>
                                 <input type="text" class="form-control" name="titol" aria-describedby="titol" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="art" class="w-100 d-flex justify-content-start">Artista col·labordor</label>
+                                <select aria-describedby="generes" class="form-select" name="art" id="art" required>
+                                    <option value="">Selecciona</option>
+                                    <option th:each="art:${artistes}" th:value="${art.id}" th:text="${art.nom}"></option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="any" class="w-100 d-flex justify-content-start">Any de creació</label>
+                                <input type="number" id="any" name="any" class="form-control">
                             </div>
                             <span>Esta a la venta?</span>
                             <div class="input-group mb-3">
@@ -237,7 +293,7 @@
                                 <input type="number" step=0.01 class="form-control" id="preuInput" name="preu" aria-describedby="preu" value=0 required readonly>
                             </div>
                             <div class="input-group mb-3">
-                                <div class="col-6 mb-3">
+                                <div class="col-5 mb-3">
                                     <span>Generes</span>
                                     <div class="input-group">
                                     <span for="nom" id="generes" class="input-group-text d-flex justify-content-center">
@@ -251,8 +307,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                </div>
-                                <div class="col-6 mb-3">
+                                <div class="col-5 mb-3 mx-auto">
                                     <span>Subgeneres</span>
                                     <div class="input-group">
                                         <span for="nom" id="generesFills" class="input-group-text d-flex justify-content-center">
@@ -262,10 +317,10 @@
                                         </span>
                                         <select aria-describedby="generes" class="form-select" name="fill" id="fill" required>
                                             <option value="">Selecciona</option>
-                                            <option th:each="art:${genereFill}" th:value="${art.idGenere}" th:text="${art.nom}"></option>
                                         </select>
                                     </div>
                                 </div>
+                            </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-iesmanacor">Crear</button>
                             </div>
@@ -282,6 +337,7 @@
     let myModal = document.querySelector('#modal')
     let myModalO = document.querySelector('#modalO')
     let myModalE = document.querySelector('#modalExpo')
+    let myModalA = document.querySelector('#modalAutor')
 
     let modal = new bootstrap.Modal(myModal, {
         backdrop: 'static'
@@ -292,6 +348,10 @@
     })
 
     let modalE = new bootstrap.Modal(myModalE, {
+        backdrop: 'static'
+    })
+
+    let modalA = new bootstrap.Modal(myModalA, {
         backdrop: 'static'
     })
 
@@ -307,7 +367,38 @@
         modalO.show();
     })
 
+    document.querySelector('#nouArtista').addEventListener('click', function () {
+        modalA.show();
+    })
+
     $(document).ready(function() {
+            $("#pare").change(function(){
+                $("#fill .fillOption").remove();
+                function loadJson() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var fills = JSON.parse(this.responseText);
+                            for (c in fills) {
+                                var idSelect = $("#pare").val();
+                                var idPare = fills[c].id_pare;
+                                var idFill = fills[c].id_fill;
+                                var fill = fills[c].fill;
+                                var item = $("<option/>").html(fill);
+                                item.attr("value",idFill);
+                                item.addClass("fillOption");
+                                if(idSelect==idPare){
+                                    $("#fill").append(item);
+                                }
+                            }
+                        }
+                    };
+                    xhttp.open("GET", "/generes", true);
+                    xhttp.send();
+                }
+                loadJson();
+            });
+
             $("main li").click(function () {
                 $("main li").removeClass().addClass("list-group-item");
                 $(this).removeClass().addClass("list-group-item list-group-item-iesmanacor");
@@ -342,6 +433,21 @@
                     table.rows.add(json).draw();
                 }
             });
+
+            var ids = new Array();
+            $('#table tbody').on( 'click', 'tr', function () {
+                $("#inputs input").remove();
+                var row = table.row( this ).data();
+                ids.push(row.id_artista);
+                for(var i=0;i<ids.length;i++){
+                    var item = $("<input checked>").attr("name","ids");
+                    item.attr("type","checkbox");
+                    item.css("display","none")
+                    item.val(ids[i]);
+                    $("#inputs").append(item)
+                }
+            } );
+
         }
     );
 </script>

@@ -122,19 +122,4 @@ public class RestController {
         }
         return json;
     }
-
-    @GetMapping("/generes/pares")
-    public List<ParesJson> generesPare(){
-
-        List<Genere> pares = genereServei.list();
-        List<ParesJson> json = new ArrayList<>();
-
-        for(int i=0;i<pares.size();i++){
-            ParesJson genere = new ParesJson();
-            genere.setNom(pares.get(i).getNom());
-            genere.setId(Integer.toString(pares.get(i).getIdGenere()));
-            json.add(genere);
-        }
-        return json;
-    }
 }

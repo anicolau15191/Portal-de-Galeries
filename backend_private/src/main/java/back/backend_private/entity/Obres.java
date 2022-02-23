@@ -1,6 +1,7 @@
 package back.backend_private.entity;
 
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 

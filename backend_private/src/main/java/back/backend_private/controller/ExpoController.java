@@ -58,6 +58,7 @@ public class ExpoController {
 
     @GetMapping("/expo/{id}/{idGaleria}")
     public String perfilExpo(@PathVariable int id, @PathVariable int idGaleria, ModelMap model, HttpServletRequest request){
+        model.clear();
         Usuaris user = (Usuaris) request.getSession().getAttribute("session");
         model.addAttribute("user",user);
         List <Artista> art = artistaServei.read();
@@ -72,13 +73,15 @@ public class ExpoController {
         model.addAttribute("galeria",galeria);
         Sales sala = salesServei.findSalaById(expo.getIdSala());
         model.addAttribute("sala",sala);
+        List<Artista> expoArt = artistaServei.readExpo(id);
+        model.addAttribute("expoArt",expoArt);
         return "perfilExpo";
     }
 
     @GetMapping("/expo/{id}/{idGaleria}/{idArtista}")
     public String perfilExpoArt(@PathVariable int id, @PathVariable int idArtista, @PathVariable int idGaleria,
                                 ModelMap model, HttpServletRequest request){
-        model.clear();
+        int[] num = {idArtista};
         Usuaris user = (Usuaris) request.getSession().getAttribute("session");
         model.addAttribute("user",user);
         List<Genere> generePare = genereServei.list();
@@ -99,7 +102,33 @@ public class ExpoController {
         model.addAttribute("obres",obr);
         Artista artista = artistaServei.findById(idArtista);
         model.addAttribute("artista",artista);
+        List<Artista> expoArt = artistaServei.readExpo2(id,num);
+        model.addAttribute("expoArt",expoArt);
+        return "perfilExpo";
+    }
 
+    @PostMapping("/expo/{id}/{idGaleria}/newArtista")
+    public String perfilExpoArt2(@PathVariable int id, @RequestParam int[] ids, @PathVariable int idGaleria,
+                                ModelMap model, HttpServletRequest request){
+        model.clear();
+        Usuaris user = (Usuaris) request.getSession().getAttribute("session");
+        model.addAttribute("user",user);
+        List<Genere> generePare = genereServei.list();
+        model.addAttribute("generePare",generePare);
+        List<Genere> genereFill = genereServei.llistatArtFills();
+        model.addAttribute("genereFill",genereFill);
+        List <Artista> art = artistaServei.read();
+        Galeria galeria = galeriaServei.findById(idGaleria);
+        model.addAttribute("galeria",galeria);
+        model.addAttribute("artistes",art);
+        Exposicio expo = expoService.findById(id);
+        model.addAttribute("expo",expo);
+        Sales sala = salesServei.findSalaById(expo.getIdSala());
+        model.addAttribute("sala",sala);
+        List<Obres> obrEx = obresCrud.findAllByExpo(expoService.findById(id));
+        model.addAttribute("obresEx",obrEx);
+        List<Artista> expoArt = artistaServei.readExpo2(id,ids);
+        model.addAttribute("expoArt",expoArt);
         return "perfilExpo";
     }
 
@@ -134,9 +163,10 @@ public class ExpoController {
     @PostMapping("/{idExpo}/addObra/{idArtista}/{idGaleria}")
     public String addObra(@PathVariable int idExpo, @PathVariable int idArtista,@PathVariable int idGaleria,
                           @RequestParam("image") MultipartFile img, @RequestParam String titol, @RequestParam int venta,
-                          @RequestParam float preu, @RequestParam int pare, @RequestParam int fill) throws IOException {
+                          @RequestParam float preu, @RequestParam int pare, @RequestParam int fill, @RequestParam int art,
+                          @RequestParam int any) throws IOException {
 
-        int id = obresServei.create(titol,venta,preu);
+        int id = obresServei.create(titol,venta,preu,any);
         InputStream is = img.getInputStream();
 
         ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -151,6 +181,9 @@ public class ExpoController {
 
         mediaServei.saveFile(uploadDir,fileName,img);
         fetaService.enllaçarObra(id,idArtista);
+        if (art!=0) {
+            fetaService.enllaçarObra(id,art);
+        }
         pertanyServei.assignarGenere(pare,fill,id);
         return "redirect:/expo/"+idExpo+"/"+idGaleria;
     }
@@ -215,4 +248,13 @@ public class ExpoController {
         sessioService.delete(idSessio);
         return "redirect:/addSessio/"+idGaleria+"/"+idSala+"/"+idExpo;
     }
+
+    @GetMapping("/deleteObra/{idExpo}/{idObra}/{idGaleria}/{idArtista}")
+    public String deleteObra(@PathVariable int idExpo, @PathVariable int idGaleria, @PathVariable int idObra,@PathVariable int idArtista){
+        pertanyServei.deleteObra(idObra);
+        fetaService.deleteObra(idObra,idArtista);
+        obresCrud.delete(obresServei.findById(idObra));
+        return "redirect:/expo/"+idExpo+"/"+idGaleria+"/"+idArtista;
+    }
+
 }

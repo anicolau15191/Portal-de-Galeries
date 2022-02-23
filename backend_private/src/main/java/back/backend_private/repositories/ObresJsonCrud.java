@@ -1,9 +1,11 @@
 package back.backend_private.repositories;
 
 
+import back.backend_private.entity.Artista;
 import back.backend_private.entity.ObresJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
@@ -40,10 +42,23 @@ public class ObresJsonCrud{
 
     public List<Integer> getExpos(int propietari){
         List<Integer> idExpos = entityManager.createNativeQuery("SELECT DISTINCT exposicio.id_exposicio FROM exposicio" +
-                " INNER JOIN sales ON exposicio.id_sala=sales.id_sales\n" +
-                " INNER JOIN galeria ON sales.id_galeria=galeria.id_galeria\n" +
+                " INNER JOIN sales ON exposicio.id_sala=sales.id_sales" +
+                " INNER JOIN galeria ON sales.id_galeria=galeria.id_galeria" +
                 " INNER JOIN propietari ON galeria.id_propietari="+propietari+";").getResultList();
         return idExpos;
+    }
+
+    @Transactional
+    public void deleteObra(int idObra){
+        entityManager.createNativeQuery("delete from pertany where id_obres="+idObra+";").executeUpdate();
+    }
+
+    public List<Integer> findArtistaByExpo(int idExpo){
+        List<Integer> artistes = entityManager.createNativeQuery(" SELECT DISTINCT artista.id_artista from artista" +
+                " INNER JOIN feta on artista.id_artista=feta.id_artista" +
+                " INNER JOIN obres on feta.id_obra=obres.id_obres" +
+                " INNER JOIN exposicio on obres.id_expo="+idExpo+";").getResultList();
+        return artistes;
     }
 
 
