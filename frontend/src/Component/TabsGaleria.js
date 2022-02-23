@@ -8,10 +8,10 @@ class TabsGaleria extends Component {
         return (
             <Tabs>
                 <div label="Perfil">
-                    <Galeria />
+                    <Galeria id={this.props.match.params.idGaleria}/>
                 </div>
                 <div label="Exposicions">
-                    <Exposicions />
+                    <Exposicions id={this.props.match.params.idGaleria} />
                 </div>
             </Tabs>
         );
