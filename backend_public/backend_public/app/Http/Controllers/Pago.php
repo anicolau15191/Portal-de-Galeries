@@ -31,7 +31,7 @@ public function pago(){
         $consumerlng = '001';
         $transactionType = '0';
         $urlMerchant = 'http://www.artgalleryxisca.me';
-        $urlweb_ok = 'https://api.artgalleryxisca.me/resposta';
+        $urlweb_ok = 'http://api.artgalleryxisca.me/resposta';
         $urlweb_ko = 'http://www.artgalleryxisca.me/';
 
         $miObj->setParameter("DS_MERCHANT_AMOUNT", $amount);
