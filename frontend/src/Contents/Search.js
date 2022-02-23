@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import { generatePath } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
 
 class Search extends Component {
@@ -8,7 +9,8 @@ class Search extends Component {
         this.state = {
             poblacio: [],
             genPare: [],
-            genFill: []
+            genFill: [],
+            selected:0
         }
     }
 
@@ -50,7 +52,8 @@ class Search extends Component {
                     </FormGroup>
                     <FormGroup className="col-2">
                         <Label>Genere:</Label>
-                        <Input type="select" id="genere" name="genere">
+                        <Input type="select" id="genere" name="genere" onChange={(()=>{
+                        })}>
                             <option value="0">Selecciona</option>
                             {this.state.genPare.map((genPare) => (
 
@@ -63,8 +66,8 @@ class Search extends Component {
                         <Input type="select" id="subgenere" name="subgenere">
                             <option value="0">Selecciona</option>
                             {this.state.genFill.map((genFill) => (
+                                <option value={genFill.id_genere} key={genFill.id_genere}>{genFill.nom}</option>
 
-                                    <option value={genFill.id_genere} key={genFill.id_genere}>{genFill.nom}</option>
                             ))}
                         </Input>
                     </FormGroup>

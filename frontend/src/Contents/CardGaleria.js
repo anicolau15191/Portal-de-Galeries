@@ -35,7 +35,7 @@ class CardGaleria extends Component {
                                     src={'http://admin.artgalleryxisca.me:8080/imggaleria/' + gallery.id_galeria + '/' + gallery.id_galeria + '-1'}
                                     onError={({ currentTarget }) => {
                                         currentTarget.onerror = null;
-                                    currentTarget.src='../default.jpg'}}/>
+                                        currentTarget.src='../default.jpg'}}/>
                                     {/*<CardHeader className="rounded p-0 m-0">
                                         <picture>
                                             <source type="image/jpeg" style={{ height: 300, objectFit: 'cover',width:400}} className="img-fluid rounded-start" srcSet={'http://admin.artgalleryxisca.me:8080/imggaleria/' + gallery.id_galeria + '/' + gallery.id_galeria + '-1'}/>
