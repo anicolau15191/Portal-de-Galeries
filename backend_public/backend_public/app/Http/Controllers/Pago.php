@@ -8,13 +8,17 @@ use App\Http\Controllers\RedsysAPI;
 
 class Pago extends Controller
 {
+
 public function pago(){
+
+        $id = $_GET['idObra'];
+        $preuObra = DB::select("select obres.preu from obres where obres.id_obres =".$id);
+
+        $amount = $preuObra[0]->preu;
 
 
        $miObj = new RedsysAPI;
 
-       $id = $_GET['idObra'];
-        $amount = $_GET['amount'];
         $url_tpv = 'https://sis-t.redsys.es:25443/sis/realizarPago';
         $version = "HMAC_SHA256_V1";
         $clave = "sq7HjrUOBfKmC576ILgskD5srU870gJ7";
@@ -27,8 +31,8 @@ public function pago(){
         $consumerlng = '001';
         $transactionType = '0';
         $urlMerchant = 'http://www.artgalleryxisca.me';
-        $urlweb_ok = 'https://www.google.com/';
-        $urlweb_ko = 'https://www.youtube.com/';
+        $urlweb_ok = 'http://127.0.0.1:8000/resposta';
+        $urlweb_ko = 'http://www.artgalleryxisca.me/';
 
         $miObj->setParameter("DS_MERCHANT_AMOUNT", $amount);
         $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
@@ -44,6 +48,8 @@ public function pago(){
         $params = $miObj->createMerchantParameters();
         $signature = $miObj->createMerchantSignature($clave);
 
+        DB::select("update obres set obres.codi_ordre =". $order ." where obres.id_obres=".$id);
+
         ?>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <form id="realizarPago" action="<?php echo $url_tpv; ?>" method="post">
@@ -58,7 +64,7 @@ public function pago(){
         </script>
         <?php
 
-    $this->update($id);
+
 
 }
 
@@ -67,6 +73,5 @@ function update ($idObra){
     ->where('id_obres',$idObra)
         ->update(['venut' => 1]);
 }
-
 
 }

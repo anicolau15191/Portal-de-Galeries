@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Obres;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpKernel\Fragment\FragmentUriGenerator;
 
 class ObresController extends Controller
 {
@@ -26,5 +27,14 @@ class ObresController extends Controller
             ->get();
 
         return $genere;
+    }
+
+    public  function  p(){
+        $idProvisional = DB::select("select obres.id_obres from obres where obres.codi_ordre =1234");
+        $idObra =  $idProvisional[0]->id_obres;
+
+
+
+        return $idObra;
     }
 }
