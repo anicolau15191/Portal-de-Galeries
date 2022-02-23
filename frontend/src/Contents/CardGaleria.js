@@ -49,6 +49,7 @@ class CardGaleria extends Component {
                                         <CardTitle className="text-center"><h5>{gallery.nom}</h5></CardTitle>
                                         <CardText></CardText>
                                     </CardBody>
+                                    <Link to={"/Galeria/"+gallery.id_galeria} className="text-decoration-none stretched-link"></Link>
                                 </Card>
                             </Col>
                         ))}
