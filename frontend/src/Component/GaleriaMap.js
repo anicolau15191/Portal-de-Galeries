@@ -4,12 +4,13 @@ import '../css/mapa.css'
 import 'leaflet/dist/leaflet.css';
 
 
-
+// history.back
 class GaleriaMap extends Component {
     constructor(props) {
         super(props);
 
     }
+    
     render() {
         return (this.props.galeria.map((g) =>
             <MapContainer key={1} center={[g.latitud, g.longitut]} zoom={15}>

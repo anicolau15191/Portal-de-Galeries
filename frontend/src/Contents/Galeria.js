@@ -51,7 +51,7 @@ class Galeria extends Component {
         </Container>
         <Container id='info' className='d-flex justify-content-md-center mb-3'>
           <Row>
-            <Col id='fotos'>
+            <Col md="12" lg="6" id='fotos'>
               <Carousel>
                 <Carousel.Item>
                   <img className="carrusel d-block w-100" src={FOTO + '/3/3-1'} style={{ objectFit: 'cover'}} alt="..." />

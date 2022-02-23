@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Accordion, Button, Alert } from 'react-bootstrap';
+import '../css/compra.css'
+import { Container, Row, Col, Accordion, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 const API = 'http://api.artgalleryxisca.me';
 const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
 
@@ -37,20 +39,20 @@ class Compra extends Component {
 
     }
 
-    compra(a) {
-        const preu = a;
-        axios.get('http://127.0.0.1:8000/pago?amount=1300')
-
-    }
-
     render() {
+        let idGaleria = this.props.match.params.idGaleria;
+        let nomExpo = this.props.match.params.nomExpo;
+        let idExpo = this.props.match.params.idExpo;
         return (
-            <Container className='mt-5'>
-                <Row className='d-flex justify-content-between'>
-                    <Col className='col-6'>
-                        <img className="img-fluid rounded-start " src={FOTO + this.state.obra.id_obres} alt={this.state.obra.nom}></img>
+            <Container className='mt-3'>
+                <Link to={"/Exposicio/" + nomExpo +'/'+idExpo+'/'+idGaleria} className="text-decoration-none stretched-link mt-2" id='link' >
+                    <Button variant="dark">Exposicio</Button>
+                </Link>
+                <Row className='d-flex justify-content-between mt-3'>
+                    <Col md="12" lg="6">
+                        <img className="img-fluid rounded-start " id='foto' style={{objectFit: 'contain' }} src={FOTO + this.state.obra.id_obres} alt={this.state.obra.nom}></img>
                     </Col>
-                    <Col className='col-6'>
+                    <Col md="12" lg="6">
                         <Row className='d-flex justify-content-between'>
                             <Col className='col-8'><p className='fs-4 fw-bold text-start'>{this.state.obra.nom}</p></Col>
                             <Col className='col-4 '>
@@ -90,8 +92,8 @@ class Compra extends Component {
                                     } else {
                                         return (
                                             <Col className="d-grid gap-2 mt-3">
-                                                <a href={"http://127.0.0.1:8000/pago?amount=" + this.state.obra.preu+'&idObra='+this.state.obra.id_obres} className="text-decoration-none stretched-link mt-2" id='link' >
-                                                    <Button className='p-2' variant="dark">COMPRA</Button>
+                                                <a href={API + "/pago?idObra=" + this.state.obra.id_obres} className="text-decoration-none stretched-link mt-2" id='link' >
+                                                    <Button className='px-5' variant="dark">COMPRA</Button>
                                                 </a>
                                                 <Accordion defaultActiveKey="0" flush className='mt-5'>
                                                     <Accordion.Item eventKey="0">
@@ -108,7 +110,6 @@ class Compra extends Component {
                                                         <Accordion.Header><p>Garantia d'autenticitat</p></Accordion.Header>
                                                         <Accordion.Body>
                                                             <p className='fw-light'> La Galeria garanteix l'autenticitat de totes les obres d'art.</p>
-
                                                         </Accordion.Body>
                                                     </Accordion.Item>
                                                 </Accordion>

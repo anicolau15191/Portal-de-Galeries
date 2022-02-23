@@ -12,3 +12,9 @@ p{
     border-color: black !important;
     box-shadow:none !important;
 }
+
+.list-group :first-child{
+    background-color: black;
+    color: white;
+
+}
