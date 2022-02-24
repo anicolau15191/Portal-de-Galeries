@@ -4,6 +4,7 @@ import '../css/exposicio.css'
 import ArtistesObra from '../Contents/ArtistesObra';
 import { Container, Row, Col, Card } from 'reactstrap';
 import { Button, ListGroup } from 'react-bootstrap';
+import DataExpo from '../Contents/DataExpo';
 import { Link } from "react-router-dom";
 const API = 'http://api.artgalleryxisca.me';
 const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
@@ -47,20 +48,20 @@ class Exposicio extends Component {
             })
     }
 
-    render() {
-        let idGaleria = this.props.match.params.idGaleria;
+    retorna() {
+        window.history.back();
+    }
 
+    render() {
         return (
             <Container>
                 <Container id="exposicio" className='mt-3'>
-                    <Link to={"/Galeria/" + idGaleria} className="text-decoration-none stretched-link mt-2" id='link' >
-                        <Button variant="dark">Galeria</Button>
-                    </Link>
+                    <Button variant="dark" onClick={this.retorna}>Galeria</Button>
                     <Row className='mt-3'>
                         {this.state.exposicio.map((expo) => (
                             <Col className='col-12' key={expo.nom}>
                                 <Col className='col-12'><h3 className='fw-normal'>{expo.nom}</h3></Col>
-                                <p className='fw-normal mt-3'>{expo.data_ini} - {expo.data_fi}</p>
+                                <DataExpo inici={expo.data_ini} fi={expo.data_fi}/>
                             </Col>
                         ))}
                     </Row>
@@ -69,7 +70,7 @@ class Exposicio extends Component {
                             <Col md="2" lg="4" className="mb-2 mt-3" key={obra.id_obres}>
                                 <Card className="card rounded border-0 h-100" id='card' >
                                     <img className="img-fluid rounded-start col-12 " src={FOTO + obra.id_obres} style={{ height: 300, objectFit: 'cover' }} alt={obra.nom}></img>
-                                    <p className='col-12 d-flex justify-content-center'>{obra.nom}</p>
+                                    <div className='col-12 d-flex justify-content-center'>{obra.nom}</div>
                                     <ArtistesObra id={obra.id_obres} key={obra.id_obres} />
                                     {(() => {
                                         if (obra.venut === 1 || obra.preu === 0) {
@@ -83,7 +84,7 @@ class Exposicio extends Component {
                                         }
                                     })()}
                                     {this.state.exposicio.map((expo) => (
-                                        <Link to={"/Compra/" + obra.nom + '/' + obra.id_obres + '/' + idGaleria + '/' + expo.nom + '/' + expo.id_exposicio} className="text-decoration-none stretched-link" />
+                                        <Link key={expo.nom} to={"/Compra/" + obra.nom + '/' + obra.id_obres} className="text-decoration-none stretched-link" />
                                     ))}
                                 </Card>
                             </Col>
@@ -100,7 +101,7 @@ class Exposicio extends Component {
                         </Col>
                         <Col md="12" lg="4">
                             <ListGroup>
-                                <ListGroup.Item  variant="dark">Generes</ListGroup.Item>
+                                <ListGroup.Item variant="dark">Generes</ListGroup.Item>
                                 {this.state.genere.map((g) => (
                                     <ListGroup.Item key={g.nom} >{g.nom}</ListGroup.Item>
                                 ))}

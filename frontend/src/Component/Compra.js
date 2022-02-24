@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../css/compra.css'
 import { Container, Row, Col, Accordion, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 const API = 'http://api.artgalleryxisca.me';
 const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
 
@@ -14,8 +13,7 @@ class Compra extends Component {
             obra: [],
             autor: [],
             genere: [],
-            preu: []
-
+            preu: [],
         }
     }
     componentDidMount() {
@@ -39,18 +37,17 @@ class Compra extends Component {
 
     }
 
+    retorna() {
+        window.history.back();
+    }
+
     render() {
-        let idGaleria = this.props.match.params.idGaleria;
-        let nomExpo = this.props.match.params.nomExpo;
-        let idExpo = this.props.match.params.idExpo;
         return (
             <Container className='mt-3'>
-                <Link to={"/Exposicio/" + nomExpo +'/'+idExpo+'/'+idGaleria} className="text-decoration-none stretched-link mt-2" id='link' >
-                    <Button variant="dark">Exposicio</Button>
-                </Link>
+                <Button variant="dark" onClick={this.retorna}>Exposicio</Button>
                 <Row className='d-flex justify-content-between mt-3'>
                     <Col md="12" lg="6">
-                        <img className="img-fluid rounded-start " id='foto' style={{objectFit: 'contain' }} src={FOTO + this.state.obra.id_obres} alt={this.state.obra.nom}></img>
+                        <img className="img-fluid rounded-start " id='foto' style={{ objectFit: 'contain' }} src={FOTO + this.state.obra.id_obres} alt={this.state.obra.nom}></img>
                     </Col>
                     <Col md="12" lg="6">
                         <Row className='d-flex justify-content-between'>
@@ -92,7 +89,7 @@ class Compra extends Component {
                                     } else {
                                         return (
                                             <Col className="d-grid gap-2 mt-3">
-                                                <a href={API + "/pago?idObra=" + this.state.obra.id_obres} className="text-decoration-none stretched-link mt-2" id='link' >
+                                                <a href={"/pago?idObra=" + this.state.obra.id_obres} className="text-decoration-none stretched-link mt-2" id='link' >
                                                     <Button className='px-5' variant="dark">COMPRA</Button>
                                                 </a>
                                                 <Accordion defaultActiveKey="0" flush className='mt-5'>

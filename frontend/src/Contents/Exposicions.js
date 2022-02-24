@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../css/cardExpo.css'
 import ImgExpo from './ImgExpo';
 import ArtistesExpo from './ArtistesExpo';
+import DataExpo from './DataExpo';
 import { Link } from "react-router-dom";
 const API = 'http://api.artgalleryxisca.me';
 
@@ -19,7 +20,7 @@ class Exposicions extends Component {
 
   componentDidMount() {
     let id = this.props.id
-    axios.get(API + '/galeries/'+id+'/exposicions')
+    axios.get(API + '/galeries/' + id + '/exposicions')
       .then(res => {
         const exposicions = res.data;
         this.setState({ exposicions });
@@ -44,12 +45,12 @@ class Exposicions extends Component {
                   <ImgExpo id={expo.id_exposicio} />
                   <Card.Body className="card-body" >
                     <Card.Title> {expo.nom}</Card.Title>
-                    <Card.Text>
-                      <ArtistesExpo id={expo.id_exposicio} />
-                      <p className="fw-light">{expo.data_ini} - {expo.data_fi}</p>
-                    </Card.Text>
+                      <Card.Text>
+                        <ArtistesExpo id={expo.id_exposicio} />
+                        <DataExpo inici={expo.data_ini} fi={expo.data_fi}/>
+                      </Card.Text>
                   </Card.Body>
-                  <Link to={"/Exposicio/" + expo.nom + '/' + expo.id_exposicio + '/'+id} className="text-decoration-none stretched-link"></Link>
+                  <Link to={"/Exposicio/" + expo.nom + '/' + expo.id_exposicio + '/' + id} className="text-decoration-none stretched-link"></Link>
                 </Card>
               </Col>
             ))}

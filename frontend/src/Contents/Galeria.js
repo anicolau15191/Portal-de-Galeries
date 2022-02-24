@@ -110,7 +110,7 @@ class Galeria extends Component {
                   <hr />
                 </Col>
                 <Col className='col-12 mt-2'>
-                  <p >{this.state.galeria.descripcio}</p>
+                  <div >{this.state.galeria.descripcio}</div>
                 </Col>
               </Row>
             </Col>
