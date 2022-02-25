@@ -44,10 +44,10 @@ class Compra extends Component {
     render() {
         return (
             <Container className='mt-3'>
-                <Button variant="dark" onClick={this.retorna}>Exposicio</Button>
+                <Button variant="dark" id="expo"onClick={this.retorna}>Exposicio</Button>
                 <Row className='d-flex justify-content-between mt-3'>
                     <Col md="12" lg="6">
-                        <img className="img-fluid rounded-start " id='foto' style={{ objectFit: 'contain' }} src={FOTO + this.state.obra.id_obres} alt={this.state.obra.nom}></img>
+                        <img className="img-fluid rounded-start " id='foto' src={FOTO + this.state.obra.id_obres} alt={this.state.obra.nom}></img>
                     </Col>
                     <Col md="12" lg="6">
                         <Row className='d-flex justify-content-between'>
@@ -89,8 +89,8 @@ class Compra extends Component {
                                     } else {
                                         return (
                                             <Col className="d-grid gap-2 mt-3">
-                                                <a href={"/pago?idObra=" + this.state.obra.id_obres} className="text-decoration-none stretched-link mt-2" id='link' >
-                                                    <Button className='px-5' variant="dark">COMPRA</Button>
+                                                <a href={"/pago?idObra=" + this.state.obra.id_obres} className="text-decoration-none stretched-link mt-2" id='link3' >
+                                                    <Button className='px-5' id="compra" variant="dark">COMPRA</Button>
                                                 </a>
                                                 <Accordion defaultActiveKey="0" flush className='mt-5'>
                                                     <Accordion.Item eventKey="0">

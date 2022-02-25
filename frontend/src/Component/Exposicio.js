@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component,lazy,Suspense } from 'react';
 import axios from 'axios';
 import '../css/exposicio.css'
-import ArtistesObra from '../Contents/ArtistesObra';
+//import ArtistesObra from '../Contents/ArtistesObra';
 import { Container, Row, Col, Card } from 'reactstrap';
 import { Button, ListGroup } from 'react-bootstrap';
-import DataExpo from '../Contents/DataExpo';
+//import DataExpo from '../Contents/DataExpo';
 import { Link } from "react-router-dom";
+const ArtistesObra = lazy(() => import('../Contents/ArtistesObra'));
+const DataExpo = lazy(() => import('../Contents/DataExpo'));
+const renderLoader = () => <p>Loading</p>;
 const API = 'http://api.artgalleryxisca.me';
 const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
 
@@ -54,6 +57,7 @@ class Exposicio extends Component {
 
     render() {
         return (
+            <Suspense  fallback={renderLoader()}>
             <Container>
                 <Container id="exposicio" className='mt-3'>
                     <Button variant="dark" onClick={this.retorna}>Galeria</Button>
@@ -61,7 +65,7 @@ class Exposicio extends Component {
                         {this.state.exposicio.map((expo) => (
                             <Col className='col-12' key={expo.nom}>
                                 <Col className='col-12'><h3 className='fw-normal'>{expo.nom}</h3></Col>
-                                <DataExpo inici={expo.data_ini} fi={expo.data_fi}/>
+                                <DataExpo inici={expo.data_ini} fi={expo.data_fi} />
                             </Col>
                         ))}
                     </Row>
@@ -69,7 +73,7 @@ class Exposicio extends Component {
                         {this.state.obres.map((obra) => (
                             <Col md="2" lg="4" className="mb-2 mt-3" key={obra.id_obres}>
                                 <Card className="card rounded border-0 h-100" id='card' >
-                                    <img className="img-fluid rounded-start col-12 " src={FOTO + obra.id_obres} style={{ height: 300, objectFit: 'cover' }} alt={obra.nom}></img>
+                                    <img className="img-fluid rounded-start col-12 " src={FOTO + obra.id_obres} id='expoImg' alt={obra.nom}></img>
                                     <div className='col-12 d-flex justify-content-center'>{obra.nom}</div>
                                     <ArtistesObra id={obra.id_obres} key={obra.id_obres} />
                                     {(() => {
@@ -118,6 +122,7 @@ class Exposicio extends Component {
                     </Row>
                 </Container>
             </Container>
+            </Suspense>
         );
     }
 }

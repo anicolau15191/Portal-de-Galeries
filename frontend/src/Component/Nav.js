@@ -14,11 +14,11 @@ class Nav extends Component {
       <Navbar className='border-bottom border-dark'>
         <Container fluid>
           <Navbar.Brand >
-            <Link to={"/home"} className="text-decoration-none stretched-link" id='link' >
+            <Link to={"/home/"} className="text-decoration-none stretched-link" id='link2' >
               <img src={icone} alt="logo" width={50} height={50}></img>
             </Link>
           </Navbar.Brand>
-          <Link to={"/Login/"} className="text-decoration-none stretched-link" id='link' >
+          <Link to={"/home/"} className="text-decoration-none stretched-link" id='link' >
             <Button variant='dark' id="iniciSessio">Inici Sessió</Button>
           </Link>
         </Container>
