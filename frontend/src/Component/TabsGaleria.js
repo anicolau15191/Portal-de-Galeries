@@ -1,11 +1,10 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component,Suspense } from 'react';
+import { lazy } from '@loadable/component'
 const Tabs = lazy(() => import('../Component/Tabs'));
 const Galeria = lazy(() => import('../Contents/Galeria'));
 const Exposicions = lazy(() => import('../Contents/Exposicions'));
 const renderLoader = () => <p>Loading</p>;
-/*import Tabs from '../Component/Tabs';
-import Galeria from "../Contents/Galeria"
-import Exposicions from '../Contents/Exposicions';*/
+
 class TabsGaleria extends Component {
 
     render() {

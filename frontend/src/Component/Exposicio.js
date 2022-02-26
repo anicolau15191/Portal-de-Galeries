@@ -1,10 +1,8 @@
-import React, { Component,lazy,Suspense } from 'react';
+import React, { Component,Suspense } from 'react';
 import axios from 'axios';
 import '../css/exposicio.css'
-//import ArtistesObra from '../Contents/ArtistesObra';
-import { Container, Row, Col, Card } from 'reactstrap';
-import { Button, ListGroup } from 'react-bootstrap';
-//import DataExpo from '../Contents/DataExpo';
+import { lazy } from '@loadable/component'
+import { Button, ListGroup,Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 const ArtistesObra = lazy(() => import('../Contents/ArtistesObra'));
 const DataExpo = lazy(() => import('../Contents/DataExpo'));
@@ -88,7 +86,7 @@ class Exposicio extends Component {
                                         }
                                     })()}
                                     {this.state.exposicio.map((expo) => (
-                                        <Link key={expo.nom} to={"/Compra/" + obra.nom + '/' + obra.id_obres} id={expo.nom} className="text-decoration-none stretched-link" />
+                                        <Link key={expo.nom} to={"/Compra/" + obra.nom + '/' + obra.id_obres} id={obra.nom} className="text-decoration-none stretched-link" />
                                     ))}
                                 </Card>
                             </Col>

@@ -1,15 +1,11 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component, Suspense } from 'react';
 import axios from 'axios';
+import { lazy } from '@loadable/component'
 import '../css/Galeria.css'
 import { Container, Row, Col } from 'reactstrap';
 import { Carousel } from 'react-bootstrap';
 const GaleriaMap = lazy(() => import('../Component/GaleriaMap'));
 const renderLoader = () => <p>Loading</p>;
-/*import GaleriaMap from '../Component/GaleriaMap';
-import axios from 'axios';
-import '../css/Galeria.css'
-import { Container, Row, Col } from 'reactstrap';
-import { Carousel } from 'react-bootstrap';*/
 const API = 'http://api.artgalleryxisca.me';
 const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria';
 

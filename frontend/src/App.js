@@ -29,9 +29,8 @@ class App extends Component {
 
   render() {
     return (
-       <div>
-        
-          <Routes>
+      <div>
+        <Routes>
           <Suspense fallback={renderLoader()}>
             <Route path="/" component={Nav} />
             <Route path="/home" component={Cercador} />
@@ -40,11 +39,9 @@ class App extends Component {
             <Route path="/Exposicio/:nom/:id/:idGaleria" component={Exposicio} />
             <Route path="/Compra/:nom/:id" component={Compra} />
             <Route path="/valid/:nom/:preu/:pedido" component={CompraOk} />
-            </Suspense>
-          </Routes>
-        
-     </div>
-    
+          </Suspense>
+        </Routes>
+      </div>
     );
   }
 }

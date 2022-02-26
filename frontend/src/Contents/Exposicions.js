@@ -8,10 +8,6 @@ const ImgExpo = lazy(() => import('./ImgExpo'));
 const ArtistesExpo = lazy(() => import('./ArtistesExpo'));
 const DataExpo = lazy(() => import('./DataExpo'));
 const renderLoader = () => <p>Loading</p>;
-/*import ImgExpo from './ImgExpo';
-import ArtistesExpo from './ArtistesExpo';
-import DataExpo from './DataExpo';
-import { Link } from "react-router-dom";*/
 const API = 'http://api.artgalleryxisca.me';
 
 

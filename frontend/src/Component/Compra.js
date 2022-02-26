@@ -44,7 +44,7 @@ class Compra extends Component {
     render() {
         return (
             <Container className='mt-3'>
-                <Button variant="dark" id="expo"onClick={this.retorna}>Exposicio</Button>
+                <Button variant="dark" id="expo" onClick={this.retorna}>Exposicio</Button>
                 <Row className='d-flex justify-content-between mt-3'>
                     <Col md="12" lg="6">
                         <img className="img-fluid rounded-start " id='foto' src={FOTO + this.state.obra.id_obres} alt={this.state.obra.nom}></img>
