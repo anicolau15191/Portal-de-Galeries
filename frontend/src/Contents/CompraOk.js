@@ -26,7 +26,6 @@ class CompraOk extends Component {
         let nom = this.props.match.params.nom;
         let preu = this.props.match.params.preu;
         let pedido = this.props.match.params.pedido;
-        console.log(nom);
         return (
             <div>
                 <Modal show={this.state.show} animation={false}>

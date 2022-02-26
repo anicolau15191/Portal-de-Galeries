@@ -10,14 +10,6 @@ const Compra = lazy(() => import('./Component/Compra'));
 const Exposicio = lazy(() => import('./Component/Exposicio'));
 const CompraOk = lazy(() => import('./Contents/CompraOk'));
 const renderLoader = () => <p>Loading</p>;
-/*import TabsGaleria from './Component/TabsGaleria';
-import Nav from "./Component/Nav"
-import Cercador from "./Component/Cercador";
-import Calendar from "./Component/Calendar";
-import Compra from './Component/Compra'
-import Exposicio from './Component/Exposicio'
-import CompraOk from './Contents/CompraOk';
-import './App.css'*/
 
 
 

@@ -3,6 +3,7 @@ import { Navbar } from 'react-bootstrap';
 import { Container, Button } from 'react-bootstrap';
 import icone from '../logo.png';
 import { Link } from "react-router-dom";
+import '../css/navbar.css'
 
 class Nav extends Component {
   constructor(props) {
