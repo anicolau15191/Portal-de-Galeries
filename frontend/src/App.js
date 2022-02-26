@@ -1,6 +1,7 @@
 
-import React, { Component,lazy,Suspense } from 'react';
-import { BrowserRouter as Router, Route, useParams } from "react-router-dom";
+import React, { Component, Suspense } from 'react';
+import { lazy } from '@loadable/component'
+import { BrowserRouter as Routes, Route, useParams } from "react-router-dom";
 const TabsGaleria = lazy(() => import('./Component/TabsGaleria'));
 const Nav = lazy(() => import('./Component/Nav'));
 const Cercador = lazy(() => import('./Component/Cercador'));
@@ -28,22 +29,22 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Router>
-        <Suspense  fallback={renderLoader()}>
-          <Route path="/" component={Nav} />
-          <Route path="/home" component={Cercador} />
-          <Route path="/calendari" component={Calendar} />
-          <Route path="/Galeria/:idGaleria" component={TabsGaleria} />
-          <Route path="/Exposicio/:nom/:id/:idGaleria" component={Exposicio} />
-          <Route path="/Compra/:nom/:id" component={Compra} />
-          <Route path="/valid/:nom/:preu/:pedido" component={CompraOk} />
-          </Suspense>
-        </Router>
+       <div>
         
-      </div>
-
-
+          <Routes>
+          <Suspense fallback={renderLoader()}>
+            <Route path="/" component={Nav} />
+            <Route path="/home" component={Cercador} />
+            <Route path="/calendari" component={Calendar} />
+            <Route path="/Galeria/:idGaleria" component={TabsGaleria} />
+            <Route path="/Exposicio/:nom/:id/:idGaleria" component={Exposicio} />
+            <Route path="/Compra/:nom/:id" component={Compra} />
+            <Route path="/valid/:nom/:preu/:pedido" component={CompraOk} />
+            </Suspense>
+          </Routes>
+        
+     </div>
+    
     );
   }
 }

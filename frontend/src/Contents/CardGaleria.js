@@ -4,7 +4,7 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button, Container, Row, Col, CardHeader
 } from 'reactstrap';
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import image from '../default.jpg';
 
 class CardGaleria extends Component {
@@ -24,6 +24,7 @@ class CardGaleria extends Component {
     }
 
     render() {
+        
     return (
             <div>
                 <Container id="galeria" className="mt-3">

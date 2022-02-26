@@ -132,4 +132,4 @@ class Galeria extends Component {
   }
 }
 
-export default Galeria;
+export default  Galeria;

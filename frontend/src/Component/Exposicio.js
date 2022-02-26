@@ -88,7 +88,7 @@ class Exposicio extends Component {
                                         }
                                     })()}
                                     {this.state.exposicio.map((expo) => (
-                                        <Link key={expo.nom} to={"/Compra/" + obra.nom + '/' + obra.id_obres} className="text-decoration-none stretched-link" />
+                                        <Link key={expo.nom} to={"/Compra/" + obra.nom + '/' + obra.id_obres} id={expo.nom} className="text-decoration-none stretched-link" />
                                     ))}
                                 </Card>
                             </Col>

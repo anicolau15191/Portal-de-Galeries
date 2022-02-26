@@ -8,6 +8,7 @@
     "@fullcalendar/interaction": "^5.10.1",
     "@fullcalendar/react": "^5.10.1",
     "@fullcalendar/timegrid": "^5.10.1",
+    "@loadable/component": "^5.15.2",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -49,7 +50,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.1.0",
-    "axios": "^0.24.0"
+    "axios": "^0.24.0",
+    "gh-pages": "^3.1.0"
   }
 }

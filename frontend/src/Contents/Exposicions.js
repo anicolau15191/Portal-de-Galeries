@@ -1,4 +1,5 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component, Suspense } from 'react';
+import { lazy } from '@loadable/component'
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import axios from 'axios';
 import '../css/cardExpo.css'
