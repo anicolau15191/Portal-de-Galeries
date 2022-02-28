@@ -1,9 +1,11 @@
 
 import React, { Component, Suspense } from 'react';
 import { lazy } from '@loadable/component'
-import { BrowserRouter as Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route, useParams } from "react-router-dom";
+import { LocaleContext } from "./LocaleContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
 const TabsGaleria = lazy(() => import('./Component/TabsGaleria'));
-const Nav = lazy(() => import('./Component/Nav'));
+const Nav = lazy(() => import('./Component/NavBar'));
 const Cercador = lazy(() => import('./Component/Cercador'));
 const Calendar = lazy(() => import('./Component/Calendar'));
 const Compra = lazy(() => import('./Component/Compra'));
@@ -17,23 +19,37 @@ class App extends Component {
 
   constructor(props) {
     super();
+    this.state = {
+      preferredLocale: "ca"
+    };
   }
+
+  changeLanguage = ({ currentTarget: { id } }) => {
+    this.setState({
+      preferredLocale: id
+    });
+  };
+
 
   render() {
     return (
-      <div>
-        <Routes>
+
+      <LocaleContext.Provider value={this.state.preferredLocale}>
+        <Router>
           <Suspense fallback={renderLoader()}>
-            <Route path="/" component={Nav} />
-            <Route path="/home" component={Cercador} />
-            <Route path="/calendari" component={Calendar} />
-            <Route path="/Galeria/:idGaleria" component={TabsGaleria} />
-            <Route path="/Exposicio/:nom/:id/:idGaleria" component={Exposicio} />
-            <Route path="/Compra/:nom/:id" component={Compra} />
-            <Route path="/valid/:nom/:preu/:pedido" component={CompraOk} />
+            <div>
+              <Route path="/" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
+              <Route path="/home" component={Cercador} />
+              <Route path="/calendari" component={Calendar} />
+              <Route path="/Galeria/:idGaleria" render={() => <TabsGaleria changeLanguage={this.changeLanguage} idioma={this.state.preferredLocale}/> } />
+              <Route path="/Exposicio/:nom/:id/:idGaleria" component={Exposicio} />
+              <Route path="/Compra/:nom/:id" component={Compra} />
+              <Route path="/valid/:nom/:preu/:pedido" component={CompraOk} />
+            </div>
           </Suspense>
-        </Routes>
-      </div>
+        </Router>
+      </LocaleContext.Provider>
+
     );
   }
 }

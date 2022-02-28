@@ -4,6 +4,7 @@ import '../css/exposicio.css'
 import { lazy } from '@loadable/component'
 import { Button, ListGroup,Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import Translate from "../Component/local/Translate";
 const ArtistesObra = lazy(() => import('../Contents/ArtistesObra'));
 const DataExpo = lazy(() => import('../Contents/DataExpo'));
 const renderLoader = () => <p>Loading</p>;
@@ -58,7 +59,7 @@ class Exposicio extends Component {
             <Suspense  fallback={renderLoader()}>
             <Container>
                 <Container id="exposicio" className='mt-3'>
-                    <Button variant="dark" onClick={this.retorna}>Galeria</Button>
+                    <Button variant="dark" onClick={this.retorna}><Translate string={'galeria'} /></Button>
                     <Row className='mt-3'>
                         {this.state.exposicio.map((expo) => (
                             <Col className='col-12' key={expo.nom}>
@@ -95,7 +96,7 @@ class Exposicio extends Component {
                     <Row>
                         <Col md="12" lg="4">
                             <ListGroup>
-                                <ListGroup.Item variant="dark">Artistes</ListGroup.Item>
+                                <ListGroup.Item variant="dark"><Translate string={'artistes'} /></ListGroup.Item>
                                 {this.state.autors.map((autor) => (
                                     <ListGroup.Item key={autor.nom} >{autor.nom}</ListGroup.Item>
                                 ))}
@@ -103,7 +104,7 @@ class Exposicio extends Component {
                         </Col>
                         <Col md="12" lg="4">
                             <ListGroup>
-                                <ListGroup.Item variant="dark">Generes</ListGroup.Item>
+                                <ListGroup.Item variant="dark"><Translate string={'generes'} /></ListGroup.Item>
                                 {this.state.genere.map((g) => (
                                     <ListGroup.Item key={g.nom} >{g.nom}</ListGroup.Item>
                                 ))}
@@ -111,7 +112,7 @@ class Exposicio extends Component {
                         </Col>
                         <Col md="12" lg="4">
                             <ListGroup>
-                                <ListGroup.Item variant="dark">Informació</ListGroup.Item>
+                                <ListGroup.Item variant="dark"><Translate string={'info'} /></ListGroup.Item>
                                 {this.state.exposicio.map((expo) => (
                                     <ListGroup.Item key={expo.nom}>{expo.descripcio}</ListGroup.Item>
                                 ))}

@@ -4,6 +4,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import axios from 'axios';
 import '../css/cardExpo.css'
 import { Link } from "react-router-dom";
+import Translate from "../Component/local/Translate";
 const ImgExpo = lazy(() => import('./ImgExpo'));
 const ArtistesExpo = lazy(() => import('./ArtistesExpo'));
 const DataExpo = lazy(() => import('./DataExpo'));
@@ -34,7 +35,7 @@ class Exposicions extends Component {
     if (this.state.exposicions.length === 0) {
       return (
         <Container className='d-flex justify-content-center mt-5'>
-          <h1>No hi ha exposicions en aquest moment</h1>
+          <h1><Translate string={'no-expo'} /></h1>
         </Container>
       )
     } else {
