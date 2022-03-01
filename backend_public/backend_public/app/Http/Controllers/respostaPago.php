@@ -37,7 +37,7 @@ class respostaPago extends Controller
                     DB::select("update obres set obres.venut = 1 where obres.id_obres =" .$idObra);
 
                 }
-                    return \redirect('http://localhost:3000/valid/'.$nomObra.'/'.$preuObra.'/'.$pedido);
+                    return \redirect('http://www.artgalleryxisca.me/valid/'.$nomObra.'/'.$preuObra.'/'.$pedido);
 
         } else {
                 echo "FIRMA KO";
