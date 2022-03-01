@@ -5,8 +5,6 @@ import icone from '../logo.png';
 import { Link } from "react-router-dom";
 import '../css/navbar.css'
 import Idioma from "./Idioma";
-import catala from '../ca.png';
-import castella from '../es.png';
 import Translate from "./local/Translate";
 
 class NavBar extends Component {
@@ -20,7 +18,7 @@ class NavBar extends Component {
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container fluid>
           <Navbar.Brand >
-            <Link to={"/home/"} className="text-decoration-none stretched-link" id='link2' >
+            <Link to={"/home/"} className="text-decoration-none stretched-link" id='link2' aria-label="Pàgina d'inici"  >
               <img src={icone} alt="logo" width={50} height={50}></img>
             </Link>
           </Navbar.Brand>

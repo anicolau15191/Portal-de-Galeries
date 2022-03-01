@@ -90,7 +90,7 @@ class Compra extends Component {
                                     } else {
                                         return (
                                             <Col className="d-grid gap-2 mt-3">
-                                                <a href={"/pago?idObra=" + this.state.obra.id_obres} className="text-decoration-none stretched-link mt-2" id='link3' >
+                                                <a href={API+"/pago?idObra=" + this.state.obra.id_obres} className="text-decoration-none stretched-link mt-2" id='link3' >
                                                     <Button className='px-5' id="compra" variant="dark">COMPRAR</Button>
                                                 </a>
                                                 <Accordion defaultActiveKey="0" flush className='mt-5'>

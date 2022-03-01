@@ -18,10 +18,10 @@ class TabsGaleria extends Component {
         return (
             <Suspense fallback={renderLoader()}>
                 <Tabs>
-                    <div label="Perfil">
+                    <div label="Perfil" aria-label="Perfil galeria">
                         <Galeria id={this.props.match.params.idGaleria} idioma={this.props.idioma}/>
                     </div>
-                    <div label={<Translate string={'exposicions'}/>}>
+                    <div label={<Translate string={'exposicions'}/>} aria-label="Expoisicons">
                         <Exposicions id={this.props.match.params.idGaleria} idioma={this.props.idioma} />
                     </div>
                 </Tabs>
