@@ -54,7 +54,7 @@ class Exposicions extends Component {
                         <DataExpo inici={expo.data_ini} fi={expo.data_fi} />
                       </Card.Text>
                     </Card.Body>
-                    <Link to={"/Exposicio/" + expo.nom + '/' + expo.id_exposicio + '/' + id} className="text-decoration-none stretched-link"></Link>
+                    <Link  aria-label="LinkExpo" to={"/Exposicio/" + expo.nom + '/' + expo.id_exposicio + '/' + id} className="text-decoration-none stretched-link"></Link>
                   </Card>
                 </Col>
               ))}
