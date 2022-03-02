@@ -21,30 +21,32 @@ class Galeria extends Component {
   }
 
   componentDidMount() {
-    axios.get(API+'/galeries/3')
+    let id = this.props.id
+    axios.get(API + '/galeries/' + id)
       .then(res => {
         const galeria = res.data;
         this.setState({ galeria });
-        axios.get(API+'/galeries/'+this.state.galeria.id_galeria+'/generesPare')
+        axios.get(API + '/galeries/' + this.state.galeria.id_galeria + '/generesPare')
           .then(res => {
             const generes = res.data;
             this.setState({ generes });
           })
       })
 
-    axios.get(API+'/galeria/3/poblacio')
+    axios.get(API + '/galeria/' + id + '/poblacio')
       .then(res => {
         const poblacio = res.data;
         this.setState({ poblacio });
       })
 
-    axios.get(API+'/galeries/3/coordenades')
+    axios.get(API + '/galeries/' + id + '/coordenades')
       .then(res => {
         const galeriaCoordenades = res.data;
         this.setState({ galeriaCoordenades });
       })
   }
   render() {
+    let id = this.props.id
     return (
       <div className='galeria'>
         <Container className='mt-3 mb-3' id='tab'>
@@ -54,16 +56,28 @@ class Galeria extends Component {
             <Col md="12" lg="6" id='fotos'>
               <Carousel>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src={FOTO + '/3/3-1'} style={{ objectFit: 'cover'}} alt="..." />
+                  <img className="carrusel d-block w-100" src={FOTO + '/' + id + '/' + id + '-1'} onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src = '../default.jpg'
+                  }} style={{ objectFit: 'cover' }} alt="..." />
                 </Carousel.Item>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src={FOTO + '/3/3-2'} style={{ objectFit: 'cover'}} alt=".." />
+                  <img className="carrusel d-block w-100" src={FOTO + '/' + id + '/' + id + '-2'} onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src = '../default.jpg'
+                  }} style={{ objectFit: 'cover' }} alt=".." />
                 </Carousel.Item>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src={FOTO + '/3/3-3'} style={{ objectFit: 'cover'}} alt=".." />
+                  <img className="carrusel d-block w-100" src={FOTO + '/' + id + '/' + id + '-3'} onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src = '../default.jpg'
+                  }} style={{ objectFit: 'cover' }} alt=".." />
                 </Carousel.Item>
                 <Carousel.Item>
-                  <img className="carrusel d-block w-100" src={FOTO + '/3/3-4'} style={{ objectFit: 'cover'}} alt=".." />
+                  <img className="carrusel d-block w-100" src={FOTO + '/' + id + '/' + id + '-4'} onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src = '../default.jpg'
+                  }} style={{ objectFit: 'cover' }} alt=".." />
                 </Carousel.Item>
               </Carousel>
             </Col>
