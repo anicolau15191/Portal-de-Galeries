@@ -11,6 +11,7 @@ const Calendar = lazy(() => import('./Component/Calendar'));
 const Compra = lazy(() => import('./Component/Compra'));
 const Exposicio = lazy(() => import('./Component/Exposicio'));
 const CompraOk = lazy(() => import('./Contents/CompraOk'));
+const Reserves = lazy(()=>import('./Component/Reserves'));
 const renderLoader = () => <p>Loading</p>;
 
 
@@ -40,6 +41,7 @@ class App extends Component {
             <div>
               <Route path="/" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
               <Route path="/home" component={Cercador} />
+              <Route path="/reserves/:idExpo" component={Reserves} />
               <Route path="/calendari" component={Calendar} />
               <Route path="/Galeria/:idGaleria" render={() => <TabsGaleria changeLanguage={this.changeLanguage} idioma={this.state.preferredLocale}/> } />
               <Route path="/Exposicio/:nom/:id/:idGaleria" component={Exposicio} />

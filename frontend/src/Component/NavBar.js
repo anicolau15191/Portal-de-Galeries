@@ -3,7 +3,8 @@ import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { Container, Button } from 'react-bootstrap';
 import icone from '../logo.png';
 import { Link } from "react-router-dom";
-import '../css/navbar.css'
+import '../css/navbar.css';
+import './navbar.css';
 import Idioma from "./Idioma";
 import Translate from "./local/Translate";
 

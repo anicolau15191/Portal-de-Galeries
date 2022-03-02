@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import {Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter, Form} from 'reactstrap';
 import {Button} from 'react-bootstrap';
 import "@mobiscroll/react/dist/css/mobiscroll.min.css";
 import { Datepicker, localeCa } from "@mobiscroll/react";;
@@ -60,7 +60,8 @@ class Reserves extends Component {
         return (
             <Container>
                 <h3 className="mt-3">Reserva la teva entrada</h3>
-                <p></p>
+                <p>Està reservant una entrada per la exposició {this.state.expo.nom}</p>
+                <p>Perfavor, seleccioni un dia i una sessió:</p>
                 <Row>
                     <Col lg="4" sm="12" className="mt-3">
                         <span>Tria el dia en el que vols reservar:</span>
@@ -74,8 +75,8 @@ class Reserves extends Component {
                             <Row>
                                 {html}
                                 {this.state.sesions.map(sessio=>(
-                                    <Col lg="3" key={sessio.id_sessio}>
-                                        <Button className="my-2 d-flex flex-wrap justify-content-center" variant="outline-dark" onClick={this.toggleModal}>
+                                    <Col lg="3" className="d-flex justify-content-center" key={sessio.id_sessio}>
+                                        <Button className="w-100 my-2 d-flex flex-wrap justify-content-center" variant="outline-dark" onClick={this.toggleModal}>
                                             <p className="pe-0">{sessio.hora_ini.slice(0,-3)} - {sessio.hora_fi.slice(0,-3)}</p>
                                             <span style={{fontSize:"12px",width:"100%"}}>{sessio.nom}</span>
                                         </Button>
@@ -87,6 +88,7 @@ class Reserves extends Component {
                 </Row>
                 <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Confirmació de la reserva: </ModalHeader>
+                    <Form>
                     <ModalBody>
                         <h6>Informació de la reserva:</h6>
                         <p>{this.state.expo.nom}</p>
@@ -96,6 +98,7 @@ class Reserves extends Component {
                         <Button variant="dark" type="submit" onClick={this.toggleModal}>Envia</Button>
                         <Button variant="secondary" onClick={this.toggleModal}>Cancela</Button>
                     </ModalFooter>
+                    </Form>
                 </Modal>
             </Container>
         );
