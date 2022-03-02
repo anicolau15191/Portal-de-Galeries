@@ -1,21 +1,33 @@
-import React, { Component } from 'react';
-import Tabs from '../Component/Tabs';
-import Galeria from "../Contents/Galeria"
-import Exposicions from '../Contents/Exposicions';
+import React, { Component,Suspense } from 'react';
+import { lazy } from '@loadable/component'
+import { withRouter} from 'react-router-dom';
+import Translate from "./local/Translate";
+const Tabs = lazy(() => import('../Component/Tabs'));
+const Galeria = lazy(() => import('../Contents/Galeria'));
+const Exposicions = lazy(() => import('../Contents/Exposicions'));
+const renderLoader = () => <p>Loading</p>;
+
 class TabsGaleria extends Component {
+
+    constructor(props) {
+        super();
+        
+      }
 
     render() {
         return (
-            <Tabs>
-                <div label="Perfil">
-                    <Galeria id={this.props.match.params.idGaleria}/>
-                </div>
-                <div label="Exposicions">
-                    <Exposicions id={this.props.match.params.idGaleria} />
-                </div>
-            </Tabs>
+            <Suspense fallback={renderLoader()}>
+                <Tabs>
+                    <div label="Perfil" aria-label="Perfil galeria">
+                        <Galeria id={this.props.match.params.idGaleria} idioma={this.props.idioma}/>
+                    </div>
+                    <div label={<Translate string={'exposicions'}/>} aria-label="Expoisicons">
+                        <Exposicions id={this.props.match.params.idGaleria} idioma={this.props.idioma} />
+                    </div>
+                </Tabs>
+            </Suspense>
         );
     }
 
 }
-export default TabsGaleria;
+export default  withRouter(TabsGaleria);

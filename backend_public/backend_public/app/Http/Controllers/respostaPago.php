@@ -22,31 +22,26 @@ class respostaPago extends Controller
         $firma = $miObj->createMerchantSignatureNotif($kc,$datos);
 
         if ($firma === $signatureRecibida){
-            $data = $miObj->getParameter("Ds_Date");
-            $hora = $miObj->getParameter("Ds_Hour");
             $pedido = $miObj->getParameter("Ds_Order");
-            $import = $miObj->getParameter("Ds_Amount");
+
 
 
             $idProvisional = DB::select("select obres.id_obres from obres where obres.codi_ordre =" .$pedido);
             $idObra =  $idProvisional[0]->id_obres;
+            $nom = DB::select("select obres.nom from obres where obres.id_obres =" .$idObra);
+            $nomObra =  $nom[0]->nom;
+            $preu = DB::select("select obres.preu from obres where obres.id_obres =" .$idObra);
+            $preuObra =  $preu[0]->preu;
 
                 if(!empty($idObra)){
                     DB::select("update obres set obres.venut = 1 where obres.id_obres =" .$idObra);
 
                 }
-
-                ?>
-                <script>
-                    window.location.href='http://www.artgalleryxisca.me/'
-                </script>
-
-
-<?php
+                    return \redirect('http://www.artgalleryxisca.me/valid/'.$nomObra.'/'.$preuObra.'/'.$pedido);
 
         } else {
-            echo "FIRMA KO";
-        }
+                echo "FIRMA KO";
+            }
         }
     }
 

@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component,Suspense } from 'react';
 import axios from 'axios';
 import '../css/exposicio.css'
-import ArtistesObra from '../Contents/ArtistesObra';
-import { Container, Row, Col, Card } from 'reactstrap';
-import { Button, ListGroup } from 'react-bootstrap';
+import { lazy } from '@loadable/component'
+import { Button, ListGroup,Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import Translate from "../Component/local/Translate";
+const ArtistesObra = lazy(() => import('../Contents/ArtistesObra'));
+const DataExpo = lazy(() => import('../Contents/DataExpo'));
+const renderLoader = () => <p>Loading</p>;
 const API = 'http://api.artgalleryxisca.me';
 const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
 
@@ -47,20 +50,21 @@ class Exposicio extends Component {
             })
     }
 
-    render() {
-        let idGaleria = this.props.match.params.idGaleria;
+    retorna() {
+        window.history.back();
+    }
 
+    render() {
         return (
+            <Suspense  fallback={renderLoader()}>
             <Container>
                 <Container id="exposicio" className='mt-3'>
-                    <Link to={"/Galeria/" + idGaleria} className="text-decoration-none stretched-link mt-2" id='link' >
-                        <Button variant="dark">Galeria</Button>
-                    </Link>
+                    <Button variant="dark" onClick={this.retorna}><Translate string={'galeria'} /></Button>
                     <Row className='mt-3'>
                         {this.state.exposicio.map((expo) => (
                             <Col className='col-12' key={expo.nom}>
                                 <Col className='col-12'><h3 className='fw-normal'>{expo.nom}</h3></Col>
-                                <h5 className='fw-normal mt-3'>{expo.data_ini} - {expo.data_fi}</h5>
+                                <DataExpo inici={expo.data_ini} fi={expo.data_fi} />
                             </Col>
                         ))}
                     </Row>
@@ -68,8 +72,8 @@ class Exposicio extends Component {
                         {this.state.obres.map((obra) => (
                             <Col md="2" lg="4" className="mb-2 mt-3" key={obra.id_obres}>
                                 <Card className="card rounded border-0 h-100" id='card' >
-                                    <img className="img-fluid rounded-start col-12 " src={FOTO + obra.id_obres} style={{ height: 300, objectFit: 'cover' }} alt={obra.nom}></img>
-                                    <p className='col-12 d-flex justify-content-center'>{obra.nom}</p>
+                                    <img className="img-fluid rounded-start col-12 " src={FOTO + obra.id_obres} id='expoImg' alt={obra.nom}></img>
+                                    <div className='col-12 d-flex justify-content-center'>{obra.nom}</div>
                                     <ArtistesObra id={obra.id_obres} key={obra.id_obres} />
                                     {(() => {
                                         if (obra.venut === 1 || obra.preu === 0) {
@@ -83,7 +87,7 @@ class Exposicio extends Component {
                                         }
                                     })()}
                                     {this.state.exposicio.map((expo) => (
-                                        <Link to={"/Compra/" + obra.nom + '/' + obra.id_obres + '/' + idGaleria + '/' + expo.nom + '/' + expo.id_exposicio} className="text-decoration-none stretched-link" />
+                                        <Link key={expo.nom} to={"/Compra/" + obra.nom + '/' + obra.id_obres} id={obra.nom} className="text-decoration-none stretched-link" />
                                     ))}
                                 </Card>
                             </Col>
@@ -92,7 +96,7 @@ class Exposicio extends Component {
                     <Row>
                         <Col md="12" lg="4">
                             <ListGroup>
-                                <ListGroup.Item variant="dark">Artistes</ListGroup.Item>
+                                <ListGroup.Item variant="dark"><Translate string={'artistes'} /></ListGroup.Item>
                                 {this.state.autors.map((autor) => (
                                     <ListGroup.Item key={autor.nom} >{autor.nom}</ListGroup.Item>
                                 ))}
@@ -100,7 +104,7 @@ class Exposicio extends Component {
                         </Col>
                         <Col md="12" lg="4">
                             <ListGroup>
-                                <ListGroup.Item  variant="dark">Generes</ListGroup.Item>
+                                <ListGroup.Item variant="dark"><Translate string={'generes'} /></ListGroup.Item>
                                 {this.state.genere.map((g) => (
                                     <ListGroup.Item key={g.nom} >{g.nom}</ListGroup.Item>
                                 ))}
@@ -108,7 +112,7 @@ class Exposicio extends Component {
                         </Col>
                         <Col md="12" lg="4">
                             <ListGroup>
-                                <ListGroup.Item variant="dark">Informació</ListGroup.Item>
+                                <ListGroup.Item variant="dark"><Translate string={'info'} /></ListGroup.Item>
                                 {this.state.exposicio.map((expo) => (
                                     <ListGroup.Item key={expo.nom}>{expo.descripcio}</ListGroup.Item>
                                 ))}
@@ -117,6 +121,7 @@ class Exposicio extends Component {
                     </Row>
                 </Container>
             </Container>
+            </Suspense>
         );
     }
 }
