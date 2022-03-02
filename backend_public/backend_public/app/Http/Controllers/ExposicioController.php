@@ -6,6 +6,7 @@ use App\Models\Exposicio;
 use App\Models\Galeria;
 use App\Models\Obres;
 use App\Models\Sales;
+use App\Models\Sessio;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -37,6 +38,12 @@ class ExposicioController extends Controller
         return $getExposicio->toJson();
     }
 
+    public function getExposicio1(Exposicio $exposicio){
+        $getExposicio = Exposicio::where("id_exposicio" ,"=",$exposicio->id_exposicio)->where("enabled",0)->get();
+
+        return $getExposicio[0]->toJson();
+    }
+
     public function getObresExposicio(Exposicio $exposicio){
 
         $lisObres = Obres::where("id_expo","=",$exposicio->id_exposicio)->get();
@@ -48,5 +55,19 @@ class ExposicioController extends Controller
         $obra = Obres::where("id_expo","=",$exposicio->id_exposicio)->first();
 
         return $obra->toJson();
+    }
+
+    public function getDies(Exposicio $exposicio){
+        $dates = Exposicio::select('exposicio.data_ini','exposicio.data_fi')
+            ->where("id_exposicio","=",$exposicio->id_exposicio)
+            ->get();
+        return $dates[0];
+    }
+
+    public function getSessions(Exposicio $exposicio){
+        $sesions = Sessio::select('*')
+            ->where("id_expo","=","17")
+            ->get();
+        return $sesions;
     }
 }

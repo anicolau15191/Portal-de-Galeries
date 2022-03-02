@@ -18,6 +18,11 @@ class GenereController extends Controller
         return $generes->toJson();
     }
 
+    public function listAllEspec(){
+        $espec = DB::table('especialitzat')->get();
+        return $espec; 
+    }
+
     public function getGeneresFills(){
 
         $generes = Genere::whereNotNull('id_genere2')->get();

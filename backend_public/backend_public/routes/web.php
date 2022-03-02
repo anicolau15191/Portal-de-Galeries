@@ -44,6 +44,14 @@ Route::post('/perfil/{user}/editar'); // editar informacio l'usuari
 
 */
 
+Route::get('/sessions/{exposicio}',[ExposicioController::class, 'getSessions']);
+
+Route::get('/dies/{exposicio}',[ExposicioController::class, 'getDies']);
+
+Route::get('/especialitzat',[GenereController::class,'listAllEspec']);
+
+Route::get('/galeries/poblacio/{poblacio}', [GaleriaController::class, 'listByPoblacio']);
+
 Route::get('/galeries', [GaleriaController::class,'listAllActive']);
 
 Route::get('/galeries/{galeria}', [GaleriaController::class,'getGaleria']);
@@ -66,6 +74,8 @@ Route::get('/galeries/{galeria}/exposicions', [ExposicioController::class,'getAl
 
 Route::get('exposicions/{exposicio}', [ExposicioController::class,'getExposicio']);
 
+Route::get('exposicio/{exposicio}', [ExposicioController::class,'getExposicio1']);
+
 Route::get('exposicions/{exposicio}/autors', [ArtistaController::class,'getAutorsExposicio']);
 
 Route::get('exposicions/{exposicio}/primeraObra', [ExposicioController::class,'getFirtsObraExpo']);
@@ -81,6 +91,8 @@ Route::get('/poblacio/{poblacio}/galeries', [PoblacioController::class,'listAllG
 Route::get('/generes', [GenereController::class,'getGeneresPare']);
 
 Route::get('/generes/subgeneres', [GenereController::class,'getGeneresFills']);
+
+Route::get('/subgeneres/{genere}', [GenereController::class,'listFillsByGenere']);
 
 Route::get('/exposicio/{exposicio}/genere', [GenereController::class,'genereExposicio']);
 
