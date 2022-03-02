@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import TabsGaleria from './Component/TabsGaleria';
-import Head from "./Component/Nav"
+import NavBar from "./Component/NavBar";
 import Cercador from "./Component/Cercador";
 import Calendar from "./Component/Calendar";
 import Compra from './Component/Compra'
@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Route path="/" component={Head} />
+          <Route path="/" component={NavBar} />
           <Route path="/home" component={Cercador} />
           <Route path="/calendari" component={Calendar} />
           <Route path="/Galeria/:idGaleria" component={TabsGaleria} />
