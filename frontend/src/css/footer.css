@@ -9,12 +9,15 @@
     border-bottom: 3px solid transparent;
 }
 
-.nav-link:hover{
+a:hover{
     border-bottom: 3px solid white;
 }
-#link{
+#home{
     position: relative !important;
  }
- #link2{
+ #calendari{
      position: relative !important;
+ }
+ #iniciSessio{
+    position: relative !important;
  }

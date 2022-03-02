@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { Container, Button } from 'react-bootstrap';
-import icone from '../logo.png';
+import icone from '../artGallery.png';
 import { Link } from "react-router-dom";
 import '../css/navbar.css';
 import './navbar.css';
