@@ -8,7 +8,7 @@ import Translate from "../Component/local/Translate";
 const ArtistesObra = lazy(() => import('../Contents/ArtistesObra'));
 const DataExpo = lazy(() => import('../Contents/DataExpo'));
 const renderLoader = () => <p>Loading</p>;
-const API = 'http://api.artgalleryxisca.me';
+const API = 'https://api.artgalleryxisca.me';
 const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
 
 class Exposicio extends Component {

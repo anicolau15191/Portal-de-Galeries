@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../css/compra.css'
 import Translate from "./local/Translate";
 import { Container, Row, Col, Accordion, Button } from 'react-bootstrap';
-const API = 'http://api.artgalleryxisca.me';
+const API = 'https://api.artgalleryxisca.me';
 const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
 
 class Compra extends Component {

@@ -1,7 +1,7 @@
 
 import React, { Component, Suspense } from 'react';
 import { lazy } from '@loadable/component'
-import { BrowserRouter as Router, Route, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route, useParams, HashRouter } from "react-router-dom";
 import { LocaleContext } from "./LocaleContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 const TabsGaleria = lazy(() => import('./Component/TabsGaleria'));

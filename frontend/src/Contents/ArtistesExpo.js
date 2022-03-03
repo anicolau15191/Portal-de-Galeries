@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-const API = 'http://api.artgalleryxisca.me';
+const API = 'https://api.artgalleryxisca.me';
 
 class ArtistesExpo extends Component {
     constructor(props) {

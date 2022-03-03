@@ -9,7 +9,7 @@ const ImgExpo = lazy(() => import('./ImgExpo'));
 const ArtistesExpo = lazy(() => import('./ArtistesExpo'));
 const DataExpo = lazy(() => import('./DataExpo'));
 const renderLoader = () => <p>Loading</p>;
-const API = 'http://api.artgalleryxisca.me';
+const API = 'https://api.artgalleryxisca.me';
 
 
 class Exposicions extends Component {

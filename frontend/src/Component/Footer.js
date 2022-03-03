@@ -60,6 +60,7 @@ class Footer extends Component {
                                     <p><Link to={"/home/"} className="text-reset text-decoration-none stretched-link" id='home' >Cercador</Link></p>
                                     <p><Link to={"/calendari/"} className="text-reset text-decoration-none stretched-link" id='calendari' >Calendari</Link></p>
                                     <p><Link to={"/iniciSessio/"} className="text-reset text-decoration-none stretched-link" id='iniciSessio' >Inici Sessió</Link></p>
+                                    <p><Link to={"/Galeria/3"} className="text-reset text-decoration-none stretched-link" id='iniciSessio' >Galeria</Link></p>
                                 
                                 </div>
                                 <hr class=" d-md-none"></hr>
