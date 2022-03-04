@@ -16,7 +16,7 @@ class CardGaleria extends Component {
             <Col className="mb-2" lg="3" sm="6" key={this.props.galeria.id_galeria}>
                 <Card className="card rounded h-100 border-0">
                     <CardImg style={{ height: 300, objectFit: 'cover' }} className="img-fluid rounded-start" alt="..."
-                        src={FOTO + this.props.galeria.id_galeria + '/' + this.props.galeria.id_galeria + '-1'}
+                        src={FOTO +'/'+ this.props.galeria.id_galeria + '/' + this.props.galeria.id_galeria + '-1'}
                         onError={({ currentTarget }) => {
                             currentTarget.onerror = null;
                             currentTarget.src = '../default.jpg'

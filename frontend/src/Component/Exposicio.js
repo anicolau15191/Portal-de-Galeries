@@ -9,7 +9,7 @@ const ArtistesObra = lazy(() => import('../Contents/ArtistesObra'));
 const DataExpo = lazy(() => import('../Contents/DataExpo'));
 const renderLoader = () => <p>Loading</p>;
 const API = 'https://www.api.artgalleryxisca.me';
-const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
+const FOTO = 'https://www.api.artgalleryxisca.me/fotos';
 
 class Exposicio extends Component {
     constructor(props) {
@@ -72,7 +72,7 @@ class Exposicio extends Component {
                         {this.state.obres.map((obra) => (
                             <Col md="2" lg="4" className="mb-2 mt-3" key={obra.id_obres}>
                                 <Card className="card rounded border-0 h-100" id='card' >
-                                    <img className="img-fluid rounded-start col-12 " src={FOTO + obra.id_obres} id='expoImg' alt={obra.nom}></img>
+                                    <img className="img-fluid rounded-start col-12 " src={FOTO +'/'+ obra.id_obres} id='expoImg' alt={obra.nom}></img>
                                     <div className='col-12 d-flex justify-content-center'>{obra.nom}</div>
                                     <ArtistesObra id={obra.id_obres} key={obra.id_obres} />
                                     {(() => {
