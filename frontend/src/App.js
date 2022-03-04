@@ -37,7 +37,7 @@ class App extends Component {
     return (
 
       <LocaleContext.Provider value={this.state.preferredLocale}>
-        <Router>
+        <HashRouter>
           <Suspense fallback={renderLoader()}>
             <div>
               <Route path="/" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
@@ -57,7 +57,7 @@ class App extends Component {
               <Route path="/valid/:nom/:preu/:pedido" component={Footer} />
             </div>
           </Suspense>
-        </Router>
+        </HashRouter>
       </LocaleContext.Provider>
 
     );
