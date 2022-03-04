@@ -39,7 +39,7 @@ class GaleriaController extends Controller
 
     public function fotos($id,$filename){
         $absolute_path = realpath("/imggaleria/".$id."/");
-        $path = $absolute_path . '\\' . $filename;
+        $path = $absolute_path . '/' . $filename;
 
         $file = \Illuminate\Support\Facades\File::get($path);
         $type = \Illuminate\Support\Facades\File::mimeType($path);
