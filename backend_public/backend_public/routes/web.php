@@ -106,6 +106,8 @@ Route::get('/obres/{obra}/genere', [ObresController::class,'getGenereObra']);
 
 Route::get('/foto/{id}/{filename}', [GaleriaController::class,'fotos']);
 
+Route::get('/fotos/{id}', [ObresController::class,'fotosObres']);
+
 Route::get('/pago', [Pago::class,'pago']);
 
 Route::get('/resposta',[\App\Http\Controllers\respostaPago::class,'res']);

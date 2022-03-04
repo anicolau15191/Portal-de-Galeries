@@ -37,4 +37,17 @@ class ObresController extends Controller
 
         return $idObra;
     }
+
+    public function fotosObres($id){
+        $path = realpath("/imggaleria/imgObres/".$id);
+
+
+        $file = \Illuminate\Support\Facades\File::get($path);
+        $type = \Illuminate\Support\Facades\File::mimeType($path);
+
+        $response = \Illuminate\Support\Facades\Response::make($file,200);
+        $response->header("Content-type",$type);
+
+        return $response;
+    }
 }
