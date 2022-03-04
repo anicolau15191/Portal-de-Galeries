@@ -104,7 +104,7 @@ Route::get('/obres/{obra}/info', [ObresController::class,'getObra']);
 
 Route::get('/obres/{obra}/genere', [ObresController::class,'getGenereObra']);
 
-Route::get('/prova', [ObresController::class,'p']);
+Route::get('/foto/{id}/{filename}', [GaleriaController::class,'fotos']);
 
 Route::get('/pago', [Pago::class,'pago']);
 
