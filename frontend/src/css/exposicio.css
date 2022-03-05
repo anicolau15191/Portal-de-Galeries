@@ -11,3 +11,8 @@ p{
     height:300px;
     object-fit: cover;
  }
+ 
+ .list{
+     background-color: black;
+     color: white;
+ }

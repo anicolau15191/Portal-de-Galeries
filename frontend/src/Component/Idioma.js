@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import catala from '../ca.png';
 import castella from '../es.png';
 import { NavDropdown, Nav } from 'react-bootstrap'
-import Translate from "../Component/local/Translate";
+import { lazy } from '@loadable/component'
+const Translate = lazy(() => import('../Component/local/Translate'));
 class Idioma extends Component {
 
     render() {

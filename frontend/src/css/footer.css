@@ -12,12 +12,4 @@
 a:hover{
     border-bottom: 3px solid white;
 }
-#home{
-    position: relative !important;
- }
- #calendari{
-     position: relative !important;
- }
- #iniciSessio{
-    position: relative !important;
- }
+

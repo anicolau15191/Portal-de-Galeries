@@ -1,8 +1,8 @@
 .nav-link{
     float: left;
     display: block;
+    text-align: start !important;
     color: white !important;
-    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
@@ -12,9 +12,42 @@
 .nav-link:hover{
     border-bottom: 3px solid white;
 }
-#link{
+#home{
     position: relative !important;
+    float: left;
+    display: block;
+    text-align: start !important;
+    color: white !important;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-bottom: 3px solid transparent;
  }
- #link2{
+ #home:hover{
+    border-bottom: 3px solid white;
+ }
+ #calendari{
+    position: relative !important;
+    float: left;
+    display: block;
+    text-align: start !important;
+    color: white !important;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-bottom: 3px solid transparent;
+ }
+ #calendari:hover{
+    border-bottom: 3px solid white;
+ }
+ #logo{
+     padding-top: 0%;
+     padding-bottom: 0%;
      position: relative !important;
+     float: left;
+     display: block;
+     text-align: start !important;
+     color: white !important;
+     text-decoration: none;
+     border-bottom: 3px solid transparent;
  }
