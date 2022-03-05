@@ -51,7 +51,7 @@ public function pago(){
         DB::select("update obres set obres.codi_ordre =". $order ." where obres.id_obres=".$id);
 
         ?>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <form id="realizarPago" action="<?php echo $url_tpv; ?>" method="post">
             <input type='hidden' name='Ds_SignatureVersion' value='<?php echo $version; ?>'>
             <input type='hidden' name='Ds_MerchantParameters' value='<?php echo $params; ?>'>
