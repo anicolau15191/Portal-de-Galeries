@@ -5,7 +5,7 @@ import { lazy } from '@loadable/component'
 import { Container, Row, Col, Accordion, Button } from 'react-bootstrap';
 const Translate = lazy(() => import('./local/Translate'));
 const API = 'https://www.api.artgalleryxisca.me';
-const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
+const FOTO = 'https://www.api.artgalleryxisca.me/fotos';
 
 class Compra extends Component {
     constructor(props) {
@@ -49,7 +49,7 @@ class Compra extends Component {
                 <Button variant="dark" id="exposicio" onClick={this.retorna}><Translate string={'expo'}/></Button>
                 <Row className='d-flex justify-content-between mt-3'>
                     <Col md="12" lg="6">
-                        <img className="img-fluid rounded-start " id='foto' src={FOTO + this.state.obra.id_obres} alt={this.state.obra.nom}></img>
+                        <img className="img-fluid rounded-start " id='foto' src={FOTO +'/'+ this.state.obra.id_obres} alt={this.state.obra.nom}></img>
                     </Col>
                     <Col md="12" lg="6">
                         <Row className='d-flex justify-content-between'>
