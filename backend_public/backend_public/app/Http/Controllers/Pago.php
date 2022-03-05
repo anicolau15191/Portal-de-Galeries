@@ -30,9 +30,9 @@ public function pago(){
         $currency = '978';
         $consumerlng = '001';
         $transactionType = '0';
-        $urlMerchant = 'http://www.artgalleryxisca.me';
-        $urlweb_ok = 'http://api.artgalleryxisca.me/resposta';
-        $urlweb_ko = 'http://www.artgalleryxisca.me/';
+        $urlMerchant = 'https://www.artgalleryxisca.me';
+        $urlweb_ok = 'https://www.api.artgalleryxisca.me/resposta';
+        $urlweb_ko = 'https://www.artgalleryxisca.me/';
 
         $miObj->setParameter("DS_MERCHANT_AMOUNT", $amount);
         $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
