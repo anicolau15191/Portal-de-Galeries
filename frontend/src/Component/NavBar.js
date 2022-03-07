@@ -7,8 +7,10 @@ import icone from '../artGallery.png';
 import { Link } from "react-router-dom";
 import '../css/navbar.css';
 import './navbar.css';
-import Idioma from "./Idioma";
-import Translate from "./local/Translate";
+import { lazy } from '@loadable/component'
+const Translate = lazy(() => import('./local/Translate'));
+const Idioma = lazy(() => import('./Idioma'));
+
 
 export const UserContext = React.createContext();
 
@@ -57,19 +59,19 @@ class NavBar extends Component {
 
   render() {
     return (
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar bg="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand >
             <Link to={"/home/"} className="text-decoration-none stretched-link" id='link2' aria-label="Pàgina d'inici"  >
               <img src={icone} alt="logo" width={30} height={30}></img>
             </Link>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href={"/home"} className="me-3">Inici</Nav.Link>
-              <Nav.Link href={"/calendari"}>Calendari</Nav.Link>
-              <NavDropdown title={<Translate string={'selec-idoma'} />} id="collasible-nav-dropdown">
+              <Link to={"/home"} id="home" className="text-decoration-none stretched-link me-3"><Translate string={'inici'} /></Link>
+              <Link to={"/calendari"} id="calendari" className="text-decoration-none stretched-link me-3"><Translate string={'calendari'} /></Link>
+              <NavDropdown title={<Translate string={'selec-idoma'} />} id="basic-nav-dropdown">
                 <Idioma changeLanguage={this.props.changeLanguage} />
               </NavDropdown>
             </Nav>
@@ -105,6 +107,7 @@ class NavBar extends Component {
           </Form>
         </Modal>
       </Navbar>
+
     )
   }
 }

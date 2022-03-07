@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-const API = 'http://api.artgalleryxisca.me';
-const FOTO = 'http://admin.artgalleryxisca.me:8080/imggaleria/imgObres/';
+const API = 'https://www.api.artgalleryxisca.me';
+const FOTO = 'https://www.api.artgalleryxisca.me/fotos';
 
 class ImgExpo extends Component{
     constructor(props) {
@@ -21,7 +21,7 @@ class ImgExpo extends Component{
 
       render(){
         return(
-            <img className="img-fluid rounded-start " src={FOTO+this.state.obra.id_obres} style={{ height: 300 , objectFit: 'cover'}} alt={this.state.obra.nom}></img>
+            <img className="img-fluid rounded-start " src={FOTO+'/'+this.state.obra.id_obres} style={{ height: 300 , objectFit: 'cover'}} alt={this.state.obra.nom}></img>
 
         );
       }

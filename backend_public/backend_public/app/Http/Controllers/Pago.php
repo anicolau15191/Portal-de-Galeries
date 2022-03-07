@@ -30,9 +30,9 @@ public function pago(){
         $currency = '978';
         $consumerlng = '001';
         $transactionType = '0';
-        $urlMerchant = 'http://www.artgalleryxisca.me';
-        $urlweb_ok = 'http://api.artgalleryxisca.me/resposta';
-        $urlweb_ko = 'http://www.artgalleryxisca.me/';
+        $urlMerchant = 'https://www.artgalleryxisca.me';
+        $urlweb_ok = 'https://www.api.artgalleryxisca.me/resposta';
+        $urlweb_ko = 'https://www.artgalleryxisca.me/';
 
         $miObj->setParameter("DS_MERCHANT_AMOUNT", $amount);
         $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
@@ -51,7 +51,7 @@ public function pago(){
         DB::select("update obres set obres.codi_ordre =". $order ." where obres.id_obres=".$id);
 
         ?>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <form id="realizarPago" action="<?php echo $url_tpv; ?>" method="post">
             <input type='hidden' name='Ds_SignatureVersion' value='<?php echo $version; ?>'>
             <input type='hidden' name='Ds_MerchantParameters' value='<?php echo $params; ?>'>

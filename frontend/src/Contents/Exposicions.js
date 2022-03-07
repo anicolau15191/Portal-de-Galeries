@@ -4,12 +4,12 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import axios from 'axios';
 import '../css/cardExpo.css'
 import { Link } from "react-router-dom";
-import Translate from "../Component/local/Translate";
 const ImgExpo = lazy(() => import('./ImgExpo'));
 const ArtistesExpo = lazy(() => import('./ArtistesExpo'));
 const DataExpo = lazy(() => import('./DataExpo'));
+const Translate = lazy(() => import('../Component/local/Translate'));
 const renderLoader = () => <p>Loading</p>;
-const API = 'http://api.artgalleryxisca.me';
+const API = 'https://www.api.artgalleryxisca.me';
 
 
 class Exposicions extends Component {
@@ -48,13 +48,13 @@ class Exposicions extends Component {
                   <Card className="card rounded border-0 h-100" id='card' >
                     <ImgExpo id={expo.id_exposicio} />
                     <Card.Body className="card-body" >
-                      <Card.Title> {expo.nom}</Card.Title>
+                      <Card.Title className='d-flex justify-content-between'><p>{expo.nom}</p>   →</Card.Title>
                       <Card.Text>
                         <ArtistesExpo id={expo.id_exposicio} />
                         <DataExpo inici={expo.data_ini} fi={expo.data_fi} />
                       </Card.Text>
                     </Card.Body>
-                    <Link  aria-label="LinkExpo" to={"/Exposicio/" + expo.nom + '/' + expo.id_exposicio + '/' + id} className="text-decoration-none stretched-link"></Link>
+                    <Link aria-label="LinkExpo" to={"/Exposicio/" + expo.nom + '/' + expo.id_exposicio + '/' + id} className="text-decoration-none stretched-link"></Link>
                   </Card>
                 </Col>
               ))}

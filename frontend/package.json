@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://www.artgalleryxisca.me/",
   "dependencies": {
     "@fullcalendar/core": "^5.10.1",
     "@fullcalendar/daygrid": "^5.10.1",
@@ -41,7 +42,6 @@
     "workbox-strategies": "^5.1.4",
     "workbox-streams": "^5.1.4"
   },
-  "homepage": "http://www.artgalleryxisca.me/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

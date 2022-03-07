@@ -1,7 +1,7 @@
 
 import React, { Component, Suspense } from 'react';
 import { lazy } from '@loadable/component'
-import { BrowserRouter as Router, Route, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Route, useParams, HashRouter } from "react-router-dom";
 import { LocaleContext } from "./LocaleContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 const TabsGaleria = lazy(() => import('./Component/TabsGaleria'));
@@ -13,6 +13,7 @@ const Compra = lazy(() => import('./Component/Compra'));
 const Exposicio = lazy(() => import('./Component/Exposicio'));
 const CompraOk = lazy(() => import('./Contents/CompraOk'));
 const Reserves = lazy(()=>import('./Component/Reserves'));
+const Footer = lazy(()=>import('./Component/Footer'));
 const renderLoader = () => <p>Loading</p>;
 
 
@@ -44,10 +45,15 @@ class App extends Component {
               <Route path="/home" component={Cercador} />
               <Route path="/register" component={Registre} />
               <Route path="/reserves/:idExpo" component={Reserves} />
+              <Route path="/reserves/:idExpo" component={Footer} />
               <Route path="/calendari" component={Calendar} />
+              <Route path="/calendari" component={Footer} />
               <Route path="/Galeria/:idGaleria" render={() => <TabsGaleria changeLanguage={this.changeLanguage} idioma={this.state.preferredLocale}/> } />
+              <Route path="/Galeria/:idGaleria" component={Footer} />
               <Route path="/Exposicio/:nom/:id/:idGaleria" component={Exposicio} />
+              <Route path="/Exposicio/:nom/:id/:idGaleria" component={Footer} />
               <Route path="/Compra/:nom/:id" component={Compra} />
+              <Route path="/Compra/:nom/:id" component={Footer} />
               <Route path="/valid/:nom/:preu/:pedido" component={CompraOk} />
             </div>
           </Suspense>

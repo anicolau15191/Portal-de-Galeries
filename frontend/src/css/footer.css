@@ -1,0 +1,15 @@
+.nav-link{
+    float: left;
+    display: block;
+    color: white !important;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-bottom: 3px solid transparent;
+}
+
+a:hover{
+    border-bottom: 3px solid white;
+}
+
