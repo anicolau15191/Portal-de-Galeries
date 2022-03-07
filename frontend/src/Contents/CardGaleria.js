@@ -31,7 +31,7 @@ class CardGaleria extends Component {
                         </picture>
                     </CardHeader>*/}
                     <CardBody className="card-body">
-                        <CardTitle className="text-center"><h5>{this.props.galeria.nom}</h5></CardTitle>
+                        <CardTitle className="text-center fw-bold">{this.props.galeria.nom}</CardTitle>
                         <CardText></CardText>
                     </CardBody>
                     <Link to={"/Galeria/" + this.props.galeria.id_galeria} className="text-decoration-none stretched-link"></Link>

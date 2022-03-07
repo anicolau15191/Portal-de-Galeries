@@ -4,6 +4,7 @@ import { lazy } from '@loadable/component'
 import { BrowserRouter as Router, Route, useParams, HashRouter } from "react-router-dom";
 import { LocaleContext } from "./LocaleContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { UserContext } from './Component/NavBar';
 const TabsGaleria = lazy(() => import('./Component/TabsGaleria'));
 const Nav = lazy(() => import('./Component/NavBar'));
 const Registre = lazy(()=> import('./Component/Registre'));
@@ -23,7 +24,8 @@ class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      preferredLocale: "ca"
+      preferredLocale: "ca",
+      user:""
     };
   }
 
@@ -37,11 +39,12 @@ class App extends Component {
   render() {
     return (
 
+      <UserContext.Provider value={this.state.user}>
       <LocaleContext.Provider value={this.state.preferredLocale}>
         <Router>
           <Suspense fallback={renderLoader()}>
             <div>
-              <Route path="/" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
+              <Route path="/" render={() => <Nav changeLanguage={this.changeLanguage} /> }/>
               <Route path="/home" component={Cercador} />
               <Route path="/home" component={Footer} />
               <Route path="/register" component={Registre} />
@@ -60,6 +63,7 @@ class App extends Component {
           </Suspense>
         </Router>
       </LocaleContext.Provider>
+      </UserContext.Provider>
 
     );
   }

@@ -21,7 +21,7 @@ class NavBar extends Component {
       modal: false,
       user: "",
       pass: "",
-      usuari: ""
+      usuari:""
     }
 
     this.toggleModal = this.toggleModal.bind(this);
