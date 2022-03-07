@@ -44,14 +44,12 @@
                 { data: "idObres" },
                 { data: "nomO" },
                 { data: "preu" },
-                { data: "nomU" },
-                { data: "cognoms" },
                 { data: "email" },
                 { data: "nomP" }
             ]
         });
         $.ajax({
-            url:"/compres/2",
+            url:"/compres/",
             dataType:"json",
             success:function(json){
                 console.log(json);
