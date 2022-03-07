@@ -83,7 +83,7 @@ class Reserves extends Component {
                 <h3 className="mt-3">Reserva la teva entrada</h3>
                 <Row>
                     <Col lg="2">
-
+                        
                     </Col> 
                     <Col lg="9">
                         <h5>{this.state.expo.nom}</h5>

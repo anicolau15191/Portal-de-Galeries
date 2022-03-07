@@ -43,6 +43,7 @@ class App extends Component {
             <div>
               <Route path="/" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
               <Route path="/home" component={Cercador} />
+              <Route path="/home" component={Footer} />
               <Route path="/register" component={Registre} />
               <Route path="/reserves/:idExpo" component={Reserves} />
               <Route path="/reserves/:idExpo" component={Footer} />

@@ -60,6 +60,7 @@ class Exposicio extends Component {
             <Container>
                 <Container id="exposicio" className='mt-3'>
                     <Button variant="dark" onClick={this.retorna}><Translate string={'galeria'} /></Button>
+                    <Button variant="dark" className="ms-3"><Link className='text-decoration-none text-white' to={"/reserves/"+this.state.exposicio.id_exposicio}>Reserva</Link></Button>
                     <Row className='mt-3'>
                         {this.state.exposicio.map((expo) => (
                             <Col className='col-12' key={expo.nom}>
