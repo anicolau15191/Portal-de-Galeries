@@ -1,17 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Usuari;
+use App\Models\Visitant;
+use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Exposicio;
 use App\Models\Galeria;
 use App\Models\Obres;
 use App\Models\Sales;
 use App\Models\Sessio;
 use Carbon\Carbon;
+use App\Models\Entrada;
 use Illuminate\Support\Facades\DB;
 
 class ExposicioController extends Controller
 {
+
     public function getExposicionsSala(Sales $sala){
         $listExposicions = Exposicio::where("id_sala" ,"=",$sala->id_sales)->where("enabled",0)->get();
 
@@ -64,10 +70,66 @@ class ExposicioController extends Controller
         return $dates[0];
     }
 
-    public function getSessions(Exposicio $exposicio){
+    public function getSessions(Exposicio $exposicio, Request $request){
+        $dia = $request->input('dia');
         $sesions = Sessio::select('*')
-            ->where("id_expo","=","17")
+            ->where("id_expo","=",$exposicio->id_exposicio)
+            ->where("data","=",$dia)
             ->get();
+
         return $sesions;
+    }
+
+    public function insertEntrada(Request $request){
+        $sessio = $request->input("id_sessio");
+        $usuari = $request->input("id_usuari");
+        $entrada = new Entrada;
+        $entrada->id_visitant = $usuari;
+        $entrada->id_sessio = $sessio;
+        $entrada->save();
+        $entrada;
+    }
+
+    public function getCalendari(){
+        $expos = Exposicio::select("data_ini as start", "data_fi as end", "nom as title")
+            ->where("enabled","=",0)
+            ->get();
+        return $expos->toJson();
+    }
+
+    public function register(Request $request){
+        $usuari = new Usuari();
+
+        $usuari->nom = $request->input("nom");
+        $usuari->cognoms = $request->input("last");
+        $usuari->id_poblacio = $request->input("pob");
+        $usuari->email = $request->input("email");
+        $usuari->password = Hash::make($request->input("pass"));
+        $usuari->save();
+
+        $visitant = new Visitant();
+        $id = Usuari::select("id_usuaris")
+            ->where("nom","=",$usuari->nom)
+            ->where("cognoms","=",$usuari->cognoms)
+            ->where("id_poblacio","=",$usuari->id_poblacio)
+            ->where("email","=",$usuari->email)
+            ->where("password","=",$usuari->password)
+            ->first();
+
+        $visitant->id_visitant = (int) $id->id_usuaris;
+        $visitant->save();
+    }
+
+    public function login(Request $request){
+        $email = $request->input("email");
+        $password = $request->input("pass");
+        $user = Usuari::select("*")
+            ->where("email","=",$email)
+            ->first();
+        if(!Hash::check($password,$user->password)){
+            return 0;
+        }else{
+            return $user;
+        }
     }
 }

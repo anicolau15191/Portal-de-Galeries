@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import { Container, Button } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import "@fullcalendar/common/main.min.css";
@@ -16,7 +17,7 @@ class Calendar extends Component{
     }
 
     componentDidMount(){
-        axios.get("http://api.artgalleryxisca.me/galeries/3/exposicions")
+        axios.get("http://localhost:8000/calendar")
             .then(res => {
                 const expos = res.data;
                 this.setState({expos})
@@ -26,7 +27,11 @@ class Calendar extends Component{
     render(){
         return(
             <div>
-                <a href="/home" className="btn btn-secondary my-4 ms-2">Enrere</a>
+                <p></p>
+                    <Button variant='dark' bg="dark" className="ms-3">
+                        <Link to="/home" className="text-decoration-none text-white">Enrere</Link>
+                    </Button>
+
                 <FullCalendar 
                 plugins = {[dayGridPlugin]}
                 defaultView="dayGridMonth"
@@ -34,7 +39,10 @@ class Calendar extends Component{
                     left: "title",
                     right: "prev,next"
                   }}
-                  events={this.state.expos}
+                events={this.state.expos}
+                locale="ca"
+                firstDay={1}
+                eventColor="black"
                   />
             </div>
         );

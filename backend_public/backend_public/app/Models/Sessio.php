@@ -9,7 +9,11 @@ class Sessio extends Model
     public $timestamps = false;
     protected $primaryKey = 'id_sessio';
 
-    public function exposicios(){
+    public function exposicio(){
         return $this->belongsTo(Exposicio::class);
+    }
+
+    public function entrada(){
+        return $this->hasMany(Entrada::class);
     }
 }

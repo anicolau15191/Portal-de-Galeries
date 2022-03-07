@@ -1,0 +1,18 @@
+#register input{
+    background-color:#212529 !important;
+    color:white !important;
+}
+
+#register select{
+    background-color:#212529 !important;
+    color:white !important;
+}
+
+#register span{
+    font-weight: bold;
+}
+
+#register option{
+    background-color:#212529 !important;
+    color:white !important;
+}

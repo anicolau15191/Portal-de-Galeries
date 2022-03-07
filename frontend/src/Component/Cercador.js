@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Galeries from "../Component/Galeries";
 import Search from '../Contents/Search';
 import axios from 'axios';
+import '../css/cercador.css';
 
 class Cercador extends Component{
     constructor(){
@@ -47,8 +48,8 @@ class Cercador extends Component{
     render(){
         return(
             <div>
-                <div className="mx-3 bg-dark mt-3 mb-0 d-flex justify-content-center align-items-center">
-                    <h1 className="text-center text-light">Art Gallery</h1>
+                <div id="cercador" className="mx-3 bg-dark mt-3 mb-0 d-flex justify-content-center align-items-center">
+                    <h1 className="text-center text-light fw-bold">Art Gallery</h1>
                 </div>
                 <Search handlePoblacio={this.changePoblacio}
                         handleGenere={this.changeGenere}

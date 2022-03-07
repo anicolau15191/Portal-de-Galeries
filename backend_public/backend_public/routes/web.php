@@ -44,7 +44,15 @@ Route::post('/perfil/{user}/editar'); // editar informacio l'usuari
 
 */
 
-Route::get('/sessions/{exposicio}',[ExposicioController::class, 'getSessions']);
+Route::get('/calendar',[ExposicioController::class,'getCalendari']);
+
+Route::post('/login',[ExposicioController::class,'login']);
+
+Route::post('/registre',[ExposicioController::class,'register']);
+
+Route::post('/sessions/{exposicio}',[ExposicioController::class, 'getSessions']);
+
+Route::post('/reserva',[ExposicioController::class,'insertEntrada']);
 
 Route::get('/dies/{exposicio}',[ExposicioController::class, 'getDies']);
 

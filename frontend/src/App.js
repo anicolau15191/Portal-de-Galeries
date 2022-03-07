@@ -6,6 +6,7 @@ import { LocaleContext } from "./LocaleContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 const TabsGaleria = lazy(() => import('./Component/TabsGaleria'));
 const Nav = lazy(() => import('./Component/NavBar'));
+const Registre = lazy(()=> import('./Component/Registre'));
 const Cercador = lazy(() => import('./Component/Cercador'));
 const Calendar = lazy(() => import('./Component/Calendar'));
 const Compra = lazy(() => import('./Component/Compra'));
@@ -41,6 +42,7 @@ class App extends Component {
             <div>
               <Route path="/" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
               <Route path="/home" component={Cercador} />
+              <Route path="/register" component={Registre} />
               <Route path="/reserves/:idExpo" component={Reserves} />
               <Route path="/calendari" component={Calendar} />
               <Route path="/Galeria/:idGaleria" render={() => <TabsGaleria changeLanguage={this.changeLanguage} idioma={this.state.preferredLocale}/> } />

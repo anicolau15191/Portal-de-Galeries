@@ -29,8 +29,7 @@ class Galeries extends Component {
 
     render() {
         return(
-            <Container className="mt-3">
-                <Row className='d-flex flex-wrap justify-content-start'>
+                <Row className='mx-3 d-flex flex-wrap justify-content-start'>
                     {
                     this.props.galeries
                     .filter(galeria => this.applyFilters(galeria))
@@ -38,7 +37,7 @@ class Galeries extends Component {
                     <CardGaleria key={galeria.id_galeria} galeria={galeria} />)
                     }
                 </Row>
-            </Container>
+
         );
     }
 }
