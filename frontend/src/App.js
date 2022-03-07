@@ -54,7 +54,6 @@ class App extends Component {
               <Route path="/Compra/:nom/:id" component={Compra} />
               <Route path="/Compra/:nom/:id" component={Footer} />
               <Route path="/valid/:nom/:preu/:pedido" component={CompraOk} />
-              <Route path="/valid/:nom/:preu/:pedido" component={Footer} />
             </div>
           </Suspense>
         </Router>
