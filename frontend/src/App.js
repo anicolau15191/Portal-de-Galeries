@@ -41,18 +41,24 @@ class App extends Component {
         <Router>
           <Suspense fallback={renderLoader()}>
             <div>
-              <Route path="/" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
-              <Route path="/home" component={Cercador} />
-              <Route path="/home" component={Footer} />
+              <Route exact path="/" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
+              <Route exact path="/" component={Cercador} />
+              <Route exact path="/" component={Footer} />
+              <Route path="/register" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
               <Route path="/register" component={Registre} />
+              <Route path="/reserves/:idExpo" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
               <Route path="/reserves/:idExpo" component={Reserves} />
               <Route path="/reserves/:idExpo" component={Footer} />
+              <Route path="/calendari" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
               <Route path="/calendari" component={Calendar} />
               <Route path="/calendari" component={Footer} />
+              <Route path="/Galeria/:idGaleria" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
               <Route path="/Galeria/:idGaleria" render={() => <TabsGaleria changeLanguage={this.changeLanguage} idioma={this.state.preferredLocale}/> } />
               <Route path="/Galeria/:idGaleria" component={Footer} />
+              <Route path="/Exposicio/:nom/:id/:idGaleria" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
               <Route path="/Exposicio/:nom/:id/:idGaleria" component={Exposicio} />
               <Route path="/Exposicio/:nom/:id/:idGaleria" component={Footer} />
+              <Route path="/Compra/:nom/:id" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
               <Route path="/Compra/:nom/:id" component={Compra} />
               <Route path="/Compra/:nom/:id" component={Footer} />
               <Route path="/valid/:nom/:preu/:pedido" component={CompraOk} />
