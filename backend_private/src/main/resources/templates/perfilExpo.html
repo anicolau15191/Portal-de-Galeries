@@ -259,8 +259,8 @@
                             </div>
                             <div class="input-group mb-3">
                                 <label for="art" class="w-100 d-flex justify-content-start">Artista col·labordor</label>
-                                <select aria-describedby="generes" class="form-select" name="art" id="art" required>
-                                    <option value="">Selecciona</option>
+                                <select aria-describedby="artista" class="form-select" name="art" id="art">
+                                    <option value=0>Selecciona</option>
                                     <option th:each="art:${artistes}" th:value="${art.id}" th:text="${art.nom}"></option>
                                 </select>
                             </div>

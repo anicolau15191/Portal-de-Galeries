@@ -68,7 +68,7 @@ Route::get('/galeries/{galeria}/coordenades', [GaleriaController::class,'getCoor
 
 Route::get('/galeries/{galeria}/generes', [GenereController::class,'getAllGeneresByGaleria']);
 
-Route::get('/galeries/{galeria}/generesPare', [GenereController::class,'getGeneresPare']);
+Route::get('/galeries/{galeria}/generesPare', [GenereController::class,'getAllGeneresPare']);
 
 Route::get('/galeries/{galeria}/subgeneres', [GenereController::class,'getAllGeneresFillsByGaleria']);
 

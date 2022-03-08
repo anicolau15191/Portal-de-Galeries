@@ -66,7 +66,7 @@ class Search extends Component {
 
     render() {
         return (
-                <div  className="mt-0 mb-4 bg-dark p-4 d-flex flex-wrap justify-content-around mx-3 text-white">
+                <div  className="mt-0 mb-4 bg-dark p-1 d-flex flex-wrap justify-content-around mx-3 text-white">
                     <FormGroup className="col-lg-2 col-sm-12">
                         <Label>Cerca per nom</Label>
                         <Input type="text" className="form-control" onChange={this.handleCerca}></Input>

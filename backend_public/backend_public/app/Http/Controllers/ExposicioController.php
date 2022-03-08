@@ -83,11 +83,23 @@ class ExposicioController extends Controller
     public function insertEntrada(Request $request){
         $sessio = $request->input("id_sessio");
         $usuari = $request->input("id_usuari");
-        $entrada = new Entrada;
-        $entrada->id_visitant = $usuari;
-        $entrada->id_sessio = $sessio;
-        $entrada->save();
-        $entrada;
+        $num = DB::table("entrada")
+            ->where("id_sessio","=",$sessio)
+            ->count();
+        $limit = Sales::select("aforament")
+            ->join("exposicio","sales.id_sales","=","exposicio.id_sala")
+            ->join("sessio","exposicio.id_exposicio","=","sessio.id_expo")
+            ->where("id_sessio","=",$sessio)
+            ->first();
+        if($limit->aforament>$num){
+            $entrada = new Entrada;
+            $entrada->id_visitant = $usuari;
+            $entrada->id_sessio = $sessio;
+            $entrada->save();
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
     public function getCalendari(){
