@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/737.161dae06.chunk.css","mappings":"AAAA,UACI,qEAAwC,CACxC,YACJ","sources":["css/cercador.css"],"sourcesContent":["#cercador{\r\n    background-image: url(\"../registre.jpg\");\r\n    padding:50px;\r\n}"],"names":[],"sourceRoot":""}
