@@ -37,6 +37,10 @@ class App extends Component {
     });
   };
 
+  changeUser = () => {
+    this.setState({})
+  }
+
 
   render() {
     return (
@@ -46,7 +50,7 @@ class App extends Component {
         <Router>
           <Suspense fallback={renderLoader()}>
             <div>
-              <Route exact path="/" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>
+              <Route exact path="/" render={() => <Nav changeUser={this.changeUser} changeLanguage={this.changeLanguage}/> }/>
               <Route exact path="/" component={Cercador} />
               <Route exact path="/" component={Footer} />
               <Route path="/register" render={() => <Nav changeLanguage={this.changeLanguage}/> }/>

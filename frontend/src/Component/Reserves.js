@@ -8,8 +8,8 @@ import "@mobiscroll/react/dist/css/mobiscroll.min.css";
 import { Datepicker, localeCa } from "@mobiscroll/react";;
 
 class Reserves extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             dates: [],
             sesions: [],
@@ -18,7 +18,7 @@ class Reserves extends Component {
             expo: "",
             sessio: "",
             modal2: false,
-            reservat: ""
+            reservat: 1
         }
 
         this.toggleModal2 = this.toggleModal2.bind(this);
@@ -26,7 +26,6 @@ class Reserves extends Component {
         this.toggleModal = this.toggleModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSessio = this.handleSessio.bind(this);
-        this.printSessions = this.printSessions.bind(this);
 
     }
 
@@ -42,9 +41,6 @@ class Reserves extends Component {
                 const expo = res.data;
                 this.setState({ expo })
             })
-    }
-
-    printSessions() {
     }
 
     handleChange(d) {
@@ -67,7 +63,7 @@ class Reserves extends Component {
     toggleModal2() {
         this.setState({
             modal2: !this.state.modal2
-        })
+        });
     }
 
     handleSessio(sessio) {
@@ -77,11 +73,11 @@ class Reserves extends Component {
 
     handleSubmit() {
         let id_sessio = this.state.sessio.id_sessio;
-        let id_usuari = 3;
-        axios.post("https://www.api.artgalleryxisca.me/reserva", null, { params: { id_sessio, id_usuari } })
+        let id_usuari = 13;
+        axios.post("https://www.api.artgalleryxisca.me/reserva", null, { params: {id_sessio, id_usuari} })
             .then(res => {
-                this.setState({ reservat: res.data })
-            })
+                this.setState({ reservat:res.data})
+            });
         this.toggleModal();
         this.toggleModal2();
 
@@ -157,7 +153,7 @@ class Reserves extends Component {
                     {conf}
                     <ModalFooter>
                         <Button variant="dark" onClick={this.handleSubmit}><Link className="text-decoration-none text-white" to={"/"}>Torna a l'inici</Link></Button>
-                        <Button variant="secondary" onClick={this.toggleModal}>Cancela</Button>
+                        <Button variant="secondary" onClick={this.toggleModal2}>Cancela</Button>
                     </ModalFooter>
                 </Modal>
             </Container>

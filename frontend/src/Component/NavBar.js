@@ -15,7 +15,7 @@ export const UserContext = React.createContext();
 
 class NavBar extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       modal: false,
       email: "",
@@ -58,7 +58,7 @@ class NavBar extends Component {
   }
 
   handleVal(){
-    if(this.state.usuari!==0 && this.state.usuari!==""){
+    if(this.state.usuari!=0 && this.state.usuari!=""){
       this.toggleModal();
     }
   }
@@ -70,7 +70,7 @@ class NavBar extends Component {
   render() {
     let html;
     if(this.state.usuari===0){
-      html = <span className="text-danger">Usuari o contraseña incorrectes</span>
+      html = <span className="text-danger">Usuari o contrasenya incorrectes</span>
     }
     return (
       <Navbar bg="dark" expand="lg">
@@ -96,8 +96,8 @@ class NavBar extends Component {
                 )
               } else {
                 return (
-                  <NavDropdown title={this.state.usuari.nom}>
-                    <Button variant="dark" onClick={this.killUser}>Tanca la sessió</Button>  
+                  <NavDropdown className="me-5" title={this.state.usuari.nom}>
+                    <Button variant="light" onClick={this.killUser}>Tanca la sessió</Button>  
                   </NavDropdown>
                 )
               }
