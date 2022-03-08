@@ -65,14 +65,14 @@ class NavBar extends Component {
       <Navbar bg="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand >
-            <Link to={"/home/"} className="text-decoration-none stretched-link" id='link2' aria-label="Pàgina d'inici"  >
+            <Link to={"/"} className="text-decoration-none stretched-link" id='link2' aria-label="Pàgina d'inici"  >
               <img src={icone} alt="logo" width={30} height={30}></img>
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link to={"/home"} id="home" className="text-decoration-none stretched-link me-3"><Translate string={'inici'} /></Link>
+              <Link to={"/"} id="home" className="text-decoration-none stretched-link me-3"><Translate string={'inici'} /></Link>
               <Link to={"/calendari"} id="calendari" className="text-decoration-none stretched-link me-3"><Translate string={'calendari'} /></Link>
               <NavDropdown title={<Translate string={'selec-idoma'} />} id="basic-nav-dropdown">
                 <Idioma changeLanguage={this.props.changeLanguage} />
