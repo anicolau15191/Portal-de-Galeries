@@ -38,7 +38,7 @@ class CompraOk extends Component {
                         <p>Import total : {preu}€</p>
                     </Modal.Body>
                     <Modal.Footer>
-                    <Link to={"/home/"} className="text-decoration-none stretched-link" > <Button variant="dark">Inici</Button></Link>
+                    <Link to={"/"} className="text-decoration-none stretched-link" > <Button variant="dark">Inici</Button></Link>
                     </Modal.Footer>
                 </Modal>
             </div>

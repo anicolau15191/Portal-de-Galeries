@@ -156,7 +156,7 @@ class Reserves extends Component {
                     <ModalHeader>Informació de la reserva:</ModalHeader>
                     {conf}
                     <ModalFooter>
-                        <Button variant="dark" onClick={this.handleSubmit}><Link className="text-decoration-none text-whites" to={"/home"}>Torna a l'inici</Link></Button>
+                        <Button variant="dark" onClick={this.handleSubmit}><Link className="text-decoration-none text-white" to={"/"}>Torna a l'inici</Link></Button>
                         <Button variant="secondary" onClick={this.toggleModal}>Cancela</Button>
                     </ModalFooter>
                 </Modal>

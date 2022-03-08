@@ -138,7 +138,7 @@ class ExposicioController extends Controller
         $user = Usuari::select("*")
             ->where("email","=",$email)
             ->first();
-        if(!Hash::check($password,$user->password)){
+        if(!Hash::check($password, $user->password)){
             return 0;
         }else{
             return $user;

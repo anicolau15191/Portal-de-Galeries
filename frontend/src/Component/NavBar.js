@@ -11,7 +11,6 @@ import { lazy } from '@loadable/component'
 const Translate = lazy(() => import('./local/Translate'));
 const Idioma = lazy(() => import('./Idioma'));
 
-
 export const UserContext = React.createContext();
 
 class NavBar extends Component {
@@ -19,7 +18,7 @@ class NavBar extends Component {
     super();
     this.state = {
       modal: false,
-      user: "",
+      email: "",
       pass: "",
       usuari:""
     }
@@ -28,6 +27,7 @@ class NavBar extends Component {
     this.handleNom = this.handleNom.bind(this);
     this.handlePass = this.handlePass.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleVal = this.handleVal.bind(this);
   }
 
   toggleModal() {
@@ -37,7 +37,7 @@ class NavBar extends Component {
   }
 
   handleNom(n) {
-    this.setState({ user: n.target.value });
+    this.setState({ email: n.target.value });
   }
 
   handlePass(p) {
@@ -45,15 +45,26 @@ class NavBar extends Component {
   }
 
   handleSubmit() {
-    let user = this.state.user;
+    let email = this.state.email;
     let pass = this.state.pass;
-    if (user !== "" && pass !== "") {
-      axios.post("https://www.api.artgalleryxisca.me/login", null, { params: { user, pass } })
+    if (email !== "" && pass !== "") {
+      axios.post("https://www.api.artgalleryxisca.me/login", null, { params: { email, pass } })
         .then(res => {
           this.setState({ usuari: res.data })
         });
+        this.handleVal();
     }
 
+  }
+
+  handleVal(){
+    if(this.state.usuari!==0 && this.state.usuari!==""){
+      this.toggleModal();
+    }
+  }
+
+  killUser(){
+    this.setState({usuari : ""})
   }
 
   render() {
@@ -79,14 +90,15 @@ class NavBar extends Component {
               </NavDropdown>
             </Nav>
             {(() => {
-              if (this.state.usuari==="") {
+              if (this.state.usuari===0 || this.state.usuari==="") {
                 return (
                   <Button variant='outline-light' id="iniciSessio" onClick={this.toggleModal}><Translate string={'inici-sesio'} /></Button>
                 )
               } else {
                 return (
-                  <p className="fs-4 fw-light text-end">{this.state.obra.preu}€</p>
-
+                  <NavDropdown title={this.state.usuari.nom}>
+                    <Button variant="dark" onClick={this.killUser}>Tanca la sessió</Button>  
+                  </NavDropdown>
                 )
               }
             })()}

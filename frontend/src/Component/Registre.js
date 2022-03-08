@@ -71,7 +71,7 @@ class Registre extends Component {
         console.log(nom,last,email,poblacio,pass);
         
         if(this.state.nom!=="" && this.state.last!=="" && this.state.email!=="" && this.state.poblacio!=="" && this.state.pass!==""){
-            axios.post("http://localhost:8000/registre",null,{params:{nom:nom,last:last,email:email,pob:poblacio,pass:pass}});
+            axios.post("https://www.api.artgalleryxisca.me/registre",null,{params:{nom:nom,last:last,email:email,pob:poblacio,pass:pass}});
             this.handleToggle();
 
         }
@@ -137,7 +137,7 @@ class Registre extends Component {
                         <p>{<Translate string="re_pass" />}</p>
                     </ModalBody>
                     <ModalFooter>
-                        <Link to={"/home"} className="text-decoration-none stretched-link">
+                        <Link to={"/"} className="text-decoration-none stretched-link">
                             <Button variant="dark" bg="dark">{<Translate string="re_direct" />}</Button>
                         </Link>
                     </ModalFooter>
