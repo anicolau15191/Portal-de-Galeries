@@ -52,7 +52,7 @@ class Footer extends Component {
                                     <img src={icone} alt="logo" width={30} height={30} />
                                     <span> Art Gallery</span>
                                 </h6>
-                                <a href='http://admin.artgalleryxisca.me:8080/' className='text-decoration-none text-white'><span>Ets galarista?</span></a>
+                                <a href='http://admin.artgalleryxisca.me:8080/' className='text-decoration-none text-white'><span><Translate string={'back'} /></span></a>
                                 
 
                             </div>

@@ -25,9 +25,11 @@ class App extends Component {
     super();
     this.state = {
       preferredLocale: "ca",
-      user:""
+      user:{}
     };
   }
+
+  
 
   changeLanguage = ({ currentTarget: { id } }) => {
     this.setState({

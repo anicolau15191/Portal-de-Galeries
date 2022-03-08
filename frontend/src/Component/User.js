@@ -2,26 +2,20 @@ import React, { Component } from "react";
 import { LocaleContext } from "../../LocaleContext.js";
 
 
-class Translate extends Component {
+class User extends Component {
   
   constructor(props) {
     super(props);
-
     this.state = {
-      langs: {
-        es,
-        ca
-      }
+      user:{}
     };
   }
 
   render() {
-      const {langs} = this.state 
-      const {string} = this.props
     return (
-      <LocaleContext.Consumer>
+      <UserContext.Consumer>
         {value => langs[value][string]}
-      </LocaleContext.Consumer>
+      </UserContext.Consumer>
     );
   }
 

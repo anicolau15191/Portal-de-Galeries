@@ -27,7 +27,20 @@
     "footer-privacitat":"Política de Privacidad",
     "footer-art":"Acerca de Art Gallery",
     "inici":"Inicio",
-    "calendari":"Calendario"
-    
+    "calendari":"Calendario",
+    "registre":"Registro",
+    "re_nom":"Nombre",
+    "re_cog":"Apellidos",
+    "re_pob":"Población",
+    "re_con":"Contraseña",
+    "re_conf":"Se ha registrado correctamente",
+    "re_user":"Su nombre de usuario es: ",
+    "re_pass":"Ahora podra iniciar sesión con este nombre de usuario y la contraseña proporcionada",
+    "re_direct":"Ir al inicio",
+    "register":"Aun no tienes una cuenta?",
+    "cerca":"Buscar por nombre",
+    "genere":"Genero",
+    "subgenere":"Subgenero",
+    "back":"Eres propietario?"
     
 }

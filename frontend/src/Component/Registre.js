@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {Button} from 'react-bootstrap';
 import {Form, Input, Container, Col, Row, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import {Link} from 'react-router-dom';
+import Translate from "./local/Translate";
 import './registre.css';
 
 class Registre extends Component {
@@ -28,7 +29,7 @@ class Registre extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8000/poblacio")
+        axios.get("https://www.api.artgalleryxisca.me/poblacio")
             .then(res => {
                 const poblacio = res.data;
                 this.setState({ poblacio });
@@ -86,13 +87,13 @@ class Registre extends Component {
                     <Col className='col-xl-6'>
                         <Form>
                         <Row className="col-12 mb-5">
-                            <h1 className="mt-3">Registre</h1>
+                            <h1 className="mt-3">{<Translate string="registre" />}</h1>
                             <Col className="mt-5" lg="6" sm="12">
-                                <span className="ms-3">Nom:<span className="text-danger">*</span></span>
+                                <span className="ms-3">{<Translate string="re_nom" />}:<span className="text-danger">*</span></span>
                                 <Input variant="dark" className='col-xl-6 col-sm-12' onChange={this.handleNom} required />
                             </Col>
                             <Col className="mt-5" lg="6" sm="12">
-                                <span className="ms-3">Cognoms:</span>
+                                <span className="ms-1">{<Translate string="re_cog" />}:<span className="text-danger">*</span></span>
                                 <Input className='col-xl-6 col-sm-12' onChange={this.handleLast} required  />
                             </Col>
                         </Row>
@@ -104,7 +105,7 @@ class Registre extends Component {
                         </Row>
                         <Row className="col-12 mb-5">
                             <Col className="col-12">
-                                <span className="ms-3">Poblacio:<span className="text-danger">*</span></span>
+                                <span className="ms-3">{<Translate string="re_pob" />}:<span className="text-danger">*</span></span>
                                 <Input name="poblacio" className='col-xl-6 col-sm-12' type="select" onChange={this.handlePoblacio}  required >
                                     <option value="0">Selecciona</option>
                                     {this.state.poblacio.map((poblacio) => (
@@ -115,7 +116,7 @@ class Registre extends Component {
                         </Row>
                         <Row className="col-12 mb-5">
                             <Col className="col-12">
-                                <span className="ms-3">Contraseña:<span className="text-danger">*</span></span>
+                                <span className="ms-3">{<Translate string="re_con" />}:<span className="text-danger">*</span></span>
                                 <Input name="password" className='col-xl-6 col-sm-12' onChange={this.handlePassword} type="password" required />
                             </Col>
                         </Row>
@@ -129,15 +130,15 @@ class Registre extends Component {
                 </Row>
                 <Modal isOpen={this.state.modal}>
                     <ModalHeader>
-                        S'ha registrat correctament
+                    {<Translate string="re_conf" />}
                     </ModalHeader>
                     <ModalBody>
-                        <p>El seu nom d'usuari es: <span>{this.state.nom}</span></p>
-                        <p>Ara podrà inciar sessió amb aquest nom d'usuari i la contraseña proporcionada</p>
+                        <p>{<Translate string="re_user" />}<span>{this.state.nom}</span></p>
+                        <p>{<Translate string="re_pass" />}</p>
                     </ModalBody>
                     <ModalFooter>
                         <Link to={"/home"} className="text-decoration-none stretched-link">
-                            <Button variant="dark" bg="dark">Ves a l'inici</Button>
+                            <Button variant="dark" bg="dark">{<Translate string="re_direct" />}</Button>
                         </Link>
                     </ModalFooter>
                 </Modal>

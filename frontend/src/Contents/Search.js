@@ -1,6 +1,8 @@
 import axios from 'axios'; 
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
+import { lazy } from '@loadable/component'
+const Translate = lazy(() => import('../Component/local/Translate'));
 
 class Search extends Component {
     constructor(props) {
@@ -68,11 +70,11 @@ class Search extends Component {
         return (
                 <div  className="mt-0 mb-4 bg-dark p-1 d-flex flex-wrap justify-content-around mx-3 text-white">
                     <FormGroup className="col-lg-2 col-sm-12">
-                        <Label>Cerca per nom</Label>
+                        <Label>{<Translate string="cerca" />}</Label>
                         <Input type="text" className="form-control" onChange={this.handleCerca}></Input>
                     </FormGroup>
                     <FormGroup className="col-lg-2 col-sm-12">
-                        <Label>Població:</Label>
+                        <Label>{<Translate string="re_pob" />}</Label>
                         <Input type="select" id="poblacio" name="poblacio" onChange={this.handlePoblacio}>
                             <option value="0">Selecciona</option>
                             {this.state.poblacio.map((poblacio) => (
@@ -81,7 +83,7 @@ class Search extends Component {
                         </Input>
                     </FormGroup>
                     <FormGroup className="col-lg-2 col-sm-12">
-                        <Label>Genere:</Label>
+                        <Label>{<Translate string="genere" />}</Label>
                         <Input type="select" id="genere" name="genere" onChange={this.handleGenere}>
                             <option value="0">Selecciona</option>
                             {this.state.genPare.map((genPare) => (
@@ -90,7 +92,7 @@ class Search extends Component {
                         </Input>
                     </FormGroup>
                     <FormGroup className="col-lg-2 col-sm-12">
-                        <Label>Subgenere:</Label>
+                        <Label>{<Translate string="subgenere" />}</Label>
                         <Input type="select" id="subgenere" name="subgenere" onChange={this.handleSubgenere}>
                             <option value="0">Selecciona</option>
                             {this.state.genFill

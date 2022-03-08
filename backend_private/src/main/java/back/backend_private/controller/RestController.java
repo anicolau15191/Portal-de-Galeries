@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,8 +72,10 @@ public class RestController {
          return json;
     }
 
-    @GetMapping("/compres/{idPropietari}")
-    public List<ObresJson> compres(@PathVariable int idPropietari){
+    @GetMapping("/compres/")
+    public List<ObresJson> compres(HttpServletRequest request){
+        Usuaris user = (Usuaris) request.getSession().getAttribute("session");
+        int idPropietari = user.getId();
         List<ObresJson> compres = obresJsonCrud.getCompres();
         List<Integer> expos = obresJsonCrud.getExpos(idPropietari);
         List<ObresJson> json = new ArrayList<>();

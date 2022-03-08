@@ -11,6 +11,5 @@ public class ObresJson {
     private int idObres;
     private String nomO;
     private String preu;
-    private String email;
-    private String nomP;
+    private String codi;
 }

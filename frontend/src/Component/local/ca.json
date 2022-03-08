@@ -26,7 +26,21 @@
     "footer-privacitat":"Política de Privacitat",
     "footer-art":"Sobre Art Gallery",
     "inici":"Inici",
-    "calendari":"Calendari"
+    "calendari":"Calendari",
+    "registre":"Registre",
+    "re_nom":"Nom",
+    "re_cog":"Cognoms",
+    "re_pob":"Població",
+    "re_con":"Contrasenya",
+    "re_conf":"S'ha registrat correctament",
+    "re_user":"El seu nom d'usuari es: ",
+    "re_pass":"Ara podrà inciar sessió amb aquest nom d'usuari i la contraseña proporcionada",
+    "re_direct":"Ves a l'inici",
+    "register":"Encara no estas registrat?",
+    "cerca":"Cerca per nom",
+    "genere":"Gènere",
+    "subgenere":"Subgènere",
+    "back":"Ets propietari?"
 
 
     

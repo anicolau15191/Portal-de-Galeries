@@ -48,16 +48,19 @@ class NavBar extends Component {
     let user = this.state.user;
     let pass = this.state.pass;
     if (user !== "" && pass !== "") {
-      axios.post("http://localhost:8000/login", null, { params: { user, pass } })
+      axios.post("https://www.api.artgalleryxisca.me/login", null, { params: { user, pass } })
         .then(res => {
           this.setState({ usuari: res.data })
         });
-      this.toggleModal();
     }
 
   }
 
   render() {
+    let html;
+    if(this.state.usuari===0){
+      html = <span className="text-danger">Usuari o contraseña incorrectes</span>
+    }
     return (
       <Navbar bg="dark" expand="lg">
         <Container fluid>
@@ -94,14 +97,14 @@ class NavBar extends Component {
           <ModalHeader>Login</ModalHeader>
           <Form>
             <ModalBody>
-              <label>Nom d'usuari: </label>
+              <label>Email: </label>
               <Input onChange={this.handleNom} required />
-              <label>Contrasenya:</label>
+              <label>{<Translate string="re_con" />}:</label>
               <Input onChange={this.handlePass} type="password" required />
+              {html}
             </ModalBody>
             <ModalFooter className="d-flex justify-content-between">
-              <p></p>
-                <Link to="/register" onClick={this.toggleModal}>Encara no estas registrat?</Link>
+                <Link to="/register" onClick={this.toggleModal}>{<Translate string="register" />}</Link>
               <Button variant='dark' bg="dark" onClick={this.handleSubmit}>Entra</Button>
             </ModalFooter>
           </Form>
