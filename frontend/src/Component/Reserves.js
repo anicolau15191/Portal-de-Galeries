@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter, Form } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import ImgExpo from '../Contents/ImgExpo';
 import "@mobiscroll/react/dist/css/mobiscroll.min.css";
@@ -9,7 +10,7 @@ import { Datepicker, localeCa } from "@mobiscroll/react";;
 
 class Reserves extends Component {
     constructor(props) {
-        super(props);
+        super();
         this.state = {
             dates: [],
             sesions: [],
@@ -73,7 +74,7 @@ class Reserves extends Component {
 
     handleSubmit() {
         let id_sessio = this.state.sessio.id_sessio;
-        let id_usuari = 13;
+        let id_usuari = this.props.user.id_usuaris;
         axios.post("https://www.api.artgalleryxisca.me/reserva", null, { params: {id_sessio, id_usuari} })
             .then(res => {
                 this.setState({ reservat:res.data})
@@ -160,4 +161,4 @@ class Reserves extends Component {
         );
     }
 }
-export default Reserves;
+export default withRouter(Reserves);

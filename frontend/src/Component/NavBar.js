@@ -7,11 +7,10 @@ import icone from '../artGallery.png';
 import { Link } from "react-router-dom";
 import '../css/navbar.css';
 import './navbar.css';
-import { lazy } from '@loadable/component'
+import { lazy } from '@loadable/component';
 const Translate = lazy(() => import('./local/Translate'));
 const Idioma = lazy(() => import('./Idioma'));
 
-export const UserContext = React.createContext();
 
 class NavBar extends Component {
   constructor(props) {
@@ -28,6 +27,7 @@ class NavBar extends Component {
     this.handlePass = this.handlePass.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleVal = this.handleVal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   toggleModal() {
@@ -50,30 +50,31 @@ class NavBar extends Component {
     if (email !== "" && pass !== "") {
       axios.post("https://www.api.artgalleryxisca.me/login", null, { params: { email, pass } })
         .then(res => {
-          this.setState({ usuari: res.data })
+          this.props.login(res.data);
         });
         this.handleVal();
-    }
-
+    } 
   }
 
   handleVal(){
-    if(this.state.usuari!=0 && this.state.usuari!=""){
+    console.log(this.props.user);
+    if(this.props.user!=0 && this.props.user!=""){
       this.toggleModal();
     }
   }
 
-  killUser(){
-    this.setState({usuari : ""})
+  closeModal(){
+    this.setState({modal:false});
   }
 
   render() {
     let html;
-    if(this.state.usuari===0){
+    if(this.props.user===0){
       html = <span className="text-danger">Usuari o contrasenya incorrectes</span>
     }
+    console.log(this.props.user)
     return (
-      <Navbar bg="dark" expand="lg">
+        <Navbar bg="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand >
             <Link to={"/"} className="text-decoration-none stretched-link" id='link2' aria-label="Pàgina d'inici"  >
@@ -90,14 +91,14 @@ class NavBar extends Component {
               </NavDropdown>
             </Nav>
             {(() => {
-              if (this.state.usuari===0 || this.state.usuari==="") {
+              if (this.props.user===0 || this.props.user==="") {
                 return (
                   <Button variant='outline-light' id="iniciSessio" onClick={this.toggleModal}><Translate string={'inici-sesio'} /></Button>
                 )
               } else {
                 return (
-                  <NavDropdown className="me-5" title={this.state.usuari.nom}>
-                    <Button variant="light" onClick={this.killUser}>Tanca la sessió</Button>  
+                  <NavDropdown className="me-5" title={this.props.user.nom}>
+                    <Button variant="light" onClick={this.props.logout}>Tanca la sessió</Button>  
                   </NavDropdown>
                 )
               }
