@@ -18,10 +18,8 @@ public class ObresJsonCrud{
     private EntityManager entityManager;
 
     public List<ObresJson> getCompres(){
-        List<Object[]> sql = ((List<Object[]>) entityManager.createNativeQuery("SELECT obres.id_obres as 'idObres', obres.nom as 'nomO', obres.preu,obres.codi_ordre as 'codi' FROM obres " +
-                "INNER JOIN visitant ON obres.id_visitant=visitant.id_visitant " +
-                "INNER JOIN usuaris ON visitant.id_visitant=usuaris.id_usuaris " +
-                "INNER JOIN poblacio ON usuaris.id_poblacio=poblacio.id_poblacio;").getResultList());
+        List<Object[]> sql = ((List<Object[]>) entityManager.createNativeQuery("SELECT obres.id_obres as 'idObres', obres.nom as 'nomO'," +
+                " obres.preu,obres.codi_ordre as 'codi' FROM obres ").getResultList());
 
         Iterator it=sql.iterator();
         List<ObresJson> list=new ArrayList<>();
