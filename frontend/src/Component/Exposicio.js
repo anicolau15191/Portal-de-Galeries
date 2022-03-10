@@ -8,8 +8,8 @@ const ArtistesObra = lazy(() => import('../Contents/ArtistesObra'));
 const Translate = lazy(() => import('../Component/local/Translate'));
 const DataExpo = lazy(() => import('../Contents/DataExpo'));
 const renderLoader = () => <p>Loading</p>;
-const API = 'https://www.api.artgalleryxisca.me';
-const FOTO = 'https://www.api.artgalleryxisca.me/fotos';
+const API = 'https://api.artgalleryadria.me';
+const FOTO = 'https://Wapi.artgalleryadria.me/fotos';
 
 class Exposicio extends Component {
     constructor(props) {

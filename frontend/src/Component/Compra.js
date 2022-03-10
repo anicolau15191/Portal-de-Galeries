@@ -4,8 +4,8 @@ import '../css/compra.css'
 import { lazy } from '@loadable/component'
 import { Container, Row, Col, Accordion, Button } from 'react-bootstrap';
 const Translate = lazy(() => import('./local/Translate'));
-const API = 'https://www.api.artgalleryxisca.me';
-const FOTO = 'https://www.api.artgalleryxisca.me/fotos';
+const API = 'http://api.artgalleryadria.me';
+const FOTO = 'http://api.artgalleryadria.me/fotos';
 
 class Compra extends Component {
     constructor(props) {

@@ -48,7 +48,7 @@ class NavBar extends Component {
     let email = this.state.email;
     let pass = this.state.pass;
     if (email !== "" && pass !== "") {
-      axios.post("https://www.api.artgalleryxisca.me/login", null, { params: { email, pass } })
+      axios.post("http://api.artgalleryadria.me/login", null, { params: { email, pass } })
         .then(res => {
           this.props.login(res.data);
         });

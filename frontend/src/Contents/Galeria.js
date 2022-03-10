@@ -7,8 +7,8 @@ import { Carousel } from 'react-bootstrap';
 const GaleriaMap = lazy(() => import('../Component/GaleriaMap'));
 const Translate = lazy(() => import('../Component/local/Translate'));
 const renderLoader = () => <p>Loading</p>;
-const API = 'https://www.api.artgalleryxisca.me';
-const FOTO = 'https://www.api.artgalleryxisca.me/foto';
+const API = 'http://api.artgalleryadria.me';
+const FOTO = 'http://api.artgalleryadria.me/foto';
 
 class Galeria extends Component {
 

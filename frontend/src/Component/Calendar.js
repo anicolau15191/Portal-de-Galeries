@@ -17,7 +17,7 @@ class Calendar extends Component{
     }
 
     componentDidMount(){
-        axios.get("https://www.api.artgalleryxisca.me/calendar")
+        axios.get("http://api.artgalleryadria.me/calendar")
             .then(res => {
                 const expos = res.data;
                 this.setState({expos})

@@ -29,7 +29,7 @@ class Registre extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://www.api.artgalleryxisca.me/poblacio")
+        axios.get("http://www.api.artgalleryadria.me/poblacio")
             .then(res => {
                 const poblacio = res.data;
                 this.setState({ poblacio });
@@ -71,7 +71,7 @@ class Registre extends Component {
         console.log(nom,last,email,poblacio,pass);
         
         if(this.state.nom!=="" && this.state.last!=="" && this.state.email!=="" && this.state.poblacio!=="" && this.state.pass!==""){
-            axios.post("https://www.api.artgalleryxisca.me/registre",null,{params:{nom:nom,last:last,email:email,pob:poblacio,pass:pass}});
+            axios.post("http://api.artgalleryadria.me/registre",null,{params:{nom:nom,last:last,email:email,pob:poblacio,pass:pass}});
             this.handleToggle();
 
         }
