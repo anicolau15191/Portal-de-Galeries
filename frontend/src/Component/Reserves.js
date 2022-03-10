@@ -32,12 +32,12 @@ class Reserves extends Component {
 
     componentDidMount() {
         let idExpo = this.props.match.params.idExpo;
-        axios.get("https://www.api.artgalleryxisca.me/dies/" + idExpo)
+        axios.get("http://api.artgalleryadria.me/dies/" + idExpo)
             .then(res => {
                 const dates = res.data;
                 this.setState({ dates })
             })
-        axios.get("https://www.api.artgalleryxisca.me/exposicio/" + idExpo)
+        axios.get("http://api.artgalleryadria.me/exposicio/" + idExpo)
             .then(res => {
                 const expo = res.data;
                 this.setState({ expo })
@@ -48,7 +48,7 @@ class Reserves extends Component {
         this.setState({ dia: d.value })
         let idExpo = this.props.match.params.idExpo;
         let dia = d.value;
-        axios.post("https://www.api.artgalleryxisca.me/sessions/" + idExpo, { dia })
+        axios.post("http://api.artgalleryadria.me/sessions/" + idExpo, { dia })
             .then(res => {
                 const sesions = res.data;
                 this.setState({ sesions })
@@ -75,7 +75,7 @@ class Reserves extends Component {
     handleSubmit() {
         let id_sessio = this.state.sessio.id_sessio;
         let id_usuari = this.props.user.id_usuaris;
-        axios.post("https://www.api.artgalleryxisca.me/reserva", null, { params: {id_sessio, id_usuari} })
+        axios.post("http://api.artgalleryadria.me/reserva", null, { params: {id_sessio, id_usuari} })
             .then(res => {
                 this.setState({ reservat:res.data})
             });

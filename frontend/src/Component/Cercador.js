@@ -38,7 +38,7 @@ class Cercador extends Component{
     }
 
     componentDidMount() {
-        axios.get("https://www.api.artgalleryxisca.me/galeries")
+        axios.get("http://api.artgalleryadria.me/galeries")
         .then(res => {
             const galeries = res.data;
             this.setState({galeries})

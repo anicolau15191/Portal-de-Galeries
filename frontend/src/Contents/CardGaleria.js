@@ -5,7 +5,7 @@ import {
     CardTitle, CardSubtitle, Button, Container, Row, Col, CardHeader
 } from 'reactstrap';
 import { Link } from "react-router-dom";
-const FOTO = 'https://www.api.artgalleryxisca.me/foto';
+const FOTO = 'http://api.artgalleryadria.me/foto';
 class CardGaleria extends Component {
     static defaultProps = {
         galeria:{}

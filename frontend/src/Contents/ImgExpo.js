@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-const API = 'https://www.api.artgalleryxisca.me';
-const FOTO = 'https://www.api.artgalleryxisca.me/fotos';
+const API = 'http://api.artgalleryadria.me';
+const FOTO = 'http://api.artgalleryadria.me/fotos';
 
 class ImgExpo extends Component{
     constructor(props) {

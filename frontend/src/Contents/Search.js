@@ -21,18 +21,18 @@ class Search extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://www.api.artgalleryxisca.me/poblacio")
+        axios.get("http://api.artgalleryadria.me/poblacio")
             .then(res => {
                 const poblacio = res.data;
                 this.setState({ poblacio });
             })
-        axios.get("https://www.api.artgalleryxisca.me/generes")
+        axios.get("http://api.artgalleryadria.me/generes")
             .then(res => {
                 const genPare = res.data;
                 this.setState({ genPare });
 
             })
-        axios.get("https://www.api.artgalleryxisca.me/generes/subgeneres")
+        axios.get("http://api.artgalleryadria.me/generes/subgeneres")
             .then(res => {
                 const genFill = res.data;
                 this.setState({ genFill });

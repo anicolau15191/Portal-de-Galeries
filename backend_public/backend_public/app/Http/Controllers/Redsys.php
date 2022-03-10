@@ -16,7 +16,7 @@
     $currency = '978';
     $consumerlng = '001';
     $transactionType = '0';
-    $urlMerchant = 'http://www.artgalleryxisca.me';
+    $urlMerchant = 'http://www.artgalleryadria.me';
     $urlweb_ok = 'https://www.google.com/';
     $urlweb_ko = 'https://www.youtube.com/';
 
