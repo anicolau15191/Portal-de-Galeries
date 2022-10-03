@@ -12,7 +12,7 @@ class Cercador extends Component{
             genere: "0",
             subgenere: "0",
             poblacio: "0",
-            cerca:""
+            cerca:"",
         };
         
         this.changeGenere = this.changeGenere.bind(this);
